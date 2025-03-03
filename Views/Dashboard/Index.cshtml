@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Dashboard";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+<!-- ✅ Navbar -->
+<nav class="bg-blue-600 text-white p-4 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <h1 class="text-2xl font-bold">Dashboard</h1>
+
+        <!-- ✅ Mobile Hamburger Button -->
+        <button id="menu-btn" class="md:hidden focus:outline-none">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+
+        <!-- ✅ Mobile Menu (Hidden by Default) -->
+        <div id="mobile-menu" class="hidden absolute bg-blue-700 w-full left-0 top-16 p-4 shadow-lg">
+            <ul class="flex flex-col space-y-2">
+                @if (userRole == "Admin")
+                {
+                    <li><a href="#" class="load-content block hover:underline" data-url="/Dashboard/ManageUsers">Manage Users</a></li>
+                    <li><a href="#" class="load-content block hover:underline" data-url="/Dashboard/ViewReports">View Reports</a></li>
+                    <li><a href="#" class="load-content block hover:underline" data-url="/Dashboard/Settings">Settings</a></li>
+                }
+                else if (userRole == "Customer")
+                {
+                    <li><a href="#" class="load-content block hover:underline" data-url="/Dashboard/ViewOrders">View Orders</a></li>
+                    <li><a href="#" class="load-content block hover:underline" data-url="/Dashboard/EditProfile">Edit Profile</a></li>
+                }
+                <li><a asp-controller="Account" asp-action="Logout" class="block hover:underline text-red-300">Log Out</a></li>
+            </ul>
+        </div>
+
+        <!-- ✅ Desktop Menu -->
+        <ul id="desktop-menu" class="hidden md:flex space-x-6">
+            @if (userRole == "Admin")
+            {
+                <li><a href="#" class="load-content hover:underline" data-url="/Dashboard/ManageUsers">Manage Users</a></li>
+                <li><a href="#" class="load-content hover:underline" data-url="/Dashboard/ViewReports">View Reports</a></li>
+                <li><a href="#" class="load-content hover:underline" data-url="/Dashboard/Settings">Settings</a></li>
+            }
+            else if (userRole == "Customer")
+            {
+                <li><a href="#" class="load-content hover:underline" data-url="/Dashboard/ViewOrders">View Orders</a></li>
+                <li><a href="#" class="load-content hover:underline" data-url="/Dashboard/EditProfile">Edit Profile</a></li>
+            }
+            <li><a asp-controller="Account" asp-action="Logout" class="hover:underline text-red-300">Log Out</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ✅ Dynamic Content Section -->
+<div id="dashboard-content" class="p-6 bg-white shadow-md rounded-lg mt-4">
+    <h2 class="text-2xl font-semibold text-gray-700">Welcome to your Dashboard</h2>
+    <p>Select an option from the menu.</p>
+</div>
+
+<!-- ✅ Scripts -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // ✅ Mobile Menu Toggle
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        menuBtn.addEventListener("click", function () {
+            mobileMenu.classList.toggle("hidden");
+        });
+
+        // ✅ Load Content via AJAX
+        document.querySelectorAll(".load-content").forEach(link => {
+            link.addEventListener("click", function (event) {
+                event.preventDefault();
+                let url = this.getAttribute("data-url");
+
+                document.getElementById("dashboard-content").innerHTML = "<p class='text-center'>Loading...</p>";
+
+                fetch(url)
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById("dashboard-content").innerHTML = data;
+                    })
+                    .catch(error => console.error("Error loading content:", error));
+            });
+        });
+    });
+</script>

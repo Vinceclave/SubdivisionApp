@@ -1,0 +1,46 @@
+﻿@{
+    var hideHeaderFooter = ViewData["HideHeaderFooter"] as bool? ?? false;
+    var isDashboard = ViewData["Page"] as string == "Dashboard";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/output.css" />
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    @if (!hideHeaderFooter && !isDashboard) // ✅ Hide Header on Dashboard
+    {
+        <nav id="header" class="fixed w-full z-10 top-0 bg-white shadow-md">
+            <div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between py-3 px-4">
+                <div class="pl-4">
+                    <a class="text-gray-900 text-xl font-extrabold" href="#">Minimal Blog</a>
+                </div>
+                <div>
+                    <a asp-controller="Account" asp-action="Login" class="text-blue-500 hover:underline">Login</a>
+                </div>
+            </div>
+        </nav>
+    }
+
+    @RenderBody()
+
+    @if (!hideHeaderFooter && !isDashboard) // ✅ Hide Footer on Dashboard
+    {
+        <footer class="bg-white border-t border-gray-400 shadow">
+            <div class="container max-w-4xl mx-auto flex py-8">
+                <p class="text-center w-full">© 2025 Your Website</p>
+            </div>
+        </footer>
+    }
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

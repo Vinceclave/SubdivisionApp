@@ -1,0 +1,7 @@
+C:\Users\datan\source\repos\SubdivisionApp\obj\Debug\net5.0\SubdivisionApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\datan\source\repos\SubdivisionApp\obj\Debug\net5.0\SubdivisionApp.AssemblyInfoInputs.cache
+C:\Users\datan\source\repos\SubdivisionApp\obj\Debug\net5.0\SubdivisionApp.AssemblyInfo.cs
+C:\Users\datan\source\repos\SubdivisionApp\obj\Debug\net5.0\SubdivisionApp.csproj.CoreCompileInputs.cache
+C:\Users\datan\source\repos\SubdivisionApp\obj\Debug\net5.0\SubdivisionApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\datan\source\repos\SubdivisionApp\obj\Debug\net5.0\SubdivisionApp.RazorAssemblyInfo.cache
+C:\Users\datan\source\repos\SubdivisionApp\obj\Debug\net5.0\SubdivisionApp.RazorAssemblyInfo.cs

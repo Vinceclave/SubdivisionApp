@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SubdivisionApp.props" />
+</Project>
