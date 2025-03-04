@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uSjxWqLRA7NHWOk6LyyDm1HVXl2H9P+HradPEQF1YgM=",
+  "Hash": "8AmjPSkLq9oH7ENwg1IM0LQsM/yS6R1h0POeavYWsLU=",
   "Source": "SubdivisionApp",
   "BasePath": "_content/SubdivisionApp",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "SubdivisionApp\\wwwroot",
       "Source": "SubdivisionApp",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css",
       "SourceId": "SubdivisionApp",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "SubdivisionApp#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -31,17 +31,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "p8guzva3wr",
-      "Integrity": "ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s=",
+      "Fingerprint": "nojchq558c",
+      "Integrity": "WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css"
+      "OriginalItemSpec": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
       "SourceId": "SubdivisionApp",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "SubdivisionApp#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -52,17 +52,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "p8guzva3wr",
-      "Integrity": "ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s=",
+      "Fingerprint": "nojchq558c",
+      "Integrity": "WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\css\\output.css",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "css/output#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -73,17 +73,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "rqsanpbg5u",
-      "Integrity": "A9sVVeLsIPF6x6rM1+waDsaZkTtJiZL2EviPwO+Zn5w=",
+      "Fingerprint": "562zl4us4q",
+      "Integrity": "vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\css\\site.css",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\site.css",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "css/site#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -94,17 +94,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "w93m3n4zgi",
-      "Integrity": "FFmYbXavDPNlTLyXTs0YOXCIc5P3MNRCRB3Nba3nGdY=",
+      "Fingerprint": "lx0x8ql7ap",
+      "Integrity": "B714rd+tsqy/PjY3pTS4JABiBZmMIi9mYGxE87QbdvQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\favicon.ico",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\favicon.ico",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "favicon#[.{fingerprint}]?.ico",
       "AssetKind": "All",
@@ -122,10 +122,31 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\images\\subdivision 1.png",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\BACKGROUND.jpg",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
+      "BasePath": "_content/SubdivisionApp",
+      "RelativePath": "images/BACKGROUND#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vhzz44sci6",
+      "Integrity": "jY0KXEEQ8IHzHomt/fwPcTch7aKGnccI3WydJh88br4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\BACKGROUND.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\subdivision 1.png",
+      "SourceId": "SubdivisionApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "images/subdivision 1#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -143,10 +164,10 @@
       "OriginalItemSpec": "wwwroot\\images\\subdivision 1.png"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\js\\site.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\js\\site.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "js/site#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -157,17 +178,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xtxxf3hu2r",
-      "Integrity": "hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=",
+      "Fingerprint": "fr7q2aak1r",
+      "Integrity": "y/Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -185,10 +206,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -206,10 +227,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery-validation-unobtrusive/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
@@ -220,17 +241,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "356vix0kms",
-      "Integrity": "16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=",
+      "Fingerprint": "l3n5xuwxn8",
+      "Integrity": "z8IfXovWVa6ZfuyRYTi3B7HSkLgycsAqlcn4IbjIcxA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery-validation/dist/additional-methods#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -241,17 +262,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ay5nd8zt9x",
-      "Integrity": "4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E=",
+      "Fingerprint": "gcjdx5jb8l",
+      "Integrity": "0HeMWyQUbTbe7SGnSYbjj9+HVA0hKDmEUtbYoTKe+Bk=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery-validation/dist/additional-methods.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -262,17 +283,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "9oaff4kq20",
-      "Integrity": "N11IyJpHTgDcSCb3AfX4VrBnpGQeem1NoNzzgcXVyCc=",
+      "Fingerprint": "35gxhxa0gh",
+      "Integrity": "90Rlzuz8pIZK4g9o2I7nGK+9n5cU9Rbdt4GtxRO5arA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -290,10 +311,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery-validation/dist/jquery.validate.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -311,10 +332,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery-validation/LICENSE#[.{fingerprint}]?.md",
       "AssetKind": "All",
@@ -325,17 +346,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "x0q3zqp4vz",
-      "Integrity": "geHEkw/WGPdaHQMRq5HuNY9snliNzU/y2OW8ycnhGXw=",
+      "Fingerprint": "xzw0cte36n",
+      "Integrity": "85iHjKszi4aWOL2sGurna/OsEbK4nabgtovBpkVzNEA=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery/dist/jquery#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -353,10 +374,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.js",
       "AssetKind": "All",
@@ -374,10 +395,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery/dist/jquery.min#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -395,10 +416,10 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Identity": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "SourceId": "SubdivisionApp",
       "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
       "BasePath": "_content/SubdivisionApp",
       "RelativePath": "lib/jquery/LICENSE#[.{fingerprint}]?.txt",
       "AssetKind": "All",
@@ -409,8 +430,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "mlv21k5csn",
-      "Integrity": "hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=",
+      "Fingerprint": "jfsiqqwiad",
+      "Integrity": "kR0ThRjy07+hq4p08nfdkjN+pI94Gj2rK5lyE0buITU=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
@@ -418,8 +439,8 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/output.css",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\css\\output.css",
+      "Route": "css/output.562zl4us4q.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -428,7 +449,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19196"
+          "Value": "18918"
         },
         {
           "Name": "Content-Type",
@@ -436,48 +457,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"A9sVVeLsIPF6x6rM1+waDsaZkTtJiZL2EviPwO+Zn5w=\""
+          "Value": "\"vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 08:20:42 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-A9sVVeLsIPF6x6rM1+waDsaZkTtJiZL2EviPwO+Zn5w="
-        }
-      ]
-    },
-    {
-      "Route": "css/output.rqsanpbg5u.css",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\css\\output.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "19196"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"A9sVVeLsIPF6x6rM1+waDsaZkTtJiZL2EviPwO+Zn5w=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Sat, 01 Mar 2025 08:20:42 GMT"
+          "Value": "Tue, 04 Mar 2025 16:20:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -487,7 +471,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "rqsanpbg5u"
+          "Value": "562zl4us4q"
         },
         {
           "Name": "label",
@@ -495,13 +479,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-A9sVVeLsIPF6x6rM1+waDsaZkTtJiZL2EviPwO+Zn5w="
+          "Value": "sha256-vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA="
         }
       ]
     },
     {
-      "Route": "css/site.css",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\css\\site.css",
+      "Route": "css/output.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -510,7 +494,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "78"
+          "Value": "18918"
         },
         {
           "Name": "Content-Type",
@@ -518,11 +502,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"FFmYbXavDPNlTLyXTs0YOXCIc5P3MNRCRB3Nba3nGdY=\""
+          "Value": "\"vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:36:51 GMT"
+          "Value": "Tue, 04 Mar 2025 16:20:25 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -532,13 +516,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-FFmYbXavDPNlTLyXTs0YOXCIc5P3MNRCRB3Nba3nGdY="
+          "Value": "sha256-vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA="
         }
       ]
     },
     {
-      "Route": "css/site.w93m3n4zgi.css",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\css\\site.css",
+      "Route": "css/site.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -547,7 +531,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "78"
+          "Value": "74"
         },
         {
           "Name": "Content-Type",
@@ -555,11 +539,48 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"FFmYbXavDPNlTLyXTs0YOXCIc5P3MNRCRB3Nba3nGdY=\""
+          "Value": "\"B714rd+tsqy/PjY3pTS4JABiBZmMIi9mYGxE87QbdvQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:36:51 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-B714rd+tsqy/PjY3pTS4JABiBZmMIi9mYGxE87QbdvQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.lx0x8ql7ap.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\site.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "74"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"B714rd+tsqy/PjY3pTS4JABiBZmMIi9mYGxE87QbdvQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -569,7 +590,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "w93m3n4zgi"
+          "Value": "lx0x8ql7ap"
         },
         {
           "Name": "label",
@@ -577,13 +598,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-FFmYbXavDPNlTLyXTs0YOXCIc5P3MNRCRB3Nba3nGdY="
+          "Value": "sha256-B714rd+tsqy/PjY3pTS4JABiBZmMIi9mYGxE87QbdvQ="
         }
       ]
     },
     {
       "Route": "favicon.61n19gt1b8.ico",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\favicon.ico",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\favicon.ico",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -604,7 +625,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -628,7 +649,7 @@
     },
     {
       "Route": "favicon.ico",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\favicon.ico",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\favicon.ico",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -649,7 +670,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -664,8 +685,90 @@
       ]
     },
     {
+      "Route": "images/BACKGROUND.jpg",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\BACKGROUND.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "58131"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jY0KXEEQ8IHzHomt/fwPcTch7aKGnccI3WydJh88br4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 04:42:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jY0KXEEQ8IHzHomt/fwPcTch7aKGnccI3WydJh88br4="
+        }
+      ]
+    },
+    {
+      "Route": "images/BACKGROUND.vhzz44sci6.jpg",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\BACKGROUND.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "58131"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jY0KXEEQ8IHzHomt/fwPcTch7aKGnccI3WydJh88br4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 02 Mar 2025 04:42:42 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vhzz44sci6"
+        },
+        {
+          "Name": "label",
+          "Value": "images/BACKGROUND.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jY0KXEEQ8IHzHomt/fwPcTch7aKGnccI3WydJh88br4="
+        }
+      ]
+    },
+    {
       "Route": "images/subdivision 1.frt6fhaw3k.png",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\images\\subdivision 1.png",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\subdivision 1.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -686,7 +789,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 19:27:35 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -710,7 +813,7 @@
     },
     {
       "Route": "images/subdivision 1.png",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\images\\subdivision 1.png",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\subdivision 1.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -731,7 +834,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 19:27:35 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -746,8 +849,8 @@
       ]
     },
     {
-      "Route": "js/site.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\js\\site.js",
+      "Route": "js/site.fr7q2aak1r.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\js\\site.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -756,7 +859,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "231"
+          "Value": "227"
         },
         {
           "Name": "Content-Type",
@@ -764,48 +867,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
+          "Value": "\"y/Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
-        }
-      ]
-    },
-    {
-      "Route": "js/site.xtxxf3hu2r.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\js\\site.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "231"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -815,7 +881,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "xtxxf3hu2r"
+          "Value": "fr7q2aak1r"
         },
         {
           "Name": "label",
@@ -823,13 +889,50 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-hRQyftXiu1lLX2P9Ly9xa4gHJgLeR1uGN5qegUobtGo="
+          "Value": "sha256-y/Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM="
+        }
+      ]
+    },
+    {
+      "Route": "js/site.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\js\\site.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "227"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"y/Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-y/Ngd8W21UpuCUhEqGbUKDEqFnNfTjAfb24GhJJGUyM="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.47otxtyo56.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -850,7 +953,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -874,7 +977,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -895,7 +998,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -911,7 +1014,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.4v8eqarkd7.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -932,7 +1035,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -956,7 +1059,7 @@
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -977,7 +1080,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -992,8 +1095,8 @@
       ]
     },
     {
-      "Route": "lib/jquery-validation-unobtrusive/LICENSE.356vix0kms.txt",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Route": "lib/jquery-validation-unobtrusive/LICENSE.l3n5xuwxn8.txt",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1002,7 +1105,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1139"
+          "Value": "1116"
         },
         {
           "Name": "Content-Type",
@@ -1010,11 +1113,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=\""
+          "Value": "\"z8IfXovWVa6ZfuyRYTi3B7HSkLgycsAqlcn4IbjIcxA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1024,7 +1127,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "356vix0kms"
+          "Value": "l3n5xuwxn8"
         },
         {
           "Name": "label",
@@ -1032,13 +1135,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+          "Value": "sha256-z8IfXovWVa6ZfuyRYTi3B7HSkLgycsAqlcn4IbjIcxA="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation-unobtrusive/LICENSE.txt",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1047,7 +1150,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1139"
+          "Value": "1116"
         },
         {
           "Name": "Content-Type",
@@ -1055,11 +1158,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s=\""
+          "Value": "\"z8IfXovWVa6ZfuyRYTi3B7HSkLgycsAqlcn4IbjIcxA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1069,13 +1172,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+          "Value": "sha256-z8IfXovWVa6ZfuyRYTi3B7HSkLgycsAqlcn4IbjIcxA="
         }
       ]
     },
     {
-      "Route": "lib/jquery-validation/dist/additional-methods.ay5nd8zt9x.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Route": "lib/jquery-validation/dist/additional-methods.gcjdx5jb8l.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1084,7 +1187,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "52977"
+          "Value": "51466"
         },
         {
           "Name": "Content-Type",
@@ -1092,11 +1195,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E=\""
+          "Value": "\"0HeMWyQUbTbe7SGnSYbjj9+HVA0hKDmEUtbYoTKe+Bk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1106,7 +1209,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ay5nd8zt9x"
+          "Value": "gcjdx5jb8l"
         },
         {
           "Name": "label",
@@ -1114,13 +1217,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E="
+          "Value": "sha256-0HeMWyQUbTbe7SGnSYbjj9+HVA0hKDmEUtbYoTKe+Bk="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1129,7 +1232,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "52977"
+          "Value": "51466"
         },
         {
           "Name": "Content-Type",
@@ -1137,11 +1240,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E=\""
+          "Value": "\"0HeMWyQUbTbe7SGnSYbjj9+HVA0hKDmEUtbYoTKe+Bk=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1151,13 +1254,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-4jrcLBsi0Ugm8iLKdqDsAyaCDjkscYZdoGuNH/zqs4E="
+          "Value": "sha256-0HeMWyQUbTbe7SGnSYbjj9+HVA0hKDmEUtbYoTKe+Bk="
         }
       ]
     },
     {
-      "Route": "lib/jquery-validation/dist/additional-methods.min.9oaff4kq20.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Route": "lib/jquery-validation/dist/additional-methods.min.35gxhxa0gh.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1166,7 +1269,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "22177"
+          "Value": "22174"
         },
         {
           "Name": "Content-Type",
@@ -1174,11 +1277,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"N11IyJpHTgDcSCb3AfX4VrBnpGQeem1NoNzzgcXVyCc=\""
+          "Value": "\"90Rlzuz8pIZK4g9o2I7nGK+9n5cU9Rbdt4GtxRO5arA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1188,7 +1291,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "9oaff4kq20"
+          "Value": "35gxhxa0gh"
         },
         {
           "Name": "label",
@@ -1196,13 +1299,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-N11IyJpHTgDcSCb3AfX4VrBnpGQeem1NoNzzgcXVyCc="
+          "Value": "sha256-90Rlzuz8pIZK4g9o2I7nGK+9n5cU9Rbdt4GtxRO5arA="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation/dist/additional-methods.min.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1211,7 +1314,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "22177"
+          "Value": "22174"
         },
         {
           "Name": "Content-Type",
@@ -1219,11 +1322,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"N11IyJpHTgDcSCb3AfX4VrBnpGQeem1NoNzzgcXVyCc=\""
+          "Value": "\"90Rlzuz8pIZK4g9o2I7nGK+9n5cU9Rbdt4GtxRO5arA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1233,13 +1336,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-N11IyJpHTgDcSCb3AfX4VrBnpGQeem1NoNzzgcXVyCc="
+          "Value": "sha256-90Rlzuz8pIZK4g9o2I7nGK+9n5cU9Rbdt4GtxRO5arA="
         }
       ]
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1260,7 +1363,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1276,7 +1379,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.min.b7iojwaux1.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1297,7 +1400,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1321,7 +1424,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.min.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1342,7 +1445,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1358,7 +1461,7 @@
     },
     {
       "Route": "lib/jquery-validation/dist/jquery.validate.pzqfkb6aqo.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1379,7 +1482,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1403,7 +1506,7 @@
     },
     {
       "Route": "lib/jquery-validation/LICENSE.md",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1412,7 +1515,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1117"
+          "Value": "1095"
         },
         {
           "Name": "Content-Type",
@@ -1420,11 +1523,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"geHEkw/WGPdaHQMRq5HuNY9snliNzU/y2OW8ycnhGXw=\""
+          "Value": "\"85iHjKszi4aWOL2sGurna/OsEbK4nabgtovBpkVzNEA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1434,13 +1537,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-geHEkw/WGPdaHQMRq5HuNY9snliNzU/y2OW8ycnhGXw="
+          "Value": "sha256-85iHjKszi4aWOL2sGurna/OsEbK4nabgtovBpkVzNEA="
         }
       ]
     },
     {
-      "Route": "lib/jquery-validation/LICENSE.x0q3zqp4vz.md",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Route": "lib/jquery-validation/LICENSE.xzw0cte36n.md",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1449,7 +1552,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1117"
+          "Value": "1095"
         },
         {
           "Name": "Content-Type",
@@ -1457,11 +1560,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"geHEkw/WGPdaHQMRq5HuNY9snliNzU/y2OW8ycnhGXw=\""
+          "Value": "\"85iHjKszi4aWOL2sGurna/OsEbK4nabgtovBpkVzNEA=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1471,7 +1574,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "x0q3zqp4vz"
+          "Value": "xzw0cte36n"
         },
         {
           "Name": "label",
@@ -1479,13 +1582,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-geHEkw/WGPdaHQMRq5HuNY9snliNzU/y2OW8ycnhGXw="
+          "Value": "sha256-85iHjKszi4aWOL2sGurna/OsEbK4nabgtovBpkVzNEA="
         }
       ]
     },
     {
       "Route": "lib/jquery/dist/jquery.fwhahm2icz.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1506,7 +1609,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1530,7 +1633,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1551,7 +1654,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1567,7 +1670,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.5pze98is44.map",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1588,7 +1691,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1612,7 +1715,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.dd6z7egasc.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1633,7 +1736,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1657,7 +1760,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.js",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1678,7 +1781,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1694,7 +1797,7 @@
     },
     {
       "Route": "lib/jquery/dist/jquery.min.map",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1715,7 +1818,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:39 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1730,8 +1833,8 @@
       ]
     },
     {
-      "Route": "lib/jquery/LICENSE.mlv21k5csn.txt",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Route": "lib/jquery/LICENSE.jfsiqqwiad.txt",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1740,7 +1843,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1117"
+          "Value": "1097"
         },
         {
           "Name": "Content-Type",
@@ -1748,11 +1851,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=\""
+          "Value": "\"kR0ThRjy07+hq4p08nfdkjN+pI94Gj2rK5lyE0buITU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1762,7 +1865,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mlv21k5csn"
+          "Value": "jfsiqqwiad"
         },
         {
           "Name": "label",
@@ -1770,13 +1873,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="
+          "Value": "sha256-kR0ThRjy07+hq4p08nfdkjN+pI94Gj2rK5lyE0buITU="
         }
       ]
     },
     {
       "Route": "lib/jquery/LICENSE.txt",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1785,7 +1888,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1117"
+          "Value": "1097"
         },
         {
           "Name": "Content-Type",
@@ -1793,11 +1896,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk=\""
+          "Value": "\"kR0ThRjy07+hq4p08nfdkjN+pI94Gj2rK5lyE0buITU=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 27 Feb 2025 18:14:40 GMT"
+          "Value": "Mon, 03 Mar 2025 14:09:32 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1807,13 +1910,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-hjIBkvmgxQXbNXK3B9YQ3t06RwLuQSQzC/dpvuB/lMk="
+          "Value": "sha256-kR0ThRjy07+hq4p08nfdkjN+pI94Gj2rK5lyE0buITU="
         }
       ]
     },
     {
       "Route": "SubdivisionApp.bundle.scp.css",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1822,7 +1925,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1132"
+          "Value": "1138"
         },
         {
           "Name": "Content-Type",
@@ -1830,11 +1933,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s=\""
+          "Value": "\"WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 01:19:33 GMT"
+          "Value": "Tue, 04 Mar 2025 16:12:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1844,13 +1947,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s="
+          "Value": "sha256-WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw="
         }
       ]
     },
     {
-      "Route": "SubdivisionApp.p8guzva3wr.bundle.scp.css",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
+      "Route": "SubdivisionApp.nojchq558c.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1859,7 +1962,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1132"
+          "Value": "1138"
         },
         {
           "Name": "Content-Type",
@@ -1867,11 +1970,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s=\""
+          "Value": "\"WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 01:19:33 GMT"
+          "Value": "Tue, 04 Mar 2025 16:12:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1881,7 +1984,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "p8guzva3wr"
+          "Value": "nojchq558c"
         },
         {
           "Name": "label",
@@ -1889,13 +1992,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s="
+          "Value": "sha256-WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw="
         }
       ]
     },
     {
-      "Route": "SubdivisionApp.p8guzva3wr.styles.css",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css",
+      "Route": "SubdivisionApp.nojchq558c.styles.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1904,7 +2007,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1132"
+          "Value": "1138"
         },
         {
           "Name": "Content-Type",
@@ -1912,11 +2015,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s=\""
+          "Value": "\"WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 01:19:33 GMT"
+          "Value": "Tue, 04 Mar 2025 16:12:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1926,7 +2029,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "p8guzva3wr"
+          "Value": "nojchq558c"
         },
         {
           "Name": "label",
@@ -1934,13 +2037,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s="
+          "Value": "sha256-WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw="
         }
       ]
     },
     {
       "Route": "SubdivisionApp.styles.css",
-      "AssetFile": "C:\\Users\\datan\\source\\repos\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1949,7 +2052,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1132"
+          "Value": "1138"
         },
         {
           "Name": "Content-Type",
@@ -1957,11 +2060,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s=\""
+          "Value": "\"WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 28 Feb 2025 01:19:33 GMT"
+          "Value": "Tue, 04 Mar 2025 16:12:36 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1971,7 +2074,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-ueztguox1i9211ORrWkM2i0c3CTw/0orSI/Z1EnWI5s="
+          "Value": "sha256-WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw="
         }
       ]
     }
