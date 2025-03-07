@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8AmjPSkLq9oH7ENwg1IM0LQsM/yS6R1h0POeavYWsLU=",
+  "Hash": "/B2obY6HnzVxs5YyBf7E1gX172DI/z40ApBhfuGxtck=",
   "Source": "SubdivisionApp",
   "BasePath": "_content/SubdivisionApp",
   "Mode": "Default",
@@ -31,8 +31,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ApplicationBundle",
-      "Fingerprint": "nojchq558c",
-      "Integrity": "WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=",
+      "Fingerprint": "5gzow1y9fu",
+      "Integrity": "de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css"
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "ScopedCss",
       "AssetTraitValue": "ProjectBundle",
-      "Fingerprint": "nojchq558c",
-      "Integrity": "WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=",
+      "Fingerprint": "5gzow1y9fu",
+      "Integrity": "de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css"
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "562zl4us4q",
-      "Integrity": "vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA=",
+      "Fingerprint": "eudlmr26n6",
+      "Integrity": "qgRbCyMgCUvc7D8myhi5XlMDlh1eCSORmCye22aoNjs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -439,51 +439,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/output.562zl4us4q.css",
-      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "18918"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 04 Mar 2025 16:20:25 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "562zl4us4q"
-        },
-        {
-          "Name": "label",
-          "Value": "css/output.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA="
-        }
-      ]
-    },
-    {
       "Route": "css/output.css",
       "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
       "Selectors": [],
@@ -494,7 +449,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18918"
+          "Value": "18911"
         },
         {
           "Name": "Content-Type",
@@ -502,11 +457,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA=\""
+          "Value": "\"qgRbCyMgCUvc7D8myhi5XlMDlh1eCSORmCye22aoNjs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 04 Mar 2025 16:20:25 GMT"
+          "Value": "Thu, 06 Mar 2025 11:37:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -516,7 +471,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-vZqc84h0jwBZttQhW4/oIdSOyI/rtJvjBIZ4MIQFYFA="
+          "Value": "sha256-qgRbCyMgCUvc7D8myhi5XlMDlh1eCSORmCye22aoNjs="
+        }
+      ]
+    },
+    {
+      "Route": "css/output.eudlmr26n6.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18911"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"qgRbCyMgCUvc7D8myhi5XlMDlh1eCSORmCye22aoNjs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 11:37:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eudlmr26n6"
+        },
+        {
+          "Name": "label",
+          "Value": "css/output.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-qgRbCyMgCUvc7D8myhi5XlMDlh1eCSORmCye22aoNjs="
         }
       ]
     },
@@ -1915,6 +1915,96 @@
       ]
     },
     {
+      "Route": "SubdivisionApp.5gzow1y9fu.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1217"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 05 Mar 2025 04:04:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5gzow1y9fu"
+        },
+        {
+          "Name": "label",
+          "Value": "SubdivisionApp.bundle.scp.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw="
+        }
+      ]
+    },
+    {
+      "Route": "SubdivisionApp.5gzow1y9fu.styles.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1217"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 05 Mar 2025 04:04:46 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "5gzow1y9fu"
+        },
+        {
+          "Name": "label",
+          "Value": "SubdivisionApp.styles.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw="
+        }
+      ]
+    },
+    {
       "Route": "SubdivisionApp.bundle.scp.css",
       "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
       "Selectors": [],
@@ -1925,7 +2015,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1138"
+          "Value": "1217"
         },
         {
           "Name": "Content-Type",
@@ -1933,11 +2023,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=\""
+          "Value": "\"de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 04 Mar 2025 16:12:36 GMT"
+          "Value": "Wed, 05 Mar 2025 04:04:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1947,97 +2037,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw="
-        }
-      ]
-    },
-    {
-      "Route": "SubdivisionApp.nojchq558c.bundle.scp.css",
-      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1138"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 04 Mar 2025 16:12:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "nojchq558c"
-        },
-        {
-          "Name": "label",
-          "Value": "SubdivisionApp.bundle.scp.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw="
-        }
-      ]
-    },
-    {
-      "Route": "SubdivisionApp.nojchq558c.styles.css",
-      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\SubdivisionApp.styles.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "1138"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Tue, 04 Mar 2025 16:12:36 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "nojchq558c"
-        },
-        {
-          "Name": "label",
-          "Value": "SubdivisionApp.styles.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw="
+          "Value": "sha256-de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw="
         }
       ]
     },
@@ -2052,7 +2052,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1138"
+          "Value": "1217"
         },
         {
           "Name": "Content-Type",
@@ -2060,11 +2060,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw=\""
+          "Value": "\"de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 04 Mar 2025 16:12:36 GMT"
+          "Value": "Wed, 05 Mar 2025 04:04:46 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -2074,7 +2074,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-WSikb2utw4zGfZne2Y2sS5C9RWu3gyh/F5KOt/nokHw="
+          "Value": "sha256-de0XMlpg6PBXjeuIVIMRm24Dmx2seteOMBjRElejpNw="
         }
       ]
     }
