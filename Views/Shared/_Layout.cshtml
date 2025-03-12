@@ -1,6 +1,8 @@
 ﻿@{
     var hideHeaderFooter = ViewData["HideHeaderFooter"] as bool? ?? false;
     var isDashboard = ViewData["Page"] as string == "Dashboard";
+    var isLanding = ViewData["Page"] as string == "Landing";
+    var isLogin = ViewData["Page"] as string == "Login";
 }
 
 <!DOCTYPE html>
@@ -10,25 +12,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/output.css" />
+    <style>
+        .line::before,
+        .line::after {
+            content: "";
+            flex-grow: 1;
+            border-top:0cap 1px solid black;
+            margin: 0
+        }
+
+        .line {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 
-<body class=" font-sans leading-normal tracking-normal">
-
-    @if (!hideHeaderFooter && !isDashboard) // ✅ Hide Header on Dashboard
+<body class="font-sans leading-normal tracking-normal @(isLanding || isLogin ? "bg-cover bg-center bg-no-repeat" : "bg-gray-100")" style="@(isLanding || isLogin ? "background-image: url('/images/BACKGROUND.jpg')" : "")">
+    @if (isLanding || isLogin) 
     {
-        <nav id="header" class="fixed w-full z-10 top-0 bg-white shadow-md">
-            <div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between py-3 px-4">
-                <div class="pl-4">
-                    <a class="text-gray-900 text-xl font-bold" href="#">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <header class="fixed w-full z-10 top-0 py-3 px-4">
+            <div class="w-full md:max-w-4xl flex flex-wrap items-center justify-start">
+                <div class="pl-4" style="padding-left:0px; ">
+                    <a asp-controller="Home" asp-action="Index" class="text-gray-900 text-xl font-bold">HOME</a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a class="text-gray-900 text-xl font-bold" href="#">ABOUT US</a>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a asp-controller="Account" asp-action="Login" class="text-gray-900 hover:underline text-xl font-bold">LOG IN</a>
                 </div>
-
             </div>
-        </nav>
+        </header>
     }
 
+    <div class="@((isLanding || isLogin) ? "min-h-screen" : "") body-content">
     @RenderBody()
+    </div>
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

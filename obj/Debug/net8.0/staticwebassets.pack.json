@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\SubdivisionApp.bundle.scp.css",
-      "PackagePath": "staticwebassets\\SubdivisionApp.5gzow1y9fu.bundle.scp.css"
+      "PackagePath": "staticwebassets\\SubdivisionApp.mkovkmed61.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
@@ -19,10 +19,6 @@
     {
       "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\BACKGROUND.jpg",
       "PackagePath": "staticwebassets\\images\\BACKGROUND.jpg"
-    },
-    {
-      "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\subdivision 1.png",
-      "PackagePath": "staticwebassets\\images\\subdivision 1.png"
     },
     {
       "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\js\\site.js",

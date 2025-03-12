@@ -14,5 +14,8 @@
     "eslint": "^9.21.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^2.2.19"
+  },
+  "dependencies": {
+    "tailwindcss-textshadow": "^2.1.3"
   }
 }

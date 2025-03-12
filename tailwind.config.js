@@ -10,10 +10,20 @@ module.exports = {
     },
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            textShadow: {
+                'custom': '8px 8px 4px rgba(0, 0, 0, 0.25)',
+            },     
+            spacing: {
+                '12': '3rem',
+                '24': '6rem',
+            }
+        },
     },
     variants: {
         extend: {},
     },
-    plugins: [],
+    plugins: [
+        require('tailwindcss-textshadow')
+    ],
 }
