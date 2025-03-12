@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "T8cTE9le33TxUfoV7qS3RRICy1UlRED18QtUOCkqe8M=",
+  "Hash": "TvRQ+fRIblP4lwRR/KeDZwrolcN99InUGC1GcbFnbIA=",
   "Source": "SubdivisionApp",
   "BasePath": "_content/SubdivisionApp",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "yb5sfp39ju",
-      "Integrity": "AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw=",
+      "Fingerprint": "vvcb8lr5bh",
+      "Integrity": "+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -141,6 +141,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\BACKGROUND.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\girl.png",
+      "SourceId": "SubdivisionApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\",
+      "BasePath": "_content/SubdivisionApp",
+      "RelativePath": "images/girl#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "plk77zla2f",
+      "Integrity": "DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\girl.png"
     },
     {
       "Identity": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\js\\site.js",
@@ -428,7 +449,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19674"
+          "Value": "20044"
         },
         {
           "Name": "Content-Type",
@@ -436,11 +457,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw=\""
+          "Value": "\"+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 01:33:04 GMT"
+          "Value": "Wed, 12 Mar 2025 03:18:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -450,12 +471,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw="
+          "Value": "sha256-+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI="
         }
       ]
     },
     {
-      "Route": "css/output.yb5sfp39ju.css",
+      "Route": "css/output.vvcb8lr5bh.css",
       "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -465,7 +486,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19674"
+          "Value": "20044"
         },
         {
           "Name": "Content-Type",
@@ -473,11 +494,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw=\""
+          "Value": "\"+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 01:33:04 GMT"
+          "Value": "Wed, 12 Mar 2025 03:18:09 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -487,7 +508,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "yb5sfp39ju"
+          "Value": "vvcb8lr5bh"
         },
         {
           "Name": "label",
@@ -495,7 +516,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw="
+          "Value": "sha256-+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI="
         }
       ]
     },
@@ -742,6 +763,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-jY0KXEEQ8IHzHomt/fwPcTch7aKGnccI3WydJh88br4="
+        }
+      ]
+    },
+    {
+      "Route": "images/girl.plk77zla2f.png",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\girl.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69341"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 12 Mar 2025 03:07:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "plk77zla2f"
+        },
+        {
+          "Name": "label",
+          "Value": "images/girl.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c="
+        }
+      ]
+    },
+    {
+      "Route": "images/girl.png",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\girl.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69341"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 12 Mar 2025 03:07:30 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c="
         }
       ]
     },

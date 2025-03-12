@@ -99,7 +99,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19674"
+          "Value": "20044"
         },
         {
           "Name": "Content-Type",
@@ -107,22 +107,22 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw=\""
+          "Value": "\"+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 01:33:04 GMT"
+          "Value": "Wed, 12 Mar 2025 03:18:09 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw="
+          "Value": "sha256-+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI="
         }
       ]
     },
     {
-      "Route": "css/output.yb5sfp39ju.css",
+      "Route": "css/output.vvcb8lr5bh.css",
       "AssetFile": "css/output.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -136,7 +136,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "19674"
+          "Value": "20044"
         },
         {
           "Name": "Content-Type",
@@ -144,21 +144,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw=\""
+          "Value": "\"+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Mar 2025 01:33:04 GMT"
+          "Value": "Wed, 12 Mar 2025 03:18:09 GMT"
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "yb5sfp39ju"
+          "Value": "vvcb8lr5bh"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-AhPJfWvjquKZd7aDtzFoaGKPk3eTvdLkNsw0tP2h2Vw="
+          "Value": "sha256-+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI="
         },
         {
           "Name": "label",
@@ -409,6 +409,88 @@
         {
           "Name": "label",
           "Value": "images/BACKGROUND.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/girl.plk77zla2f.png",
+      "AssetFile": "images/girl.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69341"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 12 Mar 2025 03:07:30 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "plk77zla2f"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c="
+        },
+        {
+          "Name": "label",
+          "Value": "images/girl.png"
+        }
+      ]
+    },
+    {
+      "Route": "images/girl.png",
+      "AssetFile": "images/girl.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "69341"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 12 Mar 2025 03:07:30 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c="
         }
       ]
     },

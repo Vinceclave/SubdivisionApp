@@ -2,28 +2,67 @@
     ViewData["Title"] = "Register";
 }
 
-<h2 class="text-2xl font-bold text-center">Register</h2>
-<form method="post">
-    <div class="mb-4">
-        <label class="block text-gray-700">Username</label>
-        <input type="text" name="Username" class="w-full p-2 border rounded" required />
+<div class="min-h-screen bg-green-900 flex flex-col justify-center items-center relative">
+    
+    <div class="absolute top-4 left-4">
+        <a href="javascript:history.back()" class="text-white font-semibold hover:underline">← GO BACK</a>
     </div>
-    <div class="mb-4">
-        <label class="block text-gray-700">Full Name</label>
-        <input type="text" name="UserFname" class="w-full p-2 border rounded" required />
-    </div>
-    <div class="mb-4">
-        <label class="block text-gray-700">Email</label>
-        <input type="email" name="UserEmail" class="w-full p-2 border rounded" required />
-    </div>
-    <div class="mb-4">
-        <label class="block text-gray-700">Password</label>
-        <input type="password" name="PasswordHash" class="w-full p-2 border rounded" required />
-    </div>
-    <button type="submit" class="w-full bg-green-500 text-white p-2 rounded">Register</button>
-</form>
 
-<p class="mt-4 text-center">
-    Already have an account?
-    <a asp-controller="Account" asp-action="Login" class="text-blue-500 hover:underline">Login here</a>
-</p>
+    <div class="flex justify-center items-center">
+        
+        <div class="w-[40%] flex justify-end pr-56">
+            <img src="~/images/girl.png" alt="Illustration" class="h-[500px] w-auto">
+        </div>
+
+        
+        <div class="bg-gray-300 p-6 rounded-lg shadow-lg border-2 border-black w-[480px]">
+            <h2 class="text-center text-2xl font-bold mb-4">SIGN UP</h2>
+
+            <form method="post" class="space-y-3">
+                <div class="flex space-x-4">
+                    <div class="w-1/2">
+                        <label class="block text-black text-sm font-semibold">First Name</label>
+                        <input type="text" name="FirstName" class="w-full p-2 border rounded-lg" required />
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-black text-sm font-semibold">Last Name</label>
+                        <input type="text" name="LastName" class="w-full p-2 border rounded-lg" required />
+                    </div>
+                </div>
+
+                <div class="flex space-x-4">
+                    <div class="w-1/2">
+                        <label class="block text-black text-sm font-semibold">Email</label>
+                        <input type="email" name="Email" class="w-full p-2 border rounded-lg" required />
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-black text-sm font-semibold">Contact No.</label>
+                        <input type="text" name="ContactNo" class="w-full p-2 border rounded-lg" required />
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-black text-sm font-semibold">Address</label>
+                    <input type="text" name="Address" class="w-full p-2 border rounded-lg" required />
+                </div>
+
+                <div>
+                    <label class="block text-black text-sm font-semibold">Username</label>
+                    <input type="text" name="Username" class="w-full p-2 border rounded-lg" required />
+                </div>
+
+                <div>
+                    <label class="block text-black text-sm font-semibold">Password</label>
+                    <input type="password" name="Password" class="w-full p-2 border rounded-lg" required />
+                </div>
+
+                <button type="submit" class="w-full bg-black text-white font-bold p-2 rounded-lg">Confirm</button>
+            </form>
+
+            <p class="mt-4 text-center text-black">
+                Already have an account?
+                <a asp-controller="Account" asp-action="Login" class="text-blue-600 hover:underline">Login here</a>
+            </p>
+        </div>
+    </div>
+</div>
