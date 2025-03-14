@@ -101,17 +101,17 @@
                     
                     <!-- Tabs -->
                     <div class="flex space-x-4 mt-2">
-                        <a href="#" class="text-blue-600 border-b-2 border-blue-600 pb-1">All (12)</a>
-                        <a href="#" class="text-gray-500 hover:text-gray-700">Pending (3)</a>
-                        <a href="#" class="text-gray-500 hover:text-gray-700">Approved (7)</a>
-                        <a href="#" class="text-gray-500 hover:text-gray-700">Rejected (2)</a>
+                        <a href="#" class="tab-link active" data-tab="all">All (12)</a>
+                        <a href="#" class="tab-link" data-tab="pending">Pending (3)</a>
+                        <a href="#" class="tab-link" data-tab="approved">Approved (7)</a>
+                        <a href="#" class="tab-link" data-tab="rejected">Rejected (2)</a>
                     </div>
                 </div>
                 
                 <!-- Visitor Pass List -->
                 <div class="divide-y divide-gray-200">
-                    <!-- Visitor Pass Item 1 -->
-                    <div class="p-4">
+                    <!-- Visitor Pass Item - Pending -->
+                    <div class="p-4 pass-item" data-status="pending">
                         <div class="flex justify-between mb-1">
                             <div class="flex items-center">
                                 <input type="checkbox" class="mr-2">
@@ -139,8 +139,8 @@
                         </div>
                     </div>
                     
-                    <!-- Visitor Pass Item 2 -->
-                    <div class="p-4">
+                    <!-- Visitor Pass Item - Approved -->
+                    <div class="p-4 pass-item" data-status="approved">
                         <div class="flex justify-between mb-1">
                             <div class="flex items-center">
                                 <input type="checkbox" class="mr-2">
@@ -166,6 +166,33 @@
                             <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">Approved</span>
                         </div>
                     </div>
+                    
+                    <!-- Visitor Pass Item - Rejected -->
+                    <div class="p-4 pass-item" data-status="rejected">
+                        <div class="flex justify-between mb-1">
+                            <div class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span class="font-medium">Sarah Johnson</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 text-sm">View Details</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center text-sm text-gray-500 mb-1">
+                            <span class="mr-4">January 8, 2025</span>
+                            <span>2:15 PM</span>
+                        </div>
+                        
+                        <div class="flex items-center text-sm">
+                            <span class="mr-2">ID:</span>
+                            <span class="text-gray-700">VISTOR/08</span>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <span class="bg-red-100 text-red-800 text-xs font-medium px-2 py-0.5 rounded">Rejected</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,6 +201,25 @@
 
 <!-- Overlay for profile dropdown when open -->
 <div id="profile-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden"></div>
+
+<!-- CSS for Tab Styling -->
+<style>
+    .tab-link {
+        position: relative;
+        padding-bottom: 4px;
+        color: #6b7280; /* text-gray-500 */
+        transition: color 0.3s;
+    }
+    
+    .tab-link:hover {
+        color: #374151; /* text-gray-700 */
+    }
+    
+    .tab-link.active {
+        color: #2563eb; /* text-blue-600 */
+        border-bottom: 2px solid #2563eb; /* border-blue-600 */
+    }
+</style>
 
 <!-- Scripts -->
 <script>
@@ -203,5 +249,40 @@
                 profileOverlay.classList.add("hidden");
             });
         });
+        
+        // Tab functionality
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const passItems = document.querySelectorAll('.pass-item');
+        
+        // Function to filter pass items based on selected tab
+        function filterPasses(tabName) {
+            passItems.forEach(item => {
+                if (tabName === 'all' || item.getAttribute('data-status') === tabName) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        
+        // Add click event to each tab
+        tabLinks.forEach(tab => {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                tabLinks.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                this.classList.add('active');
+                
+                // Filter pass items based on selected tab
+                const tabName = this.getAttribute('data-tab');
+                filterPasses(tabName);
+            });
+        });
+        
+        // Initialize with "All" tab selected
+        filterPasses('all');
     });
 </script>

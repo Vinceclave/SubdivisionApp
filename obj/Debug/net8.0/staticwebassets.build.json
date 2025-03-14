@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C/wRJ9Ys1IjyH+tF5wj862KS3hxw/wKRHQcR8/YqvoA=",
+  "Hash": "my3PQDJywbAM7wdBYulUZolpYQNju1lzNbhn9q30jdI=",
   "Source": "SubdivisionApp",
   "BasePath": "_content/SubdivisionApp",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "08trtd833r",
-      "Integrity": "UGIoM+SGCQXccwQS9pkExEwF4Q8Nym8gtL4/jCAi/7E=",
+      "Fingerprint": "6dlaafsh58",
+      "Integrity": "Vo87O6vlto+iYFQufPPTunq9LK3LQf2fJDi76e9WKJ8=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -502,7 +502,7 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/output.08trtd833r.css",
+      "Route": "css/output.6dlaafsh58.css",
       "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -512,7 +512,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "24744"
+          "Value": "25289"
         },
         {
           "Name": "Content-Type",
@@ -520,11 +520,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"UGIoM+SGCQXccwQS9pkExEwF4Q8Nym8gtL4/jCAi/7E=\""
+          "Value": "\"Vo87O6vlto+iYFQufPPTunq9LK3LQf2fJDi76e9WKJ8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 04:15:44 GMT"
+          "Value": "Fri, 14 Mar 2025 04:35:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -534,7 +534,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "08trtd833r"
+          "Value": "6dlaafsh58"
         },
         {
           "Name": "label",
@@ -542,7 +542,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-UGIoM+SGCQXccwQS9pkExEwF4Q8Nym8gtL4/jCAi/7E="
+          "Value": "sha256-Vo87O6vlto+iYFQufPPTunq9LK3LQf2fJDi76e9WKJ8="
         }
       ]
     },
@@ -557,7 +557,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "24744"
+          "Value": "25289"
         },
         {
           "Name": "Content-Type",
@@ -565,11 +565,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"UGIoM+SGCQXccwQS9pkExEwF4Q8Nym8gtL4/jCAi/7E=\""
+          "Value": "\"Vo87O6vlto+iYFQufPPTunq9LK3LQf2fJDi76e9WKJ8=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 04:15:44 GMT"
+          "Value": "Fri, 14 Mar 2025 04:35:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -579,7 +579,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-UGIoM+SGCQXccwQS9pkExEwF4Q8Nym8gtL4/jCAi/7E="
+          "Value": "sha256-Vo87O6vlto+iYFQufPPTunq9LK3LQf2fJDi76e9WKJ8="
         }
       ]
     },
