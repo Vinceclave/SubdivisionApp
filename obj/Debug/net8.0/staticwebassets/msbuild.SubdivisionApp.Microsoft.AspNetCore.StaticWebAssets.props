@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>vvcb8lr5bh</Fingerprint>
-      <Integrity>+4GRcMcBn/QYypB1bzYZ3ympRo4vb4GWiVT7IUn9WyI=</Integrity>
+      <Fingerprint>h1rjktoqfj</Fingerprint>
+      <Integrity>pTda7OYgFYg/Kx5703YVf3zOB4DQRTNQ7eqxrT2cI68=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\output.css'))</OriginalItemSpec>
@@ -54,41 +54,59 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\BACKGROUND.jpg'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\court.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>SubdivisionApp</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/SubdivisionApp</BasePath>
-      <RelativePath>images/BACKGROUND.jpg</RelativePath>
+      <RelativePath>images/court.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>vhzz44sci6</Fingerprint>
-      <Integrity>jY0KXEEQ8IHzHomt/fwPcTch7aKGnccI3WydJh88br4=</Integrity>
+      <Fingerprint>2b7pjxx2t8</Fingerprint>
+      <Integrity>PpgiH6risYwY7Y02kYWztnCXV5+m5ImCDVN/feAI5Ms=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\BACKGROUND.jpg'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\court.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\girl.png'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\gum.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>SubdivisionApp</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/SubdivisionApp</BasePath>
-      <RelativePath>images/girl.png</RelativePath>
+      <RelativePath>images/gum.jpg</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>All</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>plk77zla2f</Fingerprint>
-      <Integrity>DQc2NPc/JoM1c0Y3U9lJukf7XcZM77r93GbHhZ2Hz1c=</Integrity>
+      <Fingerprint>xr9hxkvona</Fingerprint>
+      <Integrity>vcx2CVjW76Y5jL4dN4yPCJ2ydUK9FftkvxGHjZL7B7I=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\girl.png'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\gum.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\swimming-pool.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>SubdivisionApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/SubdivisionApp</BasePath>
+      <RelativePath>images/swimming-pool.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ef2hgbx1wo</Fingerprint>
+      <Integrity>dm010mWmOQbEIkNA9G9/EqX7TYHv+agXblSJaJ2rTBM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\swimming-pool.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))">
       <SourceType>Package</SourceType>

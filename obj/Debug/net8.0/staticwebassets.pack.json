@@ -17,12 +17,16 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\BACKGROUND.jpg",
-      "PackagePath": "staticwebassets\\images\\BACKGROUND.jpg"
+      "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\court.jpg",
+      "PackagePath": "staticwebassets\\images\\court.jpg"
     },
     {
-      "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\girl.png",
-      "PackagePath": "staticwebassets\\images\\girl.png"
+      "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\gum.jpg",
+      "PackagePath": "staticwebassets\\images\\gum.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\swimming-pool.jpg",
+      "PackagePath": "staticwebassets\\images\\swimming-pool.jpg"
     },
     {
       "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\js\\site.js",

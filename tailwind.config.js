@@ -14,10 +14,16 @@ module.exports = {
             textShadow: {
                 'custom': '8px 8px 4px rgba(0, 0, 0, 0.25)',
             },     
-            spacing: {
-                '12': '3rem',
-                '24': '6rem',
-            }
+            colors: {
+                'beverly-light-green': '#D9DED5',
+                'beverly-green': '#445E4F',
+                'beverly-cream': '#F9FBF3',
+                'beverly-dark-green': '#374836',
+                'beverly-off-white': '#FBFCF4',
+              },
+              fontFamily: {
+                sans: ['Helvetica', 'Arial', 'sans-serif'],
+              },
         },
     },
     variants: {
@@ -27,3 +33,4 @@ module.exports = {
         require('tailwindcss-textshadow')
     ],
 }
+
