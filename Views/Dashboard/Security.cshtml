@@ -15,7 +15,7 @@
             <!-- Main Navigation -->
             <div class="flex items-center space-x-8">
                 <a asp-controller="Dashboard" asp-action="Index" class="text-white/80 hover:text-white">Dashboard</a>
-                <a href="/Security" class="font-bold">Security</a>
+                <a asp-controller="Dashboard" asp-action="Security" class="font-bold">Security</a>
                 <a href="#" class="text-white/80 hover:text-white">Reservation</a>
                 <a href="#" class="text-white/80 hover:text-white">Billing</a>
             </div>
@@ -58,7 +58,7 @@
             <!-- Right Side - Security Options -->
             <div class="bg-gray-50 p-8 flex flex-col justify-center items-center space-y-6">
                 <!-- Visitor Pass Request Button -->
-                <a href="#" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
+                <a asp-controller="Dashboard" asp-action="Visitor" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
                     VISITOR PASS REQUEST
                 </a>
                 

@@ -45,5 +45,21 @@ namespace SubdivisionApp.Controllers.Dashboard
             }
         }
 
+                public IActionResult Visitor()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin" || userRole == "Customer")
+            {
+                ViewData["Page"] = "Visitor"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Visitor");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
     }
 }

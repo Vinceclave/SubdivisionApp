@@ -1,0 +1,207 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Visitor";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+<!-- Visitor Pass Page Container -->
+<div class="flex flex-col h-screen bg-gray-100">
+    
+    <!-- Top Navigation Bar -->
+    <header class="bg-green-800 text-white shadow-md">
+        <div class="flex items-center justify-between px-6 py-3">
+            <!-- Main Navigation -->
+            <div class="flex items-center space-x-8">
+                <a asp-controller="Dashboard" asp-action="Index" class="text-white/80 hover:text-white">Dashboard</a>
+                <a asp-controller="Dashboard" asp-action="Security" class="text-white/80 hover:text-white">Security</a>
+                <a href="/Reservation" class="text-white/80 hover:text-white">Reservation</a>
+                <a href="/Billing" class="text-white/80 hover:text-white">Billing</a>
+            </div>
+            
+            <!-- User Profile -->
+            <div class="flex items-center relative">
+                <button id="profile-btn" class="w-8 h-8 rounded-full bg-gray-200 text-green-800 flex items-center justify-center font-bold">
+                    JP
+                </button>
+                
+                <!-- Profile Dropdown Menu (Hidden by default) -->
+                <div id="profile-dropdown" class="absolute right-0 top-full mt-2 w-48 bg-white shadow-lg rounded-md z-50 hidden">
+                    <div class="py-2">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Event Calendar</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Files</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Service Request</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Feedback</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Polls/Surveys</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
+                        <div class="border-t border-gray-200 my-1"></div>
+                        <a asp-controller="Account" asp-action="Logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Left Side - Visitor Pass Request Form -->
+            <div class="bg-white border border-gray-200 p-6">
+                <h2 class="font-bold text-xl mb-4">VISITOR PASS REQUEST FORM</h2>
+                
+                <form>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="lastName" class="block mb-1">Last Name</label>
+                            <input type="text" id="lastName" class="w-full border border-gray-300 p-2">
+                        </div>
+                        <div>
+                            <label for="firstName" class="block mb-1">First Name</label>
+                            <input type="text" id="firstName" class="w-full border border-gray-300 p-2">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="phoneNo" class="block mb-1">Phone No.</label>
+                            <input type="text" id="phoneNo" class="w-full border border-gray-300 p-2">
+                        </div>
+                        <div>
+                            <label for="vehiclePlate" class="block mb-1">Vehicle Plate</label>
+                            <input type="text" id="vehiclePlate" class="w-full border border-gray-300 p-2">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="dateOfVisit" class="block mb-1">Date of Visit</label>
+                            <input type="date" id="dateOfVisit" class="w-full border border-gray-300 p-2">
+                        </div>
+                        <div>
+                            <label for="timeOfVisit" class="block mb-1">Time of Visit</label>
+                            <input type="time" id="timeOfVisit" class="w-full border border-gray-300 p-2">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="purposeOfVisit" class="block mb-1">Purpose of Visit</label>
+                        <textarea id="purposeOfVisit" rows="3" class="w-full border border-gray-300 p-2"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-green-800 text-white py-2 uppercase font-medium">Submit Request</button>
+                </form>
+            </div>
+            
+            <!-- Right Side - Visitor Passes List -->
+            <div class="bg-white border border-gray-200">
+                <div class="p-4 border-b border-gray-200">
+                    <h2 class="font-bold text-xl">Visitor Passes</h2>
+                    
+                    <!-- Tabs -->
+                    <div class="flex space-x-4 mt-2">
+                        <a href="#" class="text-blue-600 border-b-2 border-blue-600 pb-1">All (12)</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700">Pending (3)</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700">Approved (7)</a>
+                        <a href="#" class="text-gray-500 hover:text-gray-700">Rejected (2)</a>
+                    </div>
+                </div>
+                
+                <!-- Visitor Pass List -->
+                <div class="divide-y divide-gray-200">
+                    <!-- Visitor Pass Item 1 -->
+                    <div class="p-4">
+                        <div class="flex justify-between mb-1">
+                            <div class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span class="font-medium">John Paul Lexeon</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 text-sm">View Details</a>
+                                <a href="#" class="text-blue-600 text-sm">Edit</a>
+                                <a href="#" class="text-red-600 text-sm">Cancel</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center text-sm text-gray-500 mb-1">
+                            <span class="mr-4">January 15, 2025</span>
+                            <span>10:30 AM</span>
+                        </div>
+                        
+                        <div class="flex items-center text-sm">
+                            <span class="mr-2">ID:</span>
+                            <span class="text-gray-700">VISTOR/15</span>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-0.5 rounded">Pending</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Visitor Pass Item 2 -->
+                    <div class="p-4">
+                        <div class="flex justify-between mb-1">
+                            <div class="flex items-center">
+                                <input type="checkbox" class="mr-2">
+                                <span class="font-medium">John Paul Lexeon</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <a href="#" class="text-blue-600 text-sm">View Details</a>
+                                <a href="#" class="text-green-600 text-sm">Download Pass</a>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center text-sm text-gray-500 mb-1">
+                            <span class="mr-4">January 10, 2025</span>
+                            <span>10:30 PM</span>
+                        </div>
+                        
+                        <div class="flex items-center text-sm">
+                            <span class="mr-2">ID:</span>
+                            <span class="text-gray-700">VISTOR/10</span>
+                        </div>
+                        
+                        <div class="mt-2">
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">Approved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Overlay for profile dropdown when open -->
+<div id="profile-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden"></div>
+
+<!-- Scripts -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Profile dropdown functionality
+        const profileBtn = document.getElementById("profile-btn");
+        const profileDropdown = document.getElementById("profile-dropdown");
+        const profileOverlay = document.getElementById("profile-overlay");
+        
+        // Toggle profile dropdown
+        profileBtn.addEventListener("click", function() {
+            profileDropdown.classList.toggle("hidden");
+            profileOverlay.classList.toggle("hidden");
+        });
+        
+        // Close dropdown when clicking outside
+        profileOverlay.addEventListener("click", function() {
+            profileDropdown.classList.add("hidden");
+            profileOverlay.classList.add("hidden");
+        });
+        
+        // Close dropdown when clicking on a menu item
+        const menuItems = profileDropdown.querySelectorAll("a");
+        menuItems.forEach(item => {
+            item.addEventListener("click", function() {
+                profileDropdown.classList.add("hidden");
+                profileOverlay.classList.add("hidden");
+            });
+        });
+    });
+</script>
