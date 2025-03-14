@@ -17,12 +17,20 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\SERVE.png",
+      "PackagePath": "staticwebassets\\images\\SERVE.png"
+    },
+    {
       "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\court.jpg",
       "PackagePath": "staticwebassets\\images\\court.jpg"
     },
     {
       "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\gum.jpg",
       "PackagePath": "staticwebassets\\images\\gum.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\house.jpg",
+      "PackagePath": "staticwebassets\\images\\house.jpg"
     },
     {
       "Id": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\images\\swimming-pool.jpg",

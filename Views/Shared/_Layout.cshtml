@@ -59,13 +59,16 @@
 
 <body class="font-sans leading-normal tracking-normal">
     <!-- Header -->
-    <header class="header-nav w-full">
-        <div class="container mx-auto flex justify-center">
-            <a asp-controller="Home" asp-action="Index" class="hover:bg-[#374836] rounded-xl">HOME</a>
-            <a href="/about" class="hover:bg-[#374836] rounded-xl">FACILITIES</a>
-            <a asp-controller="Account" asp-action="Register" class="hover:bg-[#374836] rounded-xl">LOG IN</a>
-        </div>
-    </header>
+    @if (!isLogin && !isDashboard)
+    {
+        <header class="header-nav w-full">
+            <div class="container mx-auto flex justify-center">
+                <a asp-controller="Home" asp-action="Index" class="hover:bg-[#374836] rounded-xl">HOME</a>
+                <a href="/about" class="hover:bg-[#374836] rounded-xl">FACILITIES</a>
+                <a asp-controller="Account" asp-action="Login" class="hover:bg-[#374836] rounded-xl">LOG IN</a>
+            </div>
+        </header>
+    }
     
     <!-- Main Content -->
     <div class="body-content">
@@ -73,6 +76,8 @@
     </div>
 
     <!-- Footer -->
+    @if (isLanding && isDashboard)
+    {   
     <footer class="footer-section">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -136,6 +141,7 @@
             </div>
         </div>
     </footer>
+   } 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js"></script>
