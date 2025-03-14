@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Security";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+<!-- Security Page Container -->
+<div class="flex flex-col h-screen bg-gray-100">
+    
+    <!-- Top Navigation Bar -->
+    <header class="bg-green-800 text-white shadow-md">
+        <div class="flex items-center justify-between px-6 py-3">
+            <!-- Main Navigation -->
+            <div class="flex items-center space-x-8">
+                <a asp-controller="Dashboard" asp-action="Index" class="text-white/80 hover:text-white">Dashboard</a>
+                <a href="/Security" class="font-bold">Security</a>
+                <a href="#" class="text-white/80 hover:text-white">Reservation</a>
+                <a href="#" class="text-white/80 hover:text-white">Billing</a>
+            </div>
+            
+            <!-- User Profile -->
+            <div class="flex items-center relative">
+                <button id="profile-btn" class="w-8 h-8 rounded-full bg-gray-200 text-green-800 flex items-center justify-center font-bold">
+                    JP
+                </button>
+                
+                <!-- Profile Dropdown Menu (Hidden by default) -->
+                <div id="profile-dropdown" class="absolute right-0 top-full mt-2 w-48 bg-white shadow-lg rounded-md z-50 hidden">
+                    <div class="py-2">
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Event Calendar</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Files</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Service Request</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Feedback</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Polls/Surveys</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
+                        <div class="border-t border-gray-200 my-1"></div>
+                        <a asp-controller="Account" asp-action="Logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 h-full">
+            <!-- Left Side - Banner Image with Overlay Text -->
+            <div class="relative bg-cover bg-center" style="background-image: url('/images/SERVE.png');">
+                <div class="absolute inset-0 bg-black bg-opacity-40 flex flex-col items-center justify-center text-white p-6">
+                    <h1 class="text-4xl font-serif italic tracking-wide mb-4 text-center">ACCESS & SECURITY</h1>
+                    <h2 class="text-4xl font-serif italic tracking-wide text-center">SERVICES</h2>
+                </div>
+            </div>
+            
+            <!-- Right Side - Security Options -->
+            <div class="bg-gray-50 p-8 flex flex-col justify-center items-center space-y-6">
+                <!-- Visitor Pass Request Button -->
+                <a href="#" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
+                    VISITOR PASS REQUEST
+                </a>
+                
+                <!-- Vehicle Registration Button -->
+                <a href="#" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
+                    VEHICLE REGISTRATION
+                </a>
+                
+                <!-- Emergency Contacts Button -->
+                <a href="#" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
+                    EMERGENCY CONTACTS
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Overlay for profile dropdown when open -->
+<div id="profile-overlay" class="fixed inset-0 bg-black opacity-50 z-40 hidden"></div>
+
+<!-- Scripts -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Profile dropdown functionality
+        const profileBtn = document.getElementById("profile-btn");
+        const profileDropdown = document.getElementById("profile-dropdown");
+        const profileOverlay = document.getElementById("profile-overlay");
+        
+        // Toggle profile dropdown
+        profileBtn.addEventListener("click", function() {
+            profileDropdown.classList.toggle("hidden");
+            profileOverlay.classList.toggle("hidden");
+        });
+        
+        // Close dropdown when clicking outside
+        profileOverlay.addEventListener("click", function() {
+            profileDropdown.classList.add("hidden");
+            profileOverlay.classList.add("hidden");
+        });
+        
+        // Close dropdown when clicking on a menu item
+        const menuItems = profileDropdown.querySelectorAll("a");
+        menuItems.forEach(item => {
+            item.addEventListener("click", function() {
+                profileDropdown.classList.add("hidden");
+                profileOverlay.classList.add("hidden");
+            });
+        });
+    });
+</script>

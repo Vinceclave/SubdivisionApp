@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "m0XImhGVVWLTH1X7BAm6utT2f7QZpAjmLLGPm9lJpQ8=",
+  "Hash": "g9WhQvWATKLKEdbJ9VuJDngOXTTh4vroR+NvPuoiLeo=",
   "Source": "SubdivisionApp",
   "BasePath": "_content/SubdivisionApp",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "aihytyn5jp",
-      "Integrity": "IkJCIomAvVQ6zmfw+veRRVKgZOJkPuTdlJ58qye6Y/s=",
+      "Fingerprint": "pdmqnu5kgo",
+      "Integrity": "Mw24TYUZAtvu5/owNS8WJPAdCXmJYW9hpNn2yIrwEUw=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\output.css"
@@ -502,51 +502,6 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/output.aihytyn5jp.css",
-      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "21651"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/css"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"IkJCIomAvVQ6zmfw+veRRVKgZOJkPuTdlJ58qye6Y/s=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 02:35:09 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "aihytyn5jp"
-        },
-        {
-          "Name": "label",
-          "Value": "css/output.css"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-IkJCIomAvVQ6zmfw+veRRVKgZOJkPuTdlJ58qye6Y/s="
-        }
-      ]
-    },
-    {
       "Route": "css/output.css",
       "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
       "Selectors": [],
@@ -557,7 +512,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "21651"
+          "Value": "23411"
         },
         {
           "Name": "Content-Type",
@@ -565,11 +520,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"IkJCIomAvVQ6zmfw+veRRVKgZOJkPuTdlJ58qye6Y/s=\""
+          "Value": "\"Mw24TYUZAtvu5/owNS8WJPAdCXmJYW9hpNn2yIrwEUw=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 14 Mar 2025 02:35:09 GMT"
+          "Value": "Fri, 14 Mar 2025 03:21:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -579,7 +534,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-IkJCIomAvVQ6zmfw+veRRVKgZOJkPuTdlJ58qye6Y/s="
+          "Value": "sha256-Mw24TYUZAtvu5/owNS8WJPAdCXmJYW9hpNn2yIrwEUw="
+        }
+      ]
+    },
+    {
+      "Route": "css/output.pdmqnu5kgo.css",
+      "AssetFile": "C:\\Users\\Hp\\Desktop\\elnet project\\SubdivisionApp\\wwwroot\\css\\output.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "23411"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Mw24TYUZAtvu5/owNS8WJPAdCXmJYW9hpNn2yIrwEUw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Fri, 14 Mar 2025 03:21:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pdmqnu5kgo"
+        },
+        {
+          "Name": "label",
+          "Value": "css/output.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Mw24TYUZAtvu5/owNS8WJPAdCXmJYW9hpNn2yIrwEUw="
         }
       ]
     },

@@ -28,5 +28,22 @@ namespace SubdivisionApp.Controllers.Dashboard
                 return RedirectToAction("Login", "Account");
             }
         }
+
+        public IActionResult Security()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin" || userRole == "Customer")
+            {
+                ViewData["Page"] = "Security"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Security");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
     }
 }
