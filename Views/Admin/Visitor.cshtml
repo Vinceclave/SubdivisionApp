@@ -1,0 +1,304 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    ViewData["Title"] = "Visitor Pass Management";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+
+<div class="flex flex-col h-screen bg-gray-100">
+   
+    <main class="flex-1 p-6">
+        <div class="bg-white border border-gray-200 rounded shadow">
+           
+            <div class="p-4 border-b border-gray-200 bg-gray-50">
+                <h2 class="font-bold text-xl">VISITOR PASS MANAGEMENT</h2>
+            </div>
+            
+           
+            <div class="p-4 flex justify-between items-center">
+                <div class="relative">
+                    <input type="text" placeholder="Search by Resident" class="w-56 border border-gray-300 p-2 pl-8 rounded">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute left-2 top-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <button class="bg-blue-600 text-white px-4 py-2 rounded flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    Generate Report
+                </button>
+            </div>
+            
+          
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="py-3 px-4 text-left border-b border-gray-200 font-semibold">Resident</th>
+                            <th class="py-3 px-4 text-left border-b border-gray-200 font-semibold">Visitor</th>
+                            <th class="py-3 px-4 text-left border-b border-gray-200 font-semibold">Visit Duration</th>
+                            <th class="py-3 px-4 text-left border-b border-gray-200 font-semibold">Purpose</th>
+                            <th class="py-3 px-4 text-left border-b border-gray-200 font-semibold">Status</th>
+                            <th class="py-3 px-4 text-left border-b border-gray-200 font-semibold">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">Nancy Romales</td>
+                            <td class="py-3 px-4">Kim Jisoo</td>
+                            <td class="py-3 px-4">
+                                <div>03/25/25 - 04/15/25</div>
+                                <div class="text-sm text-gray-500">Time of Visit: 1:30 PM</div>
+                            </td>
+                            <td class="py-3 px-4">Vacation</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-0.5 rounded">Pending</span>
+                            </td>
+                            <td class="py-3 px-4">
+                                <div class="flex space-x-2">
+                                    <button class="bg-green-700 text-white px-3 py-1 rounded text-sm">Approve</button>
+                                    <button class="bg-red-600 text-white px-3 py-1 rounded text-sm">Reject</button>
+                                    <button class="view-btn bg-blue-600 text-white px-3 py-1 rounded text-sm" data-id="1">View</button>
+                                </div>
+                            </td>
+                        </tr>
+                        
+                        
+                        <tr class="border-b border-gray-200">
+                            <td class="py-3 px-4">John Paul Lexeon</td>
+                            <td class="py-3 px-4">Winowa Ryder</td>
+                            <td class="py-3 px-4">
+                                <div>03/25/25</div>
+                                <div class="text-sm text-gray-500">Time of Visit: 2:30 PM</div>
+                            </td>
+                            <td class="py-3 px-4">Birthday Party</td>
+                            <td class="py-3 px-4">
+                                <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">Approved</span>
+                            </td>
+                            <td class="py-3 px-4">
+                                <div class="flex space-x-2">
+                                    <button class="view-btn bg-blue-600 text-white px-3 py-1 rounded text-sm" data-id="2">View</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+<div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden z-40 flex items-center justify-center">
+   
+    <div id="modal-content" class="bg-white w-full max-w-md rounded shadow-lg relative">
+       
+        <div class="bg-white p-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="font-bold text-lg">VISITOR PASS REQUEST DETAILS</h3>
+            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-0.5 rounded">Pending</span>
+            <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        
+        
+        <div class="p-4">
+            
+            <div class="mb-4">
+                <div class="flex items-center mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                    </svg>
+                    <h4 class="text-gray-700 font-medium text-sm">Resident Information</h4>
+                </div>
+                <div class="grid grid-cols-3 gap-2 ml-7">
+                    <div class="text-sm text-gray-600">Name :</div>
+                    <div class="text-sm text-gray-900 col-span-2">Nancy Romales</div>
+                    
+                    <div class="text-sm text-gray-600">Address :</div>
+                    <div class="text-sm text-gray-900 col-span-2">42 Maple Street</div>
+                    
+                    <div class="text-sm text-gray-600">Phone No. :</div>
+                    <div class="text-sm text-gray-900 col-span-2">09310159072</div>
+                </div>
+            </div>
+            
+            
+            <div>
+                <div class="flex items-center mb-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                    </svg>
+                    <h4 class="text-gray-700 font-medium text-sm">Visitor Information</h4>
+                </div>
+                <div class="grid grid-cols-3 gap-2 ml-7">
+                    <div class="text-sm text-gray-600">Name :</div>
+                    <div class="text-sm text-gray-900 col-span-2">Kim Jisoo</div>
+                    
+                    <div class="text-sm text-gray-600">Duration :</div>
+                    <div class="text-sm text-gray-900 col-span-2">1 month</div>
+                    
+                    <div class="text-sm text-gray-600">Date of Visit :</div>
+                    <div class="text-sm text-gray-900 col-span-2">03/25/25 - 04/15/25</div>
+                    
+                    <div class="text-sm text-gray-600">Time of Visit :</div>
+                    <div class="text-sm text-gray-900 col-span-2">1:30 PM</div>
+                    
+                    <div class="text-sm text-gray-600">Vehicle Type :</div>
+                    <div class="text-sm text-gray-900 col-span-2">Sport Car</div>
+                    
+                    <div class="text-sm text-gray-600">Brand :</div>
+                    <div class="text-sm text-gray-900 col-span-2">Ferrari</div>
+                    
+                    <div class="text-sm text-gray-600">Plate no :</div>
+                    <div class="text-sm text-gray-900 col-span-2">412AW</div>
+                    
+                    <div class="text-sm text-gray-600">Purpose :</div>
+                    <div class="text-sm text-gray-900 col-span-2">Will be having a vacation in our house.</div>
+                </div>
+            </div>
+        </div>
+        
+       
+        <div class="p-4 flex justify-end space-x-2">
+            <button class="bg-red-600 text-white px-4 py-2 rounded">Reject</button>
+            <button class="bg-green-700 text-white px-4 py-2 rounded">Approve</button>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    
+    .nav-item {
+        display: inline-block;
+        padding: 0.75rem 1rem;
+        color: white;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+    
+    .nav-item:hover, .nav-item.active {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    
+    .user-profile {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 9999px;
+        background-color: #e5e7eb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+       
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const closeModalBtn = document.getElementById('close-modal');
+        
+       
+        const viewButtons = document.querySelectorAll('.view-btn');
+        
+        
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                
+                const visitorId = this.getAttribute('data-id');
+                
+               
+                modalOverlay.classList.remove('hidden');
+                
+                
+                loadVisitorDetails(visitorId);
+            });
+        });
+        
+      
+        closeModalBtn.addEventListener('click', function() {
+            modalOverlay.classList.add('hidden');
+        });
+        
+        
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.add('hidden');
+            }
+        });
+        
+        
+        const modalApproveBtn = modalContent.querySelector('.bg-green-700');
+        const modalRejectBtn = modalContent.querySelector('.bg-red-600');
+        
+        modalApproveBtn.addEventListener('click', function() {
+            
+            console.log('Approve clicked in modal');
+            
+            modalOverlay.classList.add('hidden');
+        });
+        
+        modalRejectBtn.addEventListener('click', function() {
+            
+            console.log('Reject clicked in modal');
+            
+            modalOverlay.classList.add('hidden');
+        });
+        
+        
+        function loadVisitorDetails(visitorId) {
+            
+            const visitorData = {
+                residentName: "Nancy Romales",
+                residentAddress: "42 Maple Street",
+                residentPhone: "09310159072",
+                visitorName: "Kim Jisoo",
+                duration: "1 month",
+                dateRange: "03/25/25 - 04/15/25",
+                timeOfVisit: "1:30 PM",
+                vehicleType: "Sport Car",
+                brand: "Ferrari",
+                plateNo: "412AW",
+                purpose: "Will be having a vacation in our house.",
+                status: "Pending"
+            };
+            
+            
+            updateModalContent(visitorData);
+        }
+        
+       
+        function updateModalContent(data) {
+         
+            const residentFields = modalContent.querySelectorAll('.grid')[0].children;
+            residentFields[1].textContent = data.residentName;
+            residentFields[3].textContent = data.residentAddress;
+            residentFields[5].textContent = data.residentPhone;
+            
+            
+            const visitorFields = modalContent.querySelectorAll('.grid')[1].children;
+            visitorFields[1].textContent = data.visitorName;
+            visitorFields[3].textContent = data.duration;
+            visitorFields[5].textContent = data.dateRange;
+            visitorFields[7].textContent = data.timeOfVisit;
+            visitorFields[9].textContent = data.vehicleType;
+            visitorFields[11].textContent = data.brand;
+            visitorFields[13].textContent = data.plateNo;
+            visitorFields[15].textContent = data.purpose;
+            
+          
+            const statusBadge = modalContent.querySelector('.bg-yellow-100');
+            statusBadge.textContent = data.status;
+        }
+    });
+</script>

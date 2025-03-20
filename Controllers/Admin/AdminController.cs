@@ -2,13 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace SubdivisionApp.Controllers.Dashboard
+namespace SubdivisionApp.Controllers.Admin
 {
-    public class DashboardController : Controller
+    public class AdminController : Controller
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public DashboardController(IHttpContextAccessor httpContextAccessor)
+        public AdminController(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }
@@ -17,7 +17,7 @@ namespace SubdivisionApp.Controllers.Dashboard
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Dashboard"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
@@ -29,11 +29,27 @@ namespace SubdivisionApp.Controllers.Dashboard
             }
         }
 
+        public IActionResult Community()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Community"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Community");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
         public IActionResult Security()
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Security"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
@@ -49,7 +65,7 @@ namespace SubdivisionApp.Controllers.Dashboard
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Visitor"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
@@ -65,7 +81,7 @@ namespace SubdivisionApp.Controllers.Dashboard
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Vehicle"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
@@ -81,7 +97,7 @@ namespace SubdivisionApp.Controllers.Dashboard
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Contacts"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
@@ -97,7 +113,7 @@ namespace SubdivisionApp.Controllers.Dashboard
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Reservation"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
@@ -113,7 +129,7 @@ namespace SubdivisionApp.Controllers.Dashboard
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Settings"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
@@ -129,7 +145,7 @@ namespace SubdivisionApp.Controllers.Dashboard
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Profile"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
@@ -145,11 +161,27 @@ namespace SubdivisionApp.Controllers.Dashboard
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
-            if (userRole == "Customer")
+            if (userRole == "Admin")
             {
                 ViewData["Page"] = "Services"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
                 return View("Services");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult User_Management()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "User_Management"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("User_Management");
             }
             else
             {

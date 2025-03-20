@@ -1,0 +1,348 @@
+﻿@{
+    Layout = "~/Views/Shared/Dashboard_Layout.cshtml";
+    ViewData["Title"] = "Reservation";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+
+<div class="flex flex-col h-screen bg-gray-200">
+
+  
+    <div class="bg-gray-300 p-4 text-center">
+        <h1 class="text-lg font-bold text-gray-700">FACILITIES RESERVATION</h1>
+    </div>
+
+  
+    <main class="flex-1 p-6">
+        <div class="flex justify-between items-center mb-6">
+           
+            <div class="inline-flex items-center bg-white border border-gray-300 rounded cursor-pointer" id="datePicker">
+                <div class="px-3 py-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                    </svg>
+                </div>
+                <div class="px-3 py-1 border-l border-gray-300" id="selectedDate">March 25, 2025</div>
+                <input type="date" id="dateInput" class="hidden">
+            </div>
+            <div class="text-sm text-gray-600">Recreation Facilities</div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="col-span-1">
+               
+                <div class="bg-gray-700 text-white rounded overflow-hidden">
+                    <div class="p-3 bg-gray-700 text-white font-medium">
+                        All Facilities
+                    </div>
+                    <div class="p-3 flex justify-between items-center hover:bg-gray-600 cursor-pointer bg-gray-800">
+                        <span>Recreation</span>
+                        <span class="bg-gray-600 px-2 py-0.5 rounded-full text-xs">8</span>
+                    </div>
+                    <div class="p-3 flex justify-between items-center hover:bg-gray-600 cursor-pointer">
+                        <span>Meeting Rooms</span>
+                        <span class="bg-gray-600 px-2 py-0.5 rounded-full text-xs">9</span>
+                    </div>
+                    <div class="p-3 flex justify-between items-center hover:bg-gray-600 cursor-pointer">
+                        <span>Outdoors Spaces</span>
+                        <span class="bg-gray-600 px-2 py-0.5 rounded-full text-xs">3</span>
+                    </div>
+                    <div class="p-3 flex justify-between items-center hover:bg-gray-600 cursor-pointer">
+                        <span>Event Halls</span>
+                        <span class="bg-gray-600 px-2 py-0.5 rounded-full text-xs">4</span>
+                    </div>
+                </div>
+
+                
+                <div class="mt-6">
+                    <div class="py-3 bg-green-800 text-white font-medium pl-4 rounded-t">
+                        My Reservation
+                    </div>
+                    <div class="bg-white border border-gray-200 p-3 rounded-b">
+                        <div class="mb-2 border border-gray-200 p-2 rounded cursor-pointer" id="myReservation1">
+                            <div class="flex justify-between items-center">
+                                <div class="font-semibold text-sm">Swimming Pool</div>
+                                <div class="bg-green-600 text-white text-xs px-2 py-0.5 rounded">CONFIRMED</div>
+                            </div>
+                            <div class="text-xs text-gray-600">March 20, 2025</div>
+                            <div class="text-xs text-gray-600">2:30 - 4:30 pm</div>
+                        </div>
+                        <div class="border border-gray-200 p-2 rounded cursor-pointer">
+                            <div class="flex justify-between items-center">
+                                <div class="font-semibold text-sm">Fitness Gym</div>
+                                <div class="bg-yellow-500 text-white text-xs px-2 py-0.5 rounded">PENDING</div>
+                            </div>
+                            <div class="text-xs text-gray-600">March 25, 2025</div>
+                            <div class="text-xs text-gray-600">2:00 - 7:00 pm</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+              
+                <div class="bg-white border border-gray-200 rounded overflow-hidden">
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold text-gray-700">Swimming Pool</h2>
+                        <div class="flex justify-between text-xs text-gray-500 mb-2">
+                            <span>MAIN RESIDENTIAL AREA</span>
+                            <span>100 CAPACITY</span>
+                        </div>
+                    </div>
+                    <img src="/images/swimming-pool.jpg" alt="Swimming Pool" class="w-full h-40 object-cover">
+                    <div class="p-4 flex justify-center">
+                        <button id="reserveNowBtn" class="bg-green-700 text-white px-4 py-2 rounded text-sm font-medium">RESERVE NOW</button>
+                    </div>
+                </div>
+
+                
+                <div class="bg-white border border-gray-200 rounded overflow-hidden">
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold text-gray-700">Basketball Court</h2>
+                        <div class="flex justify-between text-xs text-gray-500 mb-2">
+                            <span>MAIN RESIDENTIAL AREA</span>
+                            <span>150 CAPACITY</span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="/images/court.jpg" alt="Basketball Court" class="w-full h-40 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <span class="bg-red-600 text-white px-4 py-1 font-bold">FULLY BOOKED</span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-center">
+                        <button class="bg-gray-400 text-white px-4 py-2 rounded text-sm font-medium">RESERVED NOW</button>
+                    </div>
+                </div>
+
+               
+                <div class="bg-white border border-gray-200 rounded overflow-hidden">
+                    <div class="p-4">
+                        <h2 class="text-xl font-bold text-gray-700">Swimming Pool</h2>
+                        <div class="flex justify-between text-xs text-gray-500 mb-2">
+                            <span>MAIN RESIDENTIAL AREA</span>
+                            <span>100 CAPACITY</span>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="/images/swimming-pool.jpg" alt="Swimming Pool" class="w-full h-40 object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <span class="bg-red-600 text-white px-4 py-1 font-bold">UNDER MAINTENANCE</span>
+                        </div>
+                    </div>
+                    <div class="p-4 flex justify-center">
+                        <button class="bg-gray-400 text-white px-4 py-2 rounded text-sm font-medium">RESERVE NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+<div id="reservationDetailsModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md">
+        <div class="p-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 class="text-lg font-bold">My Reservation Details</h2>
+            <div class="flex items-center">
+                <div class="bg-green-100 text-green-800 px-3 py-1 rounded font-semibold mr-3">
+                    CONFIRMED
+                </div>
+                <button id="closeDetailsBtn" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="p-6">
+            <h3 class="text-xl font-bold mb-4">Swimming Pool</h3>
+            <div class="flex items-start mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                </svg>
+                <span>123/block st.</span>
+            </div>
+            <div class="flex items-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                </svg>
+                <span>March 20, 2025</span>
+            </div>
+            <div class="flex items-center mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                </svg>
+                <span>2:30 - 4:30 PM</span>
+            </div>
+            <div class="flex items-center mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                </svg>
+                <span>50 people</span>
+            </div>
+            <img src="/api/placeholder/400/200" alt="Swimming Pool" class="w-full h-40 object-cover mb-6">
+        </div>
+    </div>
+</div>
+
+<div id="reserveFacilityModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl">
+        <div class="flex justify-between items-center p-4 border-b border-gray-200">
+            <h2 class="text-lg font-bold">FACILITIES RESERVATION</h2>
+            <button id="closeReserveBtn" class="text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="p-6">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 pr-0 md:pr-4">
+                    <h1 class="text-2xl font-bold mb-2">Swimming Pool</h1>
+                    <p class="text-gray-600 mb-4">123/ Block St.</p>
+                    <img src="/images/swimming-pool.jpg" alt="Swimming Pool" class="w-full h-40 object-cover mb-6">
+                    <div class="mt-6">
+                        <h3 class="font-bold mb-4">Rules & Regulations</h3>
+                        <ol class="list-decimal pl-4 space-y-2 text-sm text-gray-600">
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dignissim ligula vitae risus dignissim, quis lobortis massa consequat pellentes.</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dignissim ligula vitae risus dignissim, quis lobortis massa consequat pellentes.</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dignissim ligula vitae risus dignissim, quis lobortis massa consequat pellentes.</li>
+                            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dignissim ligula vitae risus dignissim, quis lobortis massa consequat pellentes.</li>
+                        </ol>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-6 md:mt-0">
+                    <div class="mb-6">
+                        <h3 class="font-bold mb-2">Working Hours</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="border rounded p-2">
+                                <div class="text-xs text-gray-500 uppercase">SUNDAY</div>
+                                <div class="text-sm">8:00 AM - 10:00 PM</div>
+                            </div>
+                            <div class="border rounded p-2">
+                                <div class="text-xs text-gray-500 uppercase">MON - SAT</div>
+                                <div class="text-sm">7:30 AM - 9:00 PM</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                      
+                        <div class="flex items-center mb-2 border rounded p-2 cursor-pointer" id="modalDatePicker">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                            </svg>
+                            <span id="modalSelectedDate">March 25, 2025</span>
+                            <input type="date" id="modalDateInput" class="hidden">
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm text-gray-600 mb-1">Capacity</label>
+                        <div class="flex items-center">
+                            <input type="number" placeholder="0" class="border border-gray-300 p-2 w-16 rounded mr-2">
+                            <span class="text-sm text-gray-500">100 maximum capacity</span>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm text-gray-600 mb-1">Time In</label>
+                        <input type="time" class="border border-gray-300 p-2 w-full rounded">
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-sm text-gray-600 mb-1">Time Out</label>
+                        <input type="time" class="border border-gray-300 p-2 w-full rounded">
+                    </div>
+                    <div class="flex justify-end">
+                        <button class="bg-green-700 text-white px-6 py-2 rounded text-sm font-medium">RESERVE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+   
+        const datePicker = document.getElementById('datePicker');
+        const selectedDate = document.getElementById('selectedDate');
+        const dateInput = document.getElementById('dateInput');
+
+        if (datePicker && selectedDate && dateInput) {
+            datePicker.addEventListener('click', function() {
+                dateInput.click();
+            });
+
+            dateInput.addEventListener('change', function() {
+                if (this.value) {
+                    const date = new Date(this.value);
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    selectedDate.textContent = date.toLocaleDateString('en-US', options);
+                }
+            });
+        }
+
+       
+        const modalDatePicker = document.getElementById('modalDatePicker');
+        const modalSelectedDate = document.getElementById('modalSelectedDate');
+        const modalDateInput = document.getElementById('modalDateInput');
+
+        if (modalDatePicker && modalSelectedDate && modalDateInput) {
+            modalDatePicker.addEventListener('click', function() {
+                modalDateInput.click();
+            });
+
+            modalDateInput.addEventListener('change', function() {
+                if (this.value) {
+                    const date = new Date(this.value);
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    modalSelectedDate.textContent = date.toLocaleDateString('en-US', options);
+                }
+            });
+        }
+
+        
+        const reserveNowBtn = document.getElementById('reserveNowBtn');
+        const reserveFacilityModal = document.getElementById('reserveFacilityModal');
+        const closeReserveBtn = document.getElementById('closeReserveBtn');
+
+        if (reserveNowBtn && reserveFacilityModal && closeReserveBtn) {
+            reserveNowBtn.addEventListener('click', function() {
+                reserveFacilityModal.classList.remove('hidden');
+            });
+
+            closeReserveBtn.addEventListener('click', function() {
+                reserveFacilityModal.classList.add('hidden');
+            });
+        }
+
+      
+        const myReservation1 = document.getElementById('myReservation1');
+        const reservationDetailsModal = document.getElementById('reservationDetailsModal');
+        const closeDetailsBtn = document.getElementById('closeDetailsBtn');
+
+        if (myReservation1 && reservationDetailsModal && closeDetailsBtn) {
+            myReservation1.addEventListener('click', function() {
+                reservationDetailsModal.classList.remove('hidden');
+            });
+
+            closeDetailsBtn.addEventListener('click', function() {
+                reservationDetailsModal.classList.add('hidden');
+            });
+        }
+
+     
+        window.addEventListener('click', function(event) {
+            if (event.target === reserveFacilityModal) {
+                reserveFacilityModal.classList.add('hidden');
+            }
+            if (event.target === reservationDetailsModal) {
+                reservationDetailsModal.classList.add('hidden');
+            }
+        });
+    });
+</script>

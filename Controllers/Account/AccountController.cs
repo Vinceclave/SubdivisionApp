@@ -67,7 +67,19 @@ namespace SubdivisionApp.Controllers.Account
                 HttpContext.Session.SetString("UserRole", user.UserRole);
                 HttpContext.Session.SetInt32("UserId", user.Id);
 
-                return RedirectToAction("Index", "Dashboard");  // Redirect to dynamic dashboard
+               if (user.UserRole == "Admin")
+               {
+                    return RedirectToAction("Index", "Admin");
+               }
+               else if (user.UserRole == "Customer")
+               {
+                    return RedirectToAction("Index", "Dashboard"); 
+               }
+               else
+               {
+                    ViewBag.Message = "Invalid role!";
+                    return View();                
+               }
             }
 
             ViewBag.Message = "Invalid credentials!";

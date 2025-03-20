@@ -1,0 +1,283 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    ViewData["Title"] = "User_Management";
+}
+
+<div class="container mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-6">User Management</h1>
+
+    
+    <div class="mb-4">
+        <div class="relative">
+            <input type="text" placeholder="Search..." class="w-full md:w-64 border border-gray-300 rounded p-2 pl-8">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="flex justify-between items-center mb-4">
+        <div class="flex space-x-2">
+            <button id="homeowner-tab" class="py-2 px-4 bg-green-800 text-white rounded-t">Homeowner</button>
+            <button id="staff-tab" class="py-2 px-4 bg-gray-300 rounded-t">Staff</button>
+        </div>
+        <button id="add-user-btn" class="bg-green-800 text-white py-2 px-4 rounded flex items-center">
+            <span class="mr-1">+</span> Add New User
+        </button>
+    </div>
+
+    
+    <div id="homeowner-table" class="border rounded overflow-x-auto">
+        <table class="min-w-full bg-white">
+            <thead>
+                <tr class="bg-gray-100 border-b">
+                    <th class="py-3 px-4 text-left border-r">Full Name</th>
+                    <th class="py-3 px-4 text-left border-r">Address</th>
+                    <th class="py-3 px-4 text-left border-r">Contact No.</th>
+                    <th class="py-3 px-4 text-left border-r">Email</th>
+                    <th class="py-3 px-4 text-left border-r">Role</th>
+                    <th class="py-3 px-4 text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b">
+                    <td class="py-3 px-4 border-r">Nancy Romales</td>
+                    <td class="py-3 px-4 border-r">123 /block</td>
+                    <td class="py-3 px-4 border-r">09310159072</td>
+                    <td class="py-3 px-4 border-r">nan@email.com</td>
+                    <td class="py-3 px-4 border-r">Homeowner</td>
+                    <td class="py-3 px-4 text-center relative">
+                        <button class="action-btn px-2">
+                            <span class="font-bold">•••</span>
+                        </button>
+                        <div class="action-dropdown hidden absolute right-0 mt-2 w-32 bg-white rounded shadow-lg z-10 border">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">View</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Remove</a>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr class="border-b"><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4"></td></tr>
+                <tr class="border-b"><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4"></td></tr>
+                <tr class="border-b"><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4"></td></tr>
+                <tr><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4"></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    
+    <div id="staff-table" class="border rounded overflow-x-auto hidden">
+        <table class="min-w-full bg-white">
+            <thead>
+                <tr class="bg-gray-100 border-b">
+                    <th class="py-3 px-4 text-left border-r">Full Name</th>
+                    <th class="py-3 px-4 text-left border-r">Address</th>
+                    <th class="py-3 px-4 text-left border-r">Contact No.</th>
+                    <th class="py-3 px-4 text-left border-r">Email</th>
+                    <th class="py-3 px-4 text-left border-r">Position</th>
+                    <th class="py-3 px-4 text-left border-r">Role</th>
+                    <th class="py-3 px-4 text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b">
+                    <td class="py-3 px-4 border-r">Nancy Romales</td>
+                    <td class="py-3 px-4 border-r">123 /block</td>
+                    <td class="py-3 px-4 border-r">09310159072</td>
+                    <td class="py-3 px-4 border-r">nan@email.com</td>
+                    <td class="py-3 px-4 border-r">Security</td>
+                    <td class="py-3 px-4 border-r">Staff</td>
+                    <td class="py-3 px-4 text-center relative">
+                        <button class="action-btn px-2">
+                            <span class="font-bold">•••</span>
+                        </button>
+                        <div class="action-dropdown hidden absolute right-0 mt-2 w-32 bg-white rounded shadow-lg z-10 border">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">View</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Edit</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Remove</a>
+                        </div>
+                    </td>
+                </tr>
+                
+                <tr class="border-b"><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4"></td></tr>
+                <tr class="border-b"><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4"></td></tr>
+                <tr class="border-b"><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4"></td></tr>
+                <tr><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4 border-r"></td><td class="py-4 px-4"></td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div id="add-user-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <div class="bg-white p-6 rounded-lg shadow-xl z-10 w-full max-w-md">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold">Register New User</h2>
+            <button id="close-modal-btn" class="text-gray-700 font-bold text-xl">&times;</button>
+        </div>
+        
+        <form id="user-form">
+            
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="role">Role</label>
+                <div class="relative">
+                    <select id="role" class="w-full border rounded p-2 appearance-none bg-white">
+                        <option value="homeowner">Homeowner</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="flex space-x-4 mb-4">
+                <div class="w-1/2">
+                    <label class="block text-gray-700 font-medium mb-2" for="lastname">Lastname</label>
+                    <input type="text" id="lastname" class="w-full border rounded p-2">
+                </div>
+                <div class="w-1/2">
+                    <label class="block text-gray-700 font-medium mb-2" for="firstname">Firstname</label>
+                    <input type="text" id="firstname" class="w-full border rounded p-2">
+                </div>
+            </div>
+            
+            
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="contact">Contact #</label>
+                <input type="text" id="contact" class="w-full border rounded p-2">
+            </div>
+            
+            
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-2" for="email">Email</label>
+                <input type="email" id="email" class="w-full border rounded p-2">
+            </div>
+            
+            
+            <div class="mb-4 flex space-x-4" id="address-position-container">
+                <div class="w-full">
+                    <label class="block text-gray-700 font-medium mb-2" for="address">Address</label>
+                    <input type="text" id="address" class="w-full border rounded p-2">
+                </div>
+                <div class="w-full hidden" id="position-container">
+                    <label class="block text-gray-700 font-medium mb-2" for="position">Position</label>
+                    <input type="text" id="position" class="w-full border rounded p-2">
+                </div>
+            </div>
+            
+            
+            <div class="flex justify-end mt-6">
+                <button type="submit" class="bg-green-800 text-white py-2 px-4 rounded font-medium">REGISTER</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const homeownerTab = document.getElementById('homeowner-tab');
+        const staffTab = document.getElementById('staff-tab');
+        const homeownerTable = document.getElementById('homeowner-table');
+        const staffTable = document.getElementById('staff-table');
+        
+        homeownerTab.addEventListener('click', function() {
+            homeownerTab.classList.add('bg-green-800', 'text-white');
+            homeownerTab.classList.remove('bg-gray-300');
+            staffTab.classList.add('bg-gray-300');
+            staffTab.classList.remove('bg-green-800', 'text-white');
+            homeownerTable.classList.remove('hidden');
+            staffTable.classList.add('hidden');
+        });
+        
+        staffTab.addEventListener('click', function() {
+            staffTab.classList.add('bg-green-800', 'text-white');
+            staffTab.classList.remove('bg-gray-300');
+            homeownerTab.classList.add('bg-gray-300');
+            homeownerTab.classList.remove('bg-green-800', 'text-white');
+            staffTable.classList.remove('hidden');
+            homeownerTable.classList.add('hidden');
+        });
+        
+        
+        const actionButtons = document.querySelectorAll('.action-btn');
+        
+        actionButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                
+                document.querySelectorAll('.action-dropdown').forEach(dropdown => {
+                    if (dropdown !== this.nextElementSibling) {
+                        dropdown.classList.add('hidden');
+                    }
+                });
+                
+                
+                const dropdown = this.nextElementSibling;
+                dropdown.classList.toggle('hidden');
+            });
+        });
+        
+        
+        document.addEventListener('click', function() {
+            document.querySelectorAll('.action-dropdown').forEach(dropdown => {
+                dropdown.classList.add('hidden');
+            });
+        });
+        
+        
+        const addUserBtn = document.getElementById('add-user-btn');
+        const addUserModal = document.getElementById('add-user-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const userForm = document.getElementById('user-form');
+        const roleSelect = document.getElementById('role');
+        const positionContainer = document.getElementById('position-container');
+        const addressContainer = document.getElementById('address-position-container');
+        
+        addUserBtn.addEventListener('click', function() {
+            addUserModal.classList.remove('hidden');
+        });
+        
+        closeModalBtn.addEventListener('click', function() {
+            addUserModal.classList.add('hidden');
+        });
+        
+        
+        addUserModal.addEventListener('click', function(e) {
+            if (e.target === addUserModal) {
+                addUserModal.classList.add('hidden');
+            }
+        });
+        
+        
+        roleSelect.addEventListener('change', function() {
+            if (this.value === 'staff') {
+                positionContainer.classList.remove('hidden');
+                addressContainer.classList.add('space-x-4');
+            } else {
+                positionContainer.classList.add('hidden');
+                addressContainer.classList.remove('space-x-4');
+            }
+        });
+        
+        userForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            
+            
+            addUserModal.classList.add('hidden');
+            
+            
+        });
+    });
+</script>

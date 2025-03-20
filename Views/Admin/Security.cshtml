@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "~/Views/Shared/Dashboard_Layout.cshtml";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
     ViewData["Title"] = "Security";
 
     // Fix nullable warning
@@ -23,17 +23,17 @@
             
             <div class="bg-gray-50 p-8 flex flex-col justify-center items-center space-y-6">
                 
-                <a asp-controller="Dashboard" asp-action="Visitor" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
-                    VISITOR PASS REQUEST
+                <a asp-controller="Admin" asp-action="Visitor" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
+                    VISITOR MANAGEMENT
                 </a>
                 
                
-                <a asp-controller="Dashboard" asp-action="Vehicle" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
-                    VEHICLE REGISTRATION
+                <a asp-controller="Admin" asp-action="Vehicle" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
+                    VEHICLE MANAGEMENT
                 </a>
                 
                
-                <a asp-controller="Dashboard" asp-action="Contacts" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
+                <a asp-controller="Admin" asp-action="Contacts" class="border-2 border-green-800 text-green-800 hover:bg-green-800 hover:text-white transition-colors duration-300 py-3 px-6 w-full max-w-md text-center font-medium uppercase">
                     EMERGENCY CONTACTS
                 </a>
             </div>

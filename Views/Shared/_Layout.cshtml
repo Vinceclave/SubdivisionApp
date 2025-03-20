@@ -5,6 +5,7 @@
     var isLogin = ViewData["Page"] as string == "Login";
     var isSecurity = ViewData["Page"] as string == "Security";
     var isVisitor = ViewData["Page"] as string == "Visitor";
+    var isVehicle = ViewData["Page"] as string == "Vehicle";
 }
 
 <!DOCTYPE html>
@@ -61,7 +62,7 @@
 
 <body class="font-sans leading-normal tracking-normal">
     <!-- Header -->
-    @if (!isLogin && !isDashboard && !isSecurity && !isVisitor)
+    @if (isLanding)
     {
         <header class="header-nav w-full">
             <div class="container mx-auto flex justify-center">

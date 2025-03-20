@@ -22,7 +22,9 @@ module.exports = {
                 'beverly-off-white': '#FBFCF4',
               },
               fontFamily: {
+                'poppins': ['Poppins', 'sans-serif'],
                 sans: ['Helvetica', 'Arial', 'sans-serif'],
+                
               },
         },
     },

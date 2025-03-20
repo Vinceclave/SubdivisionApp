@@ -1,0 +1,355 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    ViewData["Title"] = "Reservation";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+<div class="flex flex-col h-screen bg-gray-100">
+    
+    <div class="bg-gray-300 text-gray-700 p-4 flex items-center justify-center">
+        <h1 class="text-xl font-bold">FACILITIES MANAGEMENT</h1>
+    </div>
+
+    <div class="container mx-auto p-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <!-- Left sidebar -->
+            <div class="col-span-1">
+                <div class="bg-white rounded-lg shadow overflow-hidden">
+                    <div class="bg-green-700 text-white p-3">
+                        <h3 class="font-bold">All Facilities</h3>
+                    </div>
+                    <div class="p-2">
+                        <div class="flex justify-between items-center p-2 bg-green-100 rounded mb-1">
+                            <span>Recreation</span>
+                            <span class="bg-green-700 text-white px-2 py-0.5 rounded-full text-xs">4</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 hover:bg-gray-100 rounded mb-1">
+                            <span>Meeting Rooms</span>
+                            <span class="bg-green-700 text-white px-2 py-0.5 rounded-full text-xs">4</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 hover:bg-gray-100 rounded mb-1">
+                            <span>Outdoors Spaces</span>
+                            <span class="bg-green-700 text-white px-2 py-0.5 rounded-full text-xs">4</span>
+                        </div>
+                        <div class="flex justify-between items-center p-2 hover:bg-gray-100 rounded mb-1">
+                            <span>Event Halls</span>
+                            <span class="bg-green-700 text-white px-2 py-0.5 rounded-full text-xs">4</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <button id="addFacilityBtn" class="bg-green-700 text-white py-2 px-4 rounded flex items-center">
+                        <span class="mr-2">+</span>
+                        <span>Add New Facility</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="col-span-3">
+                <div class="flex justify-between items-center mb-6">
+                    <div class="flex items-center bg-white border rounded p-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>March 25, 2025</span>
+                    </div>
+                    <div class="text-green-800 font-medium">Recreation Facilities</div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Swimming Pool -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="p-4">
+                            <h2 class="text-xl font-bold text-green-800">Swimming Pool</h2>
+                            <div class="text-xs text-gray-500">MAIN RESIDENTIAL AREA · 100 CAPACITY</div>
+                        </div>
+                        <div class="relative">
+                            <img src="/api/placeholder/400/200" alt="Swimming Pool" class="w-full h-40 object-cover">
+                            <div class="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 text-xs">
+                                FULLY BOOKED
+                            </div>
+                        </div>
+                        <div class="p-2 bg-gray-100 flex justify-between items-center">
+                            <div>
+                                <span class="block bg-green-100 text-green-800 px-2 py-0.5 text-xs rounded mb-1">MAINTENANCE</span>
+                                <span class="block text-xs text-gray-500">$200</span>
+                            </div>
+                            <button class="bg-red-500 text-white px-4 py-1 rounded text-sm">RESERVE</button>
+                        </div>
+                    </div>
+
+                    <!-- Basketball Court -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="p-4">
+                            <h2 class="text-xl font-bold text-green-800">Basketball Court</h2>
+                            <div class="text-xs text-gray-500">MAIN RESIDENTIAL AREA · 150 CAPACITY</div>
+                        </div>
+                        <div class="relative">
+                            <img src="/images/court.jpg" alt="Basketball Court" class="w-full h-40 object-cover">
+                            <div class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 text-xs">
+                                AVAILABLE
+                            </div>
+                        </div>
+                        <div class="p-2 bg-gray-100 flex justify-between items-center">
+                            <div>
+                                <span class="block bg-green-100 text-green-800 px-2 py-0.5 text-xs rounded mb-1">MAINTENANCE</span>
+                                <span class="block text-xs text-gray-500">$150</span>
+                            </div>
+                            <button class="bg-red-500 text-white px-4 py-1 rounded text-sm">RESERVE</button>
+                        </div>
+                    </div>
+
+                    <!-- Swimming Pool 2 -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="p-4">
+                            <h2 class="text-xl font-bold text-green-800">Swimming Pool</h2>
+                            <div class="text-xs text-gray-500">MAIN RESIDENTIAL AREA · 100 CAPACITY</div>
+                        </div>
+                        <div class="relative">
+                            <img src="/images/swimming-pool.jpg" alt="Swimming Pool" class="w-full h-40 object-cover">
+                            <div class="absolute top-0 right-0 bg-gray-500 text-white px-2 py-1 text-xs">
+                                UNDER MAINTENANCE
+                            </div>
+                        </div>
+                        <div class="p-2 bg-gray-100 flex justify-between items-center">
+                            <div>
+                                <span class="block bg-green-100 text-green-800 px-2 py-0.5 text-xs rounded mb-1">MAINTENANCE</span>
+                                <span class="block text-xs text-gray-500">$200</span>
+                            </div>
+                            <button class="bg-red-500 text-white px-4 py-1 rounded text-sm">RESERVE</button>
+                        </div>
+                    </div>
+
+                    <!-- Swimming Pool 3 -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="p-4">
+                            <h2 class="text-xl font-bold text-green-800">Swimming Pool</h2>
+                            <div class="text-xs text-gray-500">MAIN RESIDENTIAL AREA · 100 CAPACITY</div>
+                        </div>
+                        <div class="relative">
+                            <img src="/images/swimming-pool.jpg" alt="Swimming Pool" class="w-full h-40 object-cover">
+                            <div class="absolute top-0 right-0 bg-green-500 text-white px-2 py-1 text-xs">
+                                AVAILABLE
+                            </div>
+                        </div>
+                        <div class="p-2 bg-gray-100 flex justify-between items-center">
+                            <div>
+                                <span class="block bg-green-100 text-green-800 px-2 py-0.5 text-xs rounded mb-1">MAINTENANCE</span>
+                                <span class="block text-xs text-gray-500">$200</span>
+                            </div>
+                            <button class="bg-red-500 text-white px-4 py-1 rounded text-sm">RESERVE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div class="flex justify-center mt-6">
+                    <nav class="flex items-center space-x-1">
+                        <a href="#" class="px-3 py-1 rounded border bg-white">&lt;&lt;</a>
+                        <a href="#" class="px-3 py-1 rounded border bg-white text-green-800 font-bold">1</a>
+                        <a href="#" class="px-3 py-1 rounded border bg-white">2</a>
+                        <a href="#" class="px-3 py-1 rounded border bg-white">&gt;&gt;</a>
+                    </nav>
+                </div>
+
+                <!-- Pending Reservations -->
+                <div class="mt-8">
+                    <h3 class="text-lg font-bold text-green-800 mb-4">Pending Reservations</h3>
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="bg-gray-100">
+                                    <th class="p-2 text-left">Facility</th>
+                                    <th class="p-2 text-left">Homeowner</th>
+                                    <th class="p-2 text-left">Date</th>
+                                    <th class="p-2 text-left">Time</th>
+                                    <th class="p-2 text-left">Capacity</th>
+                                    <th class="p-2 text-left">Status</th>
+                                    <th class="p-2 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-t">
+                                    <td class="p-2">Swimming Pool</td>
+                                    <td class="p-2">Nancy Romales</td>
+                                    <td class="p-2">03/25/25</td>
+                                    <td class="p-2">1:30 AM - 3:30 PM</td>
+                                    <td class="p-2">50 / 100</td>
+                                    <td class="p-2">
+                                        <span class="bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded text-xs">PENDING</span>
+                                    </td>
+                                    <td class="p-2">
+                                        <div class="flex space-x-1">
+                                            <button class="bg-green-700 text-white px-2 py-1 rounded text-xs">Approve</button>
+                                            <button class="bg-red-600 text-white px-2 py-1 rounded text-xs">Reject</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add New Facility Modal -->
+<div id="addFacilityModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md relative">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center p-4 border-b border-gray-200">
+            <h2 class="text-lg font-bold">ADD NEW FACILITY</h2>
+            <button id="closeAddFacilityBtn" class="text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Modal Body -->
+        <div class="p-6">
+            <form id="addFacilityForm">
+                <!-- Category and Name -->
+                <div class="mb-4 flex gap-4">
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 mb-2">Category</label>
+                        <select class="w-full border border-gray-300 rounded p-2">
+                            <option value="">Select category</option>
+                            <option value="recreation">Recreation</option>
+                            <option value="meeting-rooms">Meeting Rooms</option>
+                            <option value="outdoors-spaces">Outdoors Spaces</option>
+                            <option value="event-halls">Event Halls</option>
+                        </select>
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 mb-2">Name</label>
+                        <input type="text" class="w-full border border-gray-300 rounded p-2">
+                    </div>
+                </div>
+                
+                <!-- Capacity -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Capacity</label>
+                    <div class="flex items-center">
+                        <input type="number" class="w-full border border-gray-300 rounded p-2">
+                        <span class="ml-2 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Address -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Address</label>
+                    <div class="flex items-center">
+                        <div class="flex-1 relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                                </svg>
+                            </span>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2 pl-8">
+                        </div>
+                        <button type="button" class="ml-2 bg-green-700 text-white px-3 py-2 rounded flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM6.293 6.707a1 1 0 010-1.414l3-3a1 1 0 011.414 0l3 3a1 1 0 01-1.414 1.414L11 5.414V13a1 1 0 11-2 0V5.414L7.707 6.707a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            Upload Image
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Working Hours and Date -->
+                <div class="mb-4 flex gap-4">
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 mb-2">Working Hours</label>
+                        <div class="flex space-x-2">
+                            <div class="relative flex-1">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </span>
+                                <input type="text" placeholder="--:--" class="w-full border border-gray-300 rounded p-2 pl-8">
+                            </div>
+                            <div class="relative flex-1">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+                                    </svg>
+                                </span>
+                                <input type="text" placeholder="--:--" class="w-full border border-gray-300 rounded p-2 pl-8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-1/2">
+                        <label class="block text-gray-700 mb-2">Working Date</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+                                </svg>
+                            </span>
+                            <input type="text" class="w-full border border-gray-300 rounded p-2 pl-8">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Description -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 mb-2">Description</label>
+                    <textarea class="w-full border border-gray-300 rounded p-2 h-24"></textarea>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-green-800 text-white px-6 py-2 rounded">ADD</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Modal functionality
+        const addFacilityBtn = document.getElementById('addFacilityBtn');
+        const addFacilityModal = document.getElementById('addFacilityModal');
+        const closeAddFacilityBtn = document.getElementById('closeAddFacilityBtn');
+        
+        // Open modal
+        addFacilityBtn.addEventListener('click', function() {
+            addFacilityModal.classList.remove('hidden');
+        });
+        
+        // Close modal
+        closeAddFacilityBtn.addEventListener('click', function() {
+            addFacilityModal.classList.add('hidden');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            if (event.target === addFacilityModal) {
+                addFacilityModal.classList.add('hidden');
+            }
+        });
+        
+        // Form submission (prevent default for demo)
+        const addFacilityForm = document.getElementById('addFacilityForm');
+        if (addFacilityForm) {
+            addFacilityForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                // Here you'd add code to process the form data
+                addFacilityModal.classList.add('hidden');
+                // You could add a success message or redirect
+            });
+        }
+    });
+</script>

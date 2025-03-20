@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SubdivisionApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f08b76d658608c76b922c93e449a52f8f93d3539")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0dbc4f1e6d6a526cf3e154a1ccf44ffc9a239448")]
 [assembly: System.Reflection.AssemblyProductAttribute("SubdivisionApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SubdivisionApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

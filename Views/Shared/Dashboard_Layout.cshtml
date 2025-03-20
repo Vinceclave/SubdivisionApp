@@ -1,0 +1,60 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/output.css" /> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">  
+</head>
+
+<body class="font-sans leading-normal tracking-normal">
+   
+    <header class="bg-green-800 text-white shadow-md">
+        <div class="flex items-center justify-between px-6 py-3">
+           
+            <div class="flex items-center space-x-8">
+                <a asp-controller="Dashboard" asp-action="Index" class="text-white/80 hover:text-white">Dashboard</a>
+                <a asp-controller="Dashboard" asp-action="Security" class="text-white/80 hover:text-white">Security</a>
+                <a asp-controller="Dashboard" asp-action="Reservation" class="text-white/80 hover:text-white">Reservation</a>
+                <a href="/Billing" class="text-white/80 hover:text-white">Billing</a>
+            </div>
+            
+            
+            <div class="flex items-center relative">
+                <button id="profile-btn" class="w-8 h-8 rounded-full bg-gray-200 text-green-800 flex items-center justify-center font-bold">
+                    JP
+                </button>
+                
+                
+                <div id="profile-dropdown" class="absolute right-0 top-full mt-2 w-48 bg-white shadow-lg rounded-md z-50 hidden">
+                    <div class="py-2">
+                        <a asp-controller="Dashboard" asp-action="Profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Event Calendar</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Files</a>
+                        <a asp-controller="Dashboard" asp-action="Services"  class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Service Request</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Feedback</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Polls/Surveys</a>
+                        <a asp-controller="Dashboard" asp-action="Settings" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
+                        <div class="border-t border-gray-200 my-1"></div>
+                        <a asp-controller="Account" asp-action="Logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+
+    <div class="body-content">
+        @RenderBody()
+    </div>
+
+
+               
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
