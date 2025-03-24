@@ -1,0 +1,223 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    ViewData["Title"] = "Security_Contacts";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+<!-- Contact Directory Page Container -->
+<div class="flex flex-col h-screen bg-gray-100">
+
+    <!-- Main Content Area -->
+    <main class="flex-1 p-6">
+        <div class="bg-white border border-gray-200 p-6 rounded-sm">
+            <h2 class="font-extrabold text-xl text-center text-gray-700 mb-2 font-poppins">Contact Directory</h2>
+            
+            <p class="text-center text-gray-600 mb-6 max-w-3xl mx-auto font-poppins">
+                If you would like more information or report an issue. Please contact our contact below. We will respond as soon as possible.
+            </p>
+            
+            <!-- Contact Category Tabs -->
+            <div class="flex flex-wrap justify-center gap-4 mb-6">
+                <button class="contact-tab bg-green-700 text-white px-6 py-2 rounded-sm font-bold" data-tab="all">
+                    All Contacts
+                </button>
+                <button class="contact-tab bg-gray-300 text-gray-700 px-6 py-2 rounded-sm font-bold" data-tab="hoa">
+                    HOA Boards
+                </button>
+                <button class="contact-tab bg-gray-300 text-gray-700 px-6 py-2 rounded-sm font-bold" data-tab="security">
+                    Security
+                </button>
+                <button class="contact-tab bg-gray-300 text-gray-700 px-6 py-2 rounded-sm font-bold" data-tab="fire">
+                    Fire Department
+                </button>
+                <button class="contact-tab bg-gray-300 text-gray-700 px-6 py-2 rounded-sm font-bold" data-tab="medical">
+                    Medical Emergency
+                </button>
+            </div>
+            
+            <!-- Contact Cards Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Sarah Manalili - HOA President -->
+                <div class="contact-card border border-gray-200" data-category="hoa">
+                    <div class="bg-green-700 text-white p-3">
+                        <h3 class="font-extrabold font-poppins">Sarah Manalili</h3>
+                        <p class="text-sm font-poppins">HOA President</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="mb-2">
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span class="font-extrabold mr-2">+</span>
+                                <span>63 9310159072</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span>sarah@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Maria Clara - HOA Secretary -->
+                <div class="contact-card border border-gray-200" data-category="hoa">
+                    <div class="bg-green-700 text-white p-3">
+                        <h3 class="font-extrabold font-poppins">Maria Clara</h3>
+                        <p class="text-sm font-poppins">HOA Secretary</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="mb-2">
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span class="font-extrabold mr-2">+</span>
+                                <span>63 9310159072</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span>claraloveme@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chrisna Gurrea - HOA Vice President -->
+                <div class="contact-card border border-gray-200" data-category="hoa">
+                    <div class="bg-green-700 text-white p-3">
+                        <h3 class="font-extrabold font-poppins">Chrisna Gurrea</h3>
+                        <p class="text-sm font-poppins">HOA Vice President</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="mb-2">
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span class="font-extrabold mr-2">+</span>
+                                <span>63 9310159072</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span>gurrea@123.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Marimar Lee - Security -->
+                <div class="contact-card border border-gray-200" data-category="security">
+                    <div class="bg-green-700 text-white p-3">
+                        <h3 class="font-extrabold font-poppins">Marimar Lee</h3>
+                        <p class="text-sm font-poppins">Security</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="mb-2">
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span class="font-extrabold mr-2">+</span>
+                                <span>63 9310159072</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span>Leeto@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Fire Department Contact -->
+                <div class="contact-card border border-gray-200" data-category="fire">
+                    <div class="bg-green-700 text-white p-3">
+                        <h3 class="font-extrabold font-poppins">Fire Department</h3>
+                        <p class="text-sm font-poppins">Emergency Response</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="mb-2">
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span class="font-extrabold mr-2">+</span>
+                                <span>63 9310159073</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span>fire.emergency@city.gov</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Medical Emergency Contact -->
+                <div class="contact-card border border-gray-200" data-category="medical">
+                    <div class="bg-green-700 text-white p-3">
+                        <h3 class="font-extrabold font-poppins">Medical Response Team</h3>
+                        <p class="text-sm font-poppins">Emergency Medical Services</p>
+                    </div>
+                    <div class="p-4">
+                        <div class="mb-2">
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span class="font-extrabold mr-2">+</span>
+                                <span>63 9310159074</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center text-gray-700 font-poppins">
+                                <span>medical@cityhealth.org</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<style>
+    /* Add Poppins font using link tag in your _Layout.cshtml instead */
+    .contact-tab {
+        transition: all 0.3s ease;
+    }
+    
+    .contact-tab:hover {
+        opacity: 0.9;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Tab functionality
+        const contactTabs = document.querySelectorAll('.contact-tab');
+        const contactCards = document.querySelectorAll('.contact-card');
+        
+        // Function to filter contacts based on selected tab
+        function filterContacts(category) {
+            contactCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (category === 'all' || cardCategory === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Add click event to each tab
+        contactTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // Remove active class from all tabs
+                contactTabs.forEach(t => {
+                    t.classList.remove('bg-green-700', 'text-white');
+                    t.classList.add('bg-gray-300', 'text-gray-700');
+                });
+                
+                // Add active class to clicked tab
+                this.classList.remove('bg-gray-300', 'text-gray-700');
+                this.classList.add('bg-green-700', 'text-white');
+                
+                // Filter contacts based on selected tab
+                const tabCategory = this.getAttribute('data-tab');
+                filterContacts(tabCategory);
+            });
+        });
+        
+        // Initialize with "All" tab selected
+        filterContacts('all');
+    });
+</script>

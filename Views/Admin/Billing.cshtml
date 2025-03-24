@@ -1,0 +1,269 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    ViewData["Title"] = "Billing";
+
+     // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+<div class="container mx-auto px-4 py-6">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Billing & Payment Management</h1>
+        <div class="relative">
+            <div class="flex items-center border rounded-md bg-white">
+                <span class="p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </span>
+                <input type="text" placeholder="Search" class="py-2 px-1 outline-none w-56">
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-md shadow-sm mb-6">
+
+        <div class="flex justify-end p-3 space-x-2">
+            <button class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded text-sm">Audit Logs</button>
+            <button id="add-invoice-btn" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded text-sm">+ Add Invoice</button>
+        </div>
+
+        <div class="flex border-b">
+            <button id="tab-all" class="tab-button bg-blue-100 py-2 px-4 rounded-tl-md font-medium text-sm" onclick="changeTab('all')">All (4)</button>
+            <button id="tab-pending" class="tab-button py-2 px-4 font-medium text-sm" onclick="changeTab('pending')">Pending (1)</button>
+            <button id="tab-paid" class="tab-button py-2 px-4 font-medium text-sm" onclick="changeTab('paid')">Paid (2)</button>
+            <button id="tab-overdue" class="tab-button py-2 px-4 font-medium text-sm" onclick="changeTab('overdue')">Overdue (1)</button>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+                <thead>
+                    <tr class="border-b">
+                        <th class="py-3 px-4 text-left font-medium text-gray-600">Bill Type</th>
+                        <th class="py-3 px-4 text-left font-medium text-gray-600">Due Amount</th>
+                        <th class="py-3 px-4 text-left font-medium text-gray-600">Due Date</th>
+                        <th class="py-3 px-4 text-left font-medium text-gray-600">Status</th>
+                        <th class="py-3 px-4 text-left font-medium text-gray-600">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="billing-table-body">
+                    <!-- Table content will be populated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add New Invoice Modal -->
+<div id="invoice-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-md shadow-lg w-full max-w-md p-6 relative">
+        <button id="close-modal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
+            ✕
+        </button>
+        <h2 class="text-xl font-semibold mb-4 text-center">Add New Invoice</h2>
+        
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Homeowner</label>
+                <select class="w-full border rounded-md py-2 px-3">
+                    <option value="" disabled selected>Select homeowner</option>
+                    <option value="yin_lee">Yin Lee</option>
+                    <option value="john_doe">John Doe</option>
+                    <option value="jane_smith">Jane Smith</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Type of Bill</label>
+                <select class="w-full border rounded-md py-2 px-3">
+                    <option value="" disabled selected>Select bill type</option>
+                    <option value="internet">Internet</option>
+                    <option value="electricity">Electricity</option>
+                    <option value="water">Water</option>
+                    <option value="maintenance">Maintenance</option>
+                </select>
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Due Date</label>
+                <input type="date" class="w-full border rounded-md py-2 px-3">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Due Amount</label>
+                <input type="text" class="w-full border rounded-md py-2 px-3" placeholder="Enter amount">
+            </div>
+            
+            <div class="flex justify-center pt-2">
+                <button id="create-invoice" class="bg-green-800 hover:bg-green-700 text-white py-2 px-6 rounded">CREATE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Action Dropdown Menu -->
+<div id="action-dropdown" class="absolute bg-white shadow-md border rounded-md py-1 hidden z-10">
+    <button class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Generate Receipt</button>
+    <button class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">View Details</button>
+    <button class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Edit Details</button>
+</div>
+
+<script>
+    // Billing data
+    const billingData = [
+        { billType: "Internet", dueAmount: "2,000", dueDate: "03/25/25", status: "UNPAID" },
+        { billType: "Electricity", dueAmount: "2,000", dueDate: "03/25/25", status: "PAID" },
+        { billType: "Water", dueAmount: "2,000", dueDate: "03/25/25", status: "OVERDUE" },
+        { billType: "Maintenance", dueAmount: "2,000", dueDate: "03/25/25", status: "PAID" }
+    ];
+
+    // Render table based on active tab
+    function renderTable(filter = null) {
+        const tableBody = document.getElementById('billing-table-body');
+        tableBody.innerHTML = '';
+        
+        const filteredData = filter ? billingData.filter(item => item.status === filter) : billingData;
+        
+        filteredData.forEach((bill, index) => {
+            const row = document.createElement('tr');
+            row.className = 'border-b hover:bg-gray-50';
+            
+            let statusClass = '';
+            if (bill.status === 'PAID') {
+                statusClass = 'bg-green-200 text-green-800';
+            } else if (bill.status === 'UNPAID') {
+                statusClass = 'bg-yellow-200 text-yellow-800';
+            } else if (bill.status === 'OVERDUE') {
+                statusClass = 'bg-red-200 text-red-800';
+            }
+            
+            row.innerHTML = `
+                <td class="py-3 px-4">${bill.billType}</td>
+                <td class="py-3 px-4">${bill.dueAmount}</td>
+                <td class="py-3 px-4">${bill.dueDate}</td>
+                <td class="py-3 px-4">
+                    <span class="px-2 py-1 rounded text-xs font-medium ${statusClass}">
+                        ${bill.status}
+                    </span>
+                </td>
+                <td class="py-3 px-4 relative">
+                    <button class="action-menu-button text-xl font-bold text-gray-600" data-index="${index}">•••</button>
+                </td>
+            `;
+            
+            tableBody.appendChild(row);
+        });
+        
+        // Add event listeners to action menu buttons
+        document.querySelectorAll('.action-menu-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.stopPropagation(); // Prevent event bubbling
+                toggleActionMenu(this);
+            });
+        });
+    }
+
+    // Toggle action menu dropdown
+    function toggleActionMenu(button) {
+        const dropdown = document.getElementById('action-dropdown');
+        const rect = button.getBoundingClientRect();
+        
+        // Close dropdown if clicking the same button that opened it
+        if (!dropdown.classList.contains('hidden') && dropdown.dataset.openedBy === button.dataset.index) {
+            dropdown.classList.add('hidden');
+            return;
+        }
+        
+        // Position and show dropdown
+        dropdown.style.top = `${rect.bottom + window.scrollY}px`;
+        dropdown.style.left = `${rect.left + window.scrollX - 130}px`;
+        dropdown.classList.remove('hidden');
+        dropdown.dataset.openedBy = button.dataset.index;
+        
+        // Close dropdown when clicking outside
+        function closeDropdown(e) {
+            if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+                dropdown.classList.add('hidden');
+                document.removeEventListener('click', closeDropdown);
+            }
+        }
+        
+        // Remove any existing click listener first
+        document.removeEventListener('click', closeDropdown);
+        // Add the new click listener
+        document.addEventListener('click', closeDropdown);
+    }
+
+    // Change tab
+    function changeTab(tabName) {
+        // Reset all tabs
+        document.querySelectorAll('.tab-button').forEach(tab => {
+            tab.classList.remove('bg-blue-100');
+        });
+        
+        // Activate selected tab
+        document.getElementById(`tab-${tabName}`).classList.add('bg-blue-100');
+        
+        // Hide any open action dropdown
+        document.getElementById('action-dropdown').classList.add('hidden');
+        
+        // Filter data based on tab
+        switch(tabName) {
+            case 'pending':
+                renderTable('UNPAID');
+                break;
+            case 'paid':
+                renderTable('PAID');
+                break;
+            case 'overdue':
+                renderTable('OVERDUE');
+                break;
+            default:
+                renderTable();
+        }
+    }
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', () => {
+        renderTable();
+        
+        // Modal functionality
+        const modal = document.getElementById('invoice-modal');
+        const addInvoiceBtn = document.getElementById('add-invoice-btn');
+        const closeModalBtn = document.getElementById('close-modal');
+        const createInvoiceBtn = document.getElementById('create-invoice');
+        
+        // Open modal
+        addInvoiceBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+        
+        // Close modal
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+        
+        // Close modal when clicking outside
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+        
+        // Create invoice button
+        createInvoiceBtn.addEventListener('click', () => {
+            // Here you would typically handle form submission
+            alert('Invoice created successfully!');
+            modal.classList.add('hidden');
+        });
+        
+        // Handle action dropdown menu button clicks
+        document.querySelectorAll('#action-dropdown button').forEach(button => {
+            button.addEventListener('click', function() {
+                const action = this.textContent;
+                alert(`Action: ${action}`);
+                document.getElementById('action-dropdown').classList.add('hidden');
+            });
+        });
+    });
+</script>

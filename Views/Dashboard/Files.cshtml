@@ -1,0 +1,326 @@
+﻿@{
+    Layout = "~/Views/Shared/Dashboard_Layout.cshtml";
+    ViewData["Title"] = "Files";
+
+     // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+<div class="container mx-auto px-4 py-6">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Files</h1>
+        <div class="relative">
+            <div class="flex items-center border rounded-md bg-white">
+                <span class="p-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </span>
+                <input type="text" placeholder="Search" class="py-2 px-1 outline-none w-56">
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-green-900 rounded-md shadow-sm mb-6 p-6 text-white">
+        <h2 class="text-2xl font-bold mb-4">DOWNLOADABLE RESOURCES</h2>
+        
+        <div class="bg-green-800 rounded-md p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4">Welcome to our Downloadable Resources hub !</h3>
+            <p class="text-center">
+                Here you can access a variety of essential documents and forms to keep you informed and engaged with our community. Whether you're looking for the latest community updates, important application forms, policy documents, you'll find everything you need in one convenient location.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Community Guidelines Card -->
+            <div id="community-card" class="bg-white rounded-md shadow-md overflow-hidden transform transition-transform hover:scale-105 cursor-pointer">
+                <div class="p-6 text-center">
+                    <div class="flex justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-gray-800 font-bold">COMMUNITY GUIDELINES & REGISTRATION FORMS</h3>
+                </div>
+            </div>
+
+            <!-- Financial Reports Card -->
+            <div id="financial-card" class="bg-white rounded-md shadow-md overflow-hidden transform transition-transform hover:scale-105 cursor-pointer">
+                <div class="p-6 text-center">
+                    <div class="flex justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-gray-800 font-bold">FINANCIAL REPORTS</h3>
+                </div>
+            </div>
+
+            <!-- HOA Meeting Card -->
+            <div id="hoa-card" class="bg-white rounded-md shadow-md overflow-hidden transform transition-transform hover:scale-105 cursor-pointer">
+                <div class="p-6 text-center">
+                    <div class="flex justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-gray-800 font-bold">HOA MEETING</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Community Guidelines Modal -->
+<div id="community-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-md shadow-lg w-full max-w-4xl relative">
+        <div class="flex justify-between items-center p-4 border-b">
+            <div class="flex space-x-48">
+                <h2 class="text-xl font-bold">COMMUNITY GUIDELINES</h2>             
+                <h2 class="text-xl font-bold">FORMS</h2>
+            </div>
+            <button class="modal-close text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="p-4 flex">
+            <!-- Left Column - Guidelines -->
+            <div class="w-1/2 pr-4">
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        
+                        <button class="border rounded px-2 py-1 text-sm flex items-center">
+                            <span>Sort by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="border rounded-md p-4">
+                    <h3 class="font-medium mb-3">Welcome & Introduction</h3>
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Welcome Guide</a>
+                        <span class="text-sm text-gray-500 ml-2">(Version: Feb 2025)</span>
+                    </div>
+                    
+                    <h3 class="font-medium mb-3">Behavior & Conduct</h3>
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Code of Conduct</a>
+                        <span class="text-sm text-gray-500 ml-2">(Version: Jan 2025)</span>
+                    </div>
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Safety Guidelines</a>
+                        <span class="text-sm text-gray-500 ml-2">(Version: Oct 2024)</span>
+                    </div>
+                    
+                    <h3 class="font-medium mb-3">Policies & Procedures</h3>
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Privacy Policy</a>
+                        <span class="text-sm text-gray-500 ml-2">(Version: Jan 2025)</span>
+                    </div>
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Dispute Resolution Process</a>
+                        <span class="text-sm text-gray-500 ml-2">(Version: Dec 2024)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Column - Forms -->
+            <div class="w-1/2 pl-4">
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-2">
+                        
+                        <button class="border rounded px-2 py-1 text-sm flex items-center">
+                            <span>Sort by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="border rounded-md p-4">
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Vehicle Registration Form</a>
+                        <span class="text-sm text-gray-500 block">(Version: Feb 2025)</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Visitor Pass Request Form</a>
+                        <span class="text-sm text-gray-500 block">(Version: Feb 2025)</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Service Request Form</a>
+                        <span class="text-sm text-gray-500 block">(Version: Feb 2025)</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Feedback Form</a>
+                        <span class="text-sm text-gray-500 block">(Version: Feb 2025)</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Complaint Form</a>
+                        <span class="text-sm text-gray-500 block">(Version: Feb 2025)</span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <a href="#" class="text-blue-500 hover:underline">Service Request Form</a>
+                        <span class="text-sm text-gray-500 block">(Version: Feb 2025)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Financial Reports Modal -->
+<div id="financial-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-md shadow-lg w-full max-w-2xl relative">
+        <div class="flex justify-between items-center p-4 border-b">
+            <h2 class="text-xl font-bold">FINANCIAL REPORTS</h2>
+            <button class="modal-close text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="p-4">
+            <div class="mb-4">
+                <div class="flex justify-end items-center mb-2">
+                    <button class="border rounded px-2 py-1 text-sm flex items-center">
+                        <span>Sort by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="border rounded-md p-4">
+                <div class="mb-3">
+                    <a href="#" class="text-blue-500 hover:underline">Annual Budget Reports</a>
+                    <span class="text-sm text-gray-500 ml-2">(Version: Jan 2025)</span>
+                </div>
+                
+                <div class="mb-3">
+                    <a href="#" class="text-blue-500 hover:underline">Monthly/Quarterly HOA Dues Breakdown</a>
+                    <span class="text-sm text-gray-500 ml-2">(Version: Apr 2025)</span>
+                </div>
+                
+                <div class="mb-3">
+                    <a href="#" class="text-blue-500 hover:underline">Special Committee Reports</a>
+                    <span class="text-sm text-gray-500 ml-2">(Version: Oct 2024)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HOA Meeting Modal -->
+<div id="hoa-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-md shadow-lg w-full max-w-2xl relative">
+        <div class="flex justify-between items-center p-4 border-b">
+            <h2 class="text-xl font-bold">HOA MEETING</h2>
+            <button class="modal-close text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <div class="p-4">
+            <div class="mb-4">
+                <div class="flex justify-end items-center mb-2">
+                    <button class="border rounded px-2 py-1 text-sm flex items-center">
+                        <span>Sort by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="border rounded-md p-4">
+                <div class="mb-3 flex justify-between">
+                    <a href="#" class="text-blue-500 hover:underline">Meeting Agendas</a>
+                    <span class="text-sm text-gray-500">(02/14/25)</span>
+                </div>
+                
+                <div class="mb-3 flex justify-between">
+                    <a href="#" class="text-blue-500 hover:underline">Meeting Minutes</a>
+                    <span class="text-sm text-gray-500">(02/14/25)</span>
+                </div>
+                
+                <div class="mb-3 flex justify-between">
+                    <a href="#" class="text-blue-500 hover:underline">Attendance Sheets</a>
+                    <span class="text-sm text-gray-500">(02/14/25)</span>
+                </div>
+                
+                <div class="mb-3 flex justify-between">
+                    <a href="#" class="text-blue-500 hover:underline">Attendance Sheets</a>
+                    <span class="text-sm text-gray-500">(02/23/24)</span>
+                </div>
+                
+                <div class="mb-3 flex justify-between">
+                    <a href="#" class="text-blue-500 hover:underline">Eco Presentation Slide</a>
+                    <span class="text-sm text-gray-500">(02/14/25)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get modal elements
+        const communityModal = document.getElementById('community-modal');
+        const financialModal = document.getElementById('financial-modal');
+        const hoaModal = document.getElementById('hoa-modal');
+        
+        // Get card elements
+        const communityCard = document.getElementById('community-card');
+        const financialCard = document.getElementById('financial-card');
+        const hoaCard = document.getElementById('hoa-card');
+        
+        // Add click events for cards to open respective modals
+        communityCard.addEventListener('click', () => {
+            communityModal.classList.remove('hidden');
+        });
+        
+        financialCard.addEventListener('click', () => {
+            financialModal.classList.remove('hidden');
+        });
+        
+        hoaCard.addEventListener('click', () => {
+            hoaModal.classList.remove('hidden');
+        });
+        
+        // Add click events to close buttons
+        document.querySelectorAll('.modal-close').forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('[id$="-modal"]').classList.add('hidden');
+            });
+        });
+        
+        // Close modal when clicking outside
+        [communityModal, financialModal, hoaModal].forEach(modal => {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.classList.add('hidden');
+                }
+            });
+        });
+        
+        // Prevent event propagation on modal content clicks
+        document.querySelectorAll('[id$="-modal"] > div').forEach(content => {
+            content.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        });
+    });
+</script>

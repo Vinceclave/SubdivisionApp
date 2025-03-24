@@ -39,5 +39,7 @@ namespace SubdivisionApp.Migrations
             migrationBuilder.DropTable(
                 name: "Users");
         }
+
+        
     }
 }

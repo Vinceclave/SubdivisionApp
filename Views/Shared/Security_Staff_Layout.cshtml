@@ -15,10 +15,10 @@
         <div class="flex items-center justify-between px-6 py-3">
            
             <div class="flex items-center space-x-8">
-                <a asp-controller="Dashboard" asp-action="Index" class="text-white/80 hover:text-white">Dashboard</a>
-                <a asp-controller="Dashboard" asp-action="Security" class="text-white/80 hover:text-white">Security</a>
-                <a asp-controller="Dashboard" asp-action="Reservation" class="text-white/80 hover:text-white">Reservation</a>
-                <a asp-controller="Dashboard" asp-action="Billing" class="text-white/80 hover:text-white">Billing</a>
+                <a asp-controller="Admin" asp-action="Index" class="text-white/80 hover:text-white">Dashboard</a>
+                <a asp-controller="Admin" asp-action="Community" class="text-white/80 hover:text-white">View Visitors</a>
+                <a asp-controller="Admin" asp-action="Security" class="text-white/80 hover:text-white">Registered Vehicles</a>
+                <a asp-controller="Admin" asp-action="Reservation" class="text-white/80 hover:text-white">Contacts</a>
             </div>
             
             
@@ -30,13 +30,11 @@
                 
                 <div id="profile-dropdown" class="absolute right-0 top-full mt-2 w-48 bg-white shadow-lg rounded-md z-50 hidden">
                     <div class="py-2">
-                        <a asp-controller="Dashboard" asp-action="Profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
+                        <a asp-controller="Admin" asp-action="Profile" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</a>
                         <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Event Calendar</a>
-                        <a asp-controller="Dashboard" asp-action="Files" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Files</a>
-                        <a asp-controller="Dashboard" asp-action="Services"  class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Service Request</a>
-                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Feedback</a>
-                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Polls/Surveys</a>
-                        <a asp-controller="Dashboard" asp-action="Settings" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
+                        <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Files</a>
+                        <a asp-controller="Admin" asp-action="Services" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Service Request</a>
+                        <a asp-controller="Admin" asp-action="Settings" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Settings</a>
                         <div class="border-t border-gray-200 my-1"></div>
                         <a asp-controller="Account" asp-action="Logout" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Log out</a>
                     </div>

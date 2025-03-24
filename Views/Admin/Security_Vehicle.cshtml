@@ -1,0 +1,344 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+    ViewData["Title"] = "Security_Vehicle";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Guest";
+}
+
+
+<div class="flex flex-col bg-gray-100 p-4">
+    <div class="bg-white border border-gray-200 rounded-sm p-4">
+        <h2 class="font-bold text-xl mb-4">VEHICLE MANAGEMENT</h2>
+        
+       
+        <div class="mb-4">
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5" placeholder="Search by Owner" style="max-width: 200px;">
+            </div>
+        </div>
+        
+        
+        <div class="flex border-b border-gray-200 mb-4">
+            <button class="py-2 px-4 text-sm font-medium text-blue-600 bg-white border-b-2 border-blue-600 active">All (22)</button>
+            <button class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-gray-700">Pending (5)</button>
+            <button class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-gray-700">Approved (5)</button>
+            <button class="py-2 px-4 text-sm font-medium text-gray-500 hover:text-gray-700">Rejected (4)</button>
+        </div>
+        
+        
+        <div class="flex justify-end mb-4">
+            <button class="bg-blue-600 text-white px-4 py-2 rounded flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Generate Report
+            </button>
+        </div>
+        
+       
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-100 border-b border-gray-200">
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Owner</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Vehicle Type</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Brand</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Plate #</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Color</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Submission Date</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Status</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr class="border-b border-gray-200">
+                        <td class="py-3 px-4 text-sm">Nancy Romales</td>
+                        <td class="py-3 px-4 text-sm">Sedan</td>
+                        <td class="py-3 px-4 text-sm">Toyota</td>
+                        <td class="py-3 px-4 text-sm">23ED09K</td>
+                        <td class="py-3 px-4 text-sm">Silver</td>
+                        <td class="py-3 px-4 text-sm">2023-03-12</td>
+                        <td class="py-3 px-4 text-sm">
+                            <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">Pending</span>
+                        </td>
+                        <td class="py-3 px-4 text-sm">
+                            <div class="flex space-x-1">
+                                <button class="bg-green-700 text-white px-2 py-1 text-xs rounded">Approve</button>
+                                <button class="bg-red-600 text-white px-2 py-1 text-xs rounded">Reject</button>
+                                <button class="view-btn bg-blue-600 text-white px-2 py-1 text-xs rounded" 
+                                        data-name="Nancy Romales"
+                                        data-address="42 Maple Street"
+                                        data-phone="09310159072"
+                                        data-type="Sedan"
+                                        data-color="Silver"
+                                        data-plate="23ED09K"
+                                        data-date="2023-03-12"
+                                        data-status="Pending">View</button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                   
+                    <tr class="border-b border-gray-200">
+                        <td class="py-3 px-4 text-sm">John Paul Layson</td>
+                        <td class="py-3 px-4 text-sm">Sedan</td>
+                        <td class="py-3 px-4 text-sm">Honda</td>
+                        <td class="py-3 px-4 text-sm">543ELV</td>
+                        <td class="py-3 px-4 text-sm">Black</td>
+                        <td class="py-3 px-4 text-sm">2023-03-12</td>
+                        <td class="py-3 px-4 text-sm">
+                            <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded">Approved</span>
+                        </td>
+                        <td class="py-3 px-4 text-sm">
+                            <div class="flex space-x-1">
+                                <button class="view-btn bg-blue-600 text-white px-2 py-1 text-xs rounded"
+                                        data-name="John Paul Layson"
+                                        data-address="123 Main Street"
+                                        data-phone="09876543210"
+                                        data-type="Sedan"
+                                        data-color="Black"
+                                        data-plate="543ELV"
+                                        data-date="2023-03-12"
+                                        data-status="Approved">View</button>
+                                <button class="bg-red-600 text-white px-2 py-1 text-xs rounded">Revoke</button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                  
+                    <tr>
+                        <td class="py-3 px-4 text-sm">John Paul Layson</td>
+                        <td class="py-3 px-4 text-sm">Mini Van</td>
+                        <td class="py-3 px-4 text-sm">Toyota</td>
+                        <td class="py-3 px-4 text-sm">R8TL34</td>
+                        <td class="py-3 px-4 text-sm">White</td>
+                        <td class="py-3 px-4 text-sm">2023-03-12</td>
+                        <td class="py-3 px-4 text-sm">
+                            <span class="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded">Rejected</span>
+                        </td>
+                        <td class="py-3 px-4 text-sm">
+                            <div class="flex space-x-1">
+                                <button class="view-btn bg-blue-600 text-white px-2 py-1 text-xs rounded"
+                                        data-name="John Paul Layson"
+                                        data-address="456 Oak Avenue"
+                                        data-phone="09123456789"
+                                        data-type="Mini Van"
+                                        data-color="White"
+                                        data-plate="R8TL34"
+                                        data-date="2023-03-12"
+                                        data-status="Rejected">View</button>
+                                <button class="bg-green-700 text-white px-2 py-1 text-xs rounded">Approve</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div id="vehicleDetailsModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+    <div class="fixed inset-0 bg-black opacity-50"></div>
+    
+    <div class="bg-white w-full max-w-md rounded shadow-lg z-10 overflow-hidden">
+        
+        <div class="flex justify-between items-center border-b border-gray-200 p-4">
+            <h3 class="text-lg font-semibold">VEHICLE DETAILS</h3>
+            <div class="flex items-center space-x-2">
+                <span id="modal-status" class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">Pending</span>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        
+        
+        <div class="p-4">
+            
+            <div class="mb-6">
+                <div class="flex items-center mb-2">
+                    <svg class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span class="font-medium">Resident Information</span>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-2 ml-7">
+                    <div class="col-span-1 text-gray-600">Name :</div>
+                    <div class="col-span-2" id="modal-name">Nancy Romales</div>
+                    
+                    <div class="col-span-1 text-gray-600">Address :</div>
+                    <div class="col-span-2" id="modal-address">42 Maple Street</div>
+                    
+                    <div class="col-span-1 text-gray-600">Phone No. :</div>
+                    <div class="col-span-2" id="modal-phone">09310159072</div>
+                </div>
+            </div>
+            
+            
+            <div class="mb-6">
+                <div class="flex items-center mb-2">
+                    <svg class="h-5 w-5 text-gray-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                    </svg>
+                    <span class="font-medium">Vehicle Information</span>
+                </div>
+                
+                <div class="grid grid-cols-3 gap-2 ml-7">
+                    <div class="col-span-1 text-gray-600">Type :</div>
+                    <div class="col-span-2" id="modal-type">Sedan</div>
+                    
+                    <div class="col-span-1 text-gray-600">Color :</div>
+                    <div class="col-span-2" id="modal-color">Silver</div>
+                    
+                    <div class="col-span-1 text-gray-600">License Plate :</div>
+                    <div class="col-span-2" id="modal-plate">23ED09K</div>
+                    
+                    <div class="col-span-1 text-gray-600">Submission Date :</div>
+                    <div class="col-span-2" id="modal-date">2023-03-12</div>
+                </div>
+            </div>
+            
+            
+            <div class="mb-4">
+                <div class="flex items-center mb-2">
+                    <span class="text-gray-600">COR :</span>
+                </div>
+                <div class="bg-gray-100 p-2 rounded flex items-center justify-between">
+                    <span class="text-sm text-blue-600">city_cor.png (33.5 KB)</span>
+                    <a href="#" class="text-sm text-blue-600">View</a>
+                </div>
+            </div>
+            
+            
+            <div class="flex justify-end space-x-2 mt-6">
+                <button id="modal-reject-btn" class="bg-red-600 text-white px-4 py-2 rounded">Reject</button>
+                <button id="modal-approve-btn" class="bg-green-700 text-white px-4 py-2 rounded">Approve</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        const tabs = document.querySelectorAll('.flex.border-b.border-gray-200.mb-4 button');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                
+                tabs.forEach(t => {
+                    t.classList.remove('text-blue-600', 'border-b-2', 'border-blue-600');
+                    t.classList.add('text-gray-500');
+                });
+                
+                
+                this.classList.remove('text-gray-500');
+                this.classList.add('text-blue-600', 'border-b-2', 'border-blue-600');
+                
+                
+            });
+        });
+        
+        
+        const modal = document.getElementById('vehicleDetailsModal');
+        const closeModalBtn = document.getElementById('closeModal');
+        const viewButtons = document.querySelectorAll('.view-btn');
+        
+        
+        function openModal(data) {
+            
+            document.getElementById('modal-name').textContent = data.name;
+            document.getElementById('modal-address').textContent = data.address;
+            document.getElementById('modal-phone').textContent = data.phone;
+            document.getElementById('modal-type').textContent = data.type;
+            document.getElementById('modal-color').textContent = data.color;
+            document.getElementById('modal-plate').textContent = data.plate;
+            document.getElementById('modal-date').textContent = data.date;
+            
+            
+            const statusBadge = document.getElementById('modal-status');
+            statusBadge.textContent = data.status;
+            
+            
+            statusBadge.classList.remove('bg-yellow-100', 'text-yellow-800', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+            
+            
+            if (data.status === 'Pending') {
+                statusBadge.classList.add('bg-yellow-100', 'text-yellow-800');
+            } else if (data.status === 'Approved') {
+                statusBadge.classList.add('bg-green-100', 'text-green-800');
+            } else if (data.status === 'Rejected') {
+                statusBadge.classList.add('bg-red-100', 'text-red-800');
+            }
+            
+            
+            const rejectBtn = document.getElementById('modal-reject-btn');
+            const approveBtn = document.getElementById('modal-approve-btn');
+            
+            if (data.status === 'Approved') {
+                approveBtn.classList.add('hidden');
+                rejectBtn.textContent = 'Revoke';
+            } else if (data.status === 'Rejected') {
+                rejectBtn.classList.add('hidden');
+            } else {
+                rejectBtn.classList.remove('hidden');
+                approveBtn.classList.remove('hidden');
+                rejectBtn.textContent = 'Reject';
+            }
+            
+            
+            modal.classList.remove('hidden');
+        }
+        
+        
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const data = {
+                    name: this.getAttribute('data-name'),
+                    address: this.getAttribute('data-address'),
+                    phone: this.getAttribute('data-phone'),
+                    type: this.getAttribute('data-type'),
+                    color: this.getAttribute('data-color'),
+                    plate: this.getAttribute('data-plate'),
+                    date: this.getAttribute('data-date'),
+                    status: this.getAttribute('data-status')
+                };
+                openModal(data);
+            });
+        });
+        
+        
+        closeModalBtn.addEventListener('click', function() {
+            modal.classList.add('hidden');
+        });
+        
+        
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+        
+        
+        document.getElementById('modal-approve-btn').addEventListener('click', function() {
+            alert('Vehicle approved!');
+            modal.classList.add('hidden');
+        });
+        
+        document.getElementById('modal-reject-btn').addEventListener('click', function() {
+            alert(this.textContent === 'Revoke' ? 'Approval revoked!' : 'Vehicle rejected!');
+            modal.classList.add('hidden');
+        });
+    });
+</script>

@@ -189,5 +189,135 @@ namespace SubdivisionApp.Controllers.Admin
             }
         }
 
+          public IActionResult Billing()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Billing"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Billing");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        //Temporary Security-staff page controller
+        // ang index sa staff or dashboard parehas ra sa dashboard sa homeowner.
+        public IActionResult Security_Profile()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Security_Profile"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Security_Profile");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Security_Contacts()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Security_Contacts"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Security_Contacts");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Security_Settings()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Security_Settings"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Security_Settings");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Security_Services()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Security_Services"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Security_Services");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Security_Vehicle()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Security_Vehicle"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Security_Vehicle");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Security_Visitor()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Security_Visitor"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Security_Contacts");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Security_Visitor_Logs()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Security_Visitor_Logs"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Security_Visitor_Logs");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
     }
 }

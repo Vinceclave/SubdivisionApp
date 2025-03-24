@@ -14,6 +14,7 @@ public class User
     [EmailAddress]
     public string? UserEmail { get; set; }
     public string UserRole { get; set; } = "Customer";  // Default role
+    
     public DateTime DateCreated { get; set; } = DateTime.Now;  // Set default creation date
 }
 

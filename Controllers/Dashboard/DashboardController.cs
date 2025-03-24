@@ -157,5 +157,37 @@ namespace SubdivisionApp.Controllers.Dashboard
             }
         }
 
+        public IActionResult Billing()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Customer")
+            {
+                ViewData["Page"] = "Billing"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Billing");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+         public IActionResult Files()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Customer")
+            {
+                ViewData["Page"] = "Files"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Files");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
     }
 }
