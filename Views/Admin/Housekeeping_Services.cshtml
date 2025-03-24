@@ -1,6 +1,6 @@
 ﻿@{
     Layout = "~/Views/Shared/Admin_Layout.cshtml";
-    ViewData["Title"] = "Security_Services";
+    ViewData["Title"] = "Housekeeping_Services";
 
     // Fix nullable warning
     string userRole = ViewBag.UserRole as string ?? "Guest";
@@ -8,11 +8,12 @@
 
 
 <div class="flex flex-col bg-gray-100 p-4">
-        <div class="bg-gray-200 p-4">
+    <div class="bg-gray-200 p-4">
                 <h2 class="font-extrabold text-xl mb-2 font-poppins">Service Requests</h2>
-        </div>
-    <div class="bg-white border border-gray-200 rounded-sm p-4">
+    </div>
 
+    <div class="bg-white border border-gray-200 rounded-sm p-4">
+    
         <div class="mb-4">
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -38,9 +39,9 @@
                 </thead>
                 <tbody>
                     
-                    <tr class="border-b border-gray-200"> @*tanan madawat niya puro mga services nga ang request type kay security*@
+                    <tr class="border-b border-gray-200"> @*tanan madawat niya puro mga services nga ang request type kay housekeeping*@
                         <td class="py-3 px-4 text-sm">Nancy Romales</td>
-                        <td class="py-3 px-4 text-sm">Security</td>
+                        <td class="py-3 px-4 text-sm">Housekeeping</td>
                         <td class="py-3 px-4 text-sm">Broken Faucet in master bedroom</td>
                         <td class="py-3 px-4 text-sm">
                             <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded">URGENT</span>
@@ -52,7 +53,7 @@
 
                     <tr class="border-b border-gray-200">
                         <td class="py-3 px-4 text-sm">Lord Malori</td>
-                        <td class="py-3 px-4 text-sm">Security</td>
+                        <td class="py-3 px-4 text-sm">Housekeeping</td>
                         <td class="py-3 px-4 text-sm">Broken Faucet in my bedroom</td>
                         <td class="py-3 px-4 text-sm">
                             <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded">URGENT</span>
@@ -64,7 +65,7 @@
 
                     <tr class="border-b border-gray-200">
                         <td class="py-3 px-4 text-sm">Clarion Lee</td>
-                        <td class="py-3 px-4 text-sm">Security</td>
+                        <td class="py-3 px-4 text-sm">Housekeeping</td>
                         <td class="py-3 px-4 text-sm">Broken Faucet in modal-type kitchen</td>
                         <td class="py-3 px-4 text-sm">
                             <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded">URGENT</span>

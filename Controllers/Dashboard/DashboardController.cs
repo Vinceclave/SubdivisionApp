@@ -173,7 +173,7 @@ namespace SubdivisionApp.Controllers.Dashboard
             }
         }
 
-         public IActionResult Files()
+        public IActionResult Files()
         {
             string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
 
@@ -182,6 +182,22 @@ namespace SubdivisionApp.Controllers.Dashboard
                 ViewData["Page"] = "Files"; // This will hide header and footer
                 ViewBag.UserRole = userRole;
                 return View("Files");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Event()
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Customer")
+            {
+                ViewData["Page"] = "Event"; // This will hide header and footer
+                ViewBag.UserRole = userRole;
+                return View("Event");
             }
             else
             {

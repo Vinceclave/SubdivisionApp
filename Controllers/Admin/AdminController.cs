@@ -19,7 +19,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Dashboard"; // This will hide header and footer
+                ViewData["Page"] = "Dashboard"; 
                 ViewBag.UserRole = userRole;
                 return View("Index");
             }
@@ -35,7 +35,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Community"; // This will hide header and footer
+                ViewData["Page"] = "Community";
                 ViewBag.UserRole = userRole;
                 return View("Community");
             }
@@ -51,7 +51,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Security"; // This will hide header and footer
+                ViewData["Page"] = "Security"; 
                 ViewBag.UserRole = userRole;
                 return View("Security");
             }
@@ -67,7 +67,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Visitor"; // This will hide header and footer
+                ViewData["Page"] = "Visitor"; 
                 ViewBag.UserRole = userRole;
                 return View("Visitor");
             }
@@ -83,7 +83,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Vehicle"; // This will hide header and footer
+                ViewData["Page"] = "Vehicle"; 
                 ViewBag.UserRole = userRole;
                 return View("Vehicle");
             }
@@ -99,7 +99,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Contacts"; // This will hide header and footer
+                ViewData["Page"] = "Contacts"; 
                 ViewBag.UserRole = userRole;
                 return View("Contacts");
             }
@@ -115,7 +115,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Reservation"; // This will hide header and footer
+                ViewData["Page"] = "Reservation"; 
                 ViewBag.UserRole = userRole;
                 return View("Reservation");
             }
@@ -131,7 +131,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Settings"; // This will hide header and footer
+                ViewData["Page"] = "Settings"; 
                 ViewBag.UserRole = userRole;
                 return View("Settings");
             }
@@ -147,7 +147,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Profile"; // This will hide header and footer
+                ViewData["Page"] = "Profile"; 
                 ViewBag.UserRole = userRole;
                 return View("Profile");
             }
@@ -163,7 +163,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Services"; // This will hide header and footer
+                ViewData["Page"] = "Services"; 
                 ViewBag.UserRole = userRole;
                 return View("Services");
             }
@@ -179,7 +179,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "User_Management"; // This will hide header and footer
+                ViewData["Page"] = "User_Management"; 
                 ViewBag.UserRole = userRole;
                 return View("User_Management");
             }
@@ -195,7 +195,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Billing"; // This will hide header and footer
+                ViewData["Page"] = "Billing"; 
                 ViewBag.UserRole = userRole;
                 return View("Billing");
             }
@@ -213,7 +213,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Security_Profile"; // This will hide header and footer
+                ViewData["Page"] = "Security_Profile"; 
                 ViewBag.UserRole = userRole;
                 return View("Security_Profile");
             }
@@ -229,7 +229,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Security_Contacts"; // This will hide header and footer
+                ViewData["Page"] = "Security_Contacts"; 
                 ViewBag.UserRole = userRole;
                 return View("Security_Contacts");
             }
@@ -245,7 +245,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Security_Settings"; // This will hide header and footer
+                ViewData["Page"] = "Security_Settings";
                 ViewBag.UserRole = userRole;
                 return View("Security_Settings");
             }
@@ -261,7 +261,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Security_Services"; // This will hide header and footer
+                ViewData["Page"] = "Security_Services"; 
                 ViewBag.UserRole = userRole;
                 return View("Security_Services");
             }
@@ -277,7 +277,7 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Security_Vehicle"; // This will hide header and footer
+                ViewData["Page"] = "Security_Vehicle"; 
                 ViewBag.UserRole = userRole;
                 return View("Security_Vehicle");
             }
@@ -293,9 +293,9 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Security_Visitor"; // This will hide header and footer
+                ViewData["Page"] = "Security_Visitor"; 
                 ViewBag.UserRole = userRole;
-                return View("Security_Contacts");
+                return View("Security_Visitor");
             }
             else
             {
@@ -309,9 +309,41 @@ namespace SubdivisionApp.Controllers.Admin
 
             if (userRole == "Admin")
             {
-                ViewData["Page"] = "Security_Visitor_Logs"; // This will hide header and footer
+                ViewData["Page"] = "Security_Visitor_Logs"; 
                 ViewBag.UserRole = userRole;
                 return View("Security_Visitor_Logs");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Maintenance_Services() //maintenance staff ui
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Maintenance_Services";
+                ViewBag.UserRole = userRole;
+                return View("Maintenance_Services");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        public IActionResult Housekeeping_Services() // housekeeping staff ui
+        {
+            string? userRole = _httpContextAccessor.HttpContext?.Session.GetString("UserRole");
+
+            if (userRole == "Admin")
+            {
+                ViewData["Page"] = "Housekeeping_Services"; 
+                ViewBag.UserRole = userRole;
+                return View("Housekeeping_Services");
             }
             else
             {
