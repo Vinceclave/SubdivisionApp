@@ -8,11 +8,11 @@
 
 
 <div class="flex flex-col bg-gray-100 p-4">
-
+        <div class="bg-gray-200 p-4">
+                <h2 class="font-extrabold text-xl mb-2 font-poppins">Service Requests</h2>
+        </div>
     <div class="bg-white border border-gray-200 rounded-sm p-4">
-        <h2 class="font-bold text-xl mb-4">SERVICE REQUEST MANAGEMENT</h2>
-        
-       
+
         <div class="mb-4">
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -20,59 +20,27 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                     </svg>
                 </div>
-                <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5" placeholder="Search by Owner" style="max-width: 200px;">
+                <input type="text" class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg block w-full pl-10 p-2.5" placeholder="Search" style="max-width: 200px;">
             </div>
         </div>
-        
-        
-        <div class="flex justify-between mb-4">
-            <div class="flex space-x-2">
-                <div class="dropdown">
-                    <button class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg py-2 px-4 flex items-center" type="button">
-                        Status
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-                <div class="dropdown">
-                    <button class="bg-white border border-gray-300 text-gray-700 text-sm rounded-lg py-2 px-4 flex items-center" type="button">
-                        Priority
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            
-            
-            <button class="bg-blue-600 text-white px-4 py-2 rounded flex items-center">
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-                </svg>
-                Generate Report
-            </button>
-        </div>
-        
         
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border border-gray-200">
                 <thead>
                     <tr class="bg-gray-100 border-b border-gray-200">
-                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Resident</th>
+                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Homeowner</th>
                         <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Request Type</th>
                         <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Description</th>
                         <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Priority</th>
                         <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Status</th>
-                        <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Assigned To</th>
                         <th class="py-3 px-4 text-left text-sm font-medium text-gray-600">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     
-                    <tr class="border-b border-gray-200">
+                    <tr class="border-b border-gray-200"> @*tanan madawat niya puro mga services nga ang request type kay security*@
                         <td class="py-3 px-4 text-sm">Nancy Romales</td>
-                        <td class="py-3 px-4 text-sm">Maintenance</td>
+                        <td class="py-3 px-4 text-sm">Security</td>
                         <td class="py-3 px-4 text-sm">Broken Faucet in master bedroom</td>
                         <td class="py-3 px-4 text-sm">
                             <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded">URGENT</span>
@@ -80,74 +48,32 @@
                         <td class="py-3 px-4 text-sm">
                             <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">Pending</span>
                         </td>
-                        <td class="py-3 px-4 text-sm">Unassigned</td>
-                        <td class="py-3 px-4 text-sm">
-                            <div class="flex space-x-1">
-                                <button class="bg-blue-600 text-white px-2 py-1 text-xs rounded">Assign</button>
-                                <button class="bg-red-600 text-white px-2 py-1 text-xs rounded">Cancel</button>
-                                <button class="view-btn bg-blue-600 text-white px-2 py-1 text-xs rounded" 
-                                        data-id="1"
-                                        data-name="Nancy Romales"
-                                        data-type="Maintenance"
-                                        data-description="Broken Faucet in master bedroom"
-                                        data-priority="URGENT"
-                                        data-status="Pending"
-                                        data-assigned="Unassigned">View</button>
-                            </div>
-                        </td>
                     </tr>
-                    
-                    
+
                     <tr class="border-b border-gray-200">
-                        <td class="py-3 px-4 text-sm">John Paul Layson</td>
-                        <td class="py-3 px-4 text-sm">Maintenance</td>
-                        <td class="py-3 px-4 text-sm">Broken Faucet in master bedroom</td>
+                        <td class="py-3 px-4 text-sm">Lord Malori</td>
+                        <td class="py-3 px-4 text-sm">Security</td>
+                        <td class="py-3 px-4 text-sm">Broken Faucet in my bedroom</td>
                         <td class="py-3 px-4 text-sm">
-                            <span class="px-2 py-1 text-xs font-medium bg-green-500 text-white rounded">MEDIUM</span>
+                            <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded">URGENT</span>
                         </td>
                         <td class="py-3 px-4 text-sm">
-                            <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded">Completed</span>
-                        </td>
-                        <td class="py-3 px-4 text-sm">Maria Clara</td>
-                        <td class="py-3 px-4 text-sm">
-                            <div class="flex space-x-1">
-                                <button class="view-btn bg-blue-600 text-white px-2 py-1 text-xs rounded"
-                                        data-id="2"
-                                        data-name="John Paul Layson"
-                                        data-type="Maintenance"
-                                        data-description="Broken Faucet in master bedroom"
-                                        data-priority="MEDIUM"
-                                        data-status="Completed"
-                                        data-assigned="Maria Clara">View</button>
-                            </div>
+                            <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">Pending</span>
                         </td>
                     </tr>
-                    
-                    
-                    <tr>
-                        <td class="py-3 px-4 text-sm">Maria Magdalena</td>
-                        <td class="py-3 px-4 text-sm">Housekeeping</td>
-                        <td class="py-3 px-4 text-sm">Broken Faucet in master bedroom</td>
+
+                    <tr class="border-b border-gray-200">
+                        <td class="py-3 px-4 text-sm">Clarion Lee</td>
+                        <td class="py-3 px-4 text-sm">Security</td>
+                        <td class="py-3 px-4 text-sm">Broken Faucet in modal-type kitchen</td>
                         <td class="py-3 px-4 text-sm">
-                            <span class="px-2 py-1 text-xs font-medium bg-yellow-500 text-white rounded">LOW</span>
+                            <span class="px-2 py-1 text-xs font-medium bg-red-500 text-white rounded">URGENT</span>
                         </td>
                         <td class="py-3 px-4 text-sm">
-                            <span class="px-2 py-1 text-xs font-medium bg-red-100 text-red-800 rounded">Cancelled</span>
-                        </td>
-                        <td class="py-3 px-4 text-sm">Unassigned</td>
-                        <td class="py-3 px-4 text-sm">
-                            <div class="flex space-x-1">
-                                <button class="view-btn bg-blue-600 text-white px-2 py-1 text-xs rounded"
-                                        data-id="3"
-                                        data-name="Maria Magdalena"
-                                        data-type="Housekeeping"
-                                        data-description="Broken Faucet in master bedroom"
-                                        data-priority="LOW"
-                                        data-status="Cancelled"
-                                        data-assigned="Unassigned">View</button>
-                            </div>
+                            <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded">Pending</span>
                         </td>
                     </tr>
+
                 </tbody>
             </table>
         </div>
@@ -240,27 +166,6 @@
                         </span>
                     </div>
                 </div>
-            </div>
-            
-            
-            <div class="mb-4">
-                <div class="flex items-center mb-2">
-                    <span class="text-gray-600">Assigned To:</span>
-                </div>
-                <div class="ml-7">
-                    <select id="modal-assigned-select" class="border border-gray-300 rounded px-2 py-1 text-sm w-full">
-                        <option value="">Select Staff</option>
-                        <option value="maria">Maria Clara</option>
-                        <option value="juan">Juan Dela Cruz</option>
-                        <option value="pedro">Pedro Penduko</option>
-                    </select>
-                </div>
-            </div>
-            
-            
-            <div class="flex justify-center space-x-2 mt-6">
-                <button id="modal-cancel-btn" class="bg-red-600 text-white px-4 py-2 rounded w-24">Cancel</button>
-                <button id="modal-assign-btn" class="bg-blue-600 text-white px-4 py-2 rounded w-24">Assign</button>
             </div>
         </div>
     </div>
