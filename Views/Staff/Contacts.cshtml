@@ -1,0 +1,151 @@
+@model List<Subdivision.Models.Contact> 
+@{
+    ViewData["Title"] = "Contacts";
+    ViewData["UserType"] = "Staff";
+    ViewData["Page"] = "Contacts";
+    Layout = "_UniversalLayout";
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293-1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-red-700">@TempData["Error"]</p>
+            </div>
+        </div>
+    </div>
+}
+else if (TempData["Success"] != null)
+{
+    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-green-700">@TempData["Success"]</p>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <div>
+            <h2 class="text-2xl font-bold tracking-tight">Contact Directory</h2>
+            <p class="text-muted-foreground">Manage and view all contact information for the community.</p>
+        </div>
+        <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" data-bs-toggle="modal" data-bs-target="#addContactModal">
+            <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+            Add Contact
+        </button>
+    </div>
+
+    <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
+        <div class="p-6">
+            <div class="space-y-4">
+                @foreach (var contact in Model)
+                {
+                    <div class="flex items-center justify-between p-4 rounded-lg border bg-background hover:bg-accent/50 transition-colors">
+                        <div class="space-y-1">
+                            <h3 class="font-medium leading-none">@contact.ContactPersonName</h3>
+                            <p class="text-sm text-muted-foreground">@contact.Email</p>
+                            <p class="text-sm text-muted-foreground">@contact.PhoneNumber</p>
+                        </div>
+                    </div>
+                }
+                @if (!Model.Any())
+                {
+                    <div class="text-center py-6 text-muted-foreground">
+                        No contacts found. Add your first contact to get started.
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Contact Modal -->
+<div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+    <div class="flex min-h-screen items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/50 transition-opacity"></div>
+        <div class="relative w-full max-w-lg transform rounded-lg border bg-background p-6 shadow-xl transition-all">
+            <div class="flex items-center justify-between border-b pb-4">
+                <h5 class="text-lg font-semibold" id="addContactModalLabel">Add New Contact</h5>
+                <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" data-bs-dismiss="modal" aria-label="Close">
+                    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-4">
+                <form method="post" action="@Url.Action("AddContact", "Staff")" class="space-y-4">
+                    <div class="space-y-2">
+                        <label for="contactName" class="text-sm font-medium leading-none">Name</label>
+                        <input type="text" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="contactName" name="ContactPersonName" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="contactPhone" class="text-sm font-medium leading-none">Phone</label>
+                        <input type="tel" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="contactPhone" name="PhoneNumber" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="contactEmail" class="text-sm font-medium leading-none">Email</label>
+                        <input type="email" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="contactEmail" name="Email" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="contactCategory" class="text-sm font-medium leading-none">Category</label>
+                        <input type="text" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="contactCategory" name="Category" required>
+                    </div>
+                    <div class="flex justify-end space-x-2 pt-4">
+                        <button type="button" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">Add Contact</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize modal
+            var modal = document.getElementById('addContactModal');
+            new bootstrap.Modal(modal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+
+            // Add event listener for modal trigger
+            var contactTrigger = document.querySelector('[data-bs-target="#addContactModal"]');
+            if (contactTrigger) {
+                contactTrigger.addEventListener('click', function() {
+                    var modal = document.getElementById('addContactModal');
+                    modal.classList.remove('hidden');
+                    var bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+                    bsModal.show();
+                });
+            }
+
+            // Handle form submission
+            var form = document.querySelector('form');
+            form.addEventListener('submit', function(e) {
+                var submitButton = form.querySelector('button[type="submit"]');
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Processing...';
+                }
+            });
+        });
+    </script>
+}

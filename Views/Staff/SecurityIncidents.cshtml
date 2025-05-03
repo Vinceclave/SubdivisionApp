@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Security Incidents";
+    Layout = "~/Views/Shared/_UniversalLayout.cshtml";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Security Incidents</h1>
+        <p class="text-gray-600 mt-2">Track and manage security incidents within the community.</p>
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-gray-900">Recent Incidents</h2>
+            <button class="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-dark transition-colors">
+                Report New Incident
+            </button>
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Location</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <!-- Sample data - Replace with actual data from database -->
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Apr 8, 2024 2:30 PM</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Main Gate</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Unauthorized Entry</td>
+                        <td class="px-6 py-4 text-sm text-gray-900">Attempted entry without proper identification</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                Pending
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            <button class="text-primary hover:text-primary-dark">View Details</button>
+                            <button class="text-primary hover:text-primary-dark ml-4">Update</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 

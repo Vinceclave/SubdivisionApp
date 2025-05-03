@@ -1,0 +1,60 @@
+@{
+    ViewData["Title"] = "Events";
+    ViewData["UserType"] = "Staff";
+    ViewData["Page"] = "Events";
+    Layout = "_UniversalLayout";
+}
+
+<!-- Add FullCalendar CSS -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' />
+
+<div class="space-y-6">
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-semibold text-gray-900">Event Calendar</h1>
+    </div>
+    <div class="bg-white rounded-lg shadow p-4">
+        <div id="calendar"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendarEl = document.getElementById('calendar');
+            const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: function(info, successCallback, failureCallback) {
+                    const year = new Date().getFullYear();
+                    fetch(`/staff/events/list?start=${year}-01-01&end=${year}-12-31`)
+                        .then(r => r.json())
+                        .then(data => successCallback(data.map(evt => ({
+                            id: evt.eventId,
+                            title: evt.eventTitle,
+                            start: evt.eventDateTime,
+                            end: new Date(new Date(evt.eventDateTime).getTime() + 60*60*1000),
+                            allDay: false,
+                            backgroundColor: evt.visibility === 'public' ? '#10B981' : '#3B82F6',
+                            borderColor: evt.visibility === 'public' ? '#059669' : '#2563EB',
+                            textColor: '#FFFFFF',
+                            extendedProps: {
+                                description: evt.eventDesc,
+                                visibility: evt.visibility,
+                                organizedBy: evt.organizedBy
+                            }
+                        }))))
+                        .catch(failureCallback);
+                },
+                eventClick: function(info) {
+                    alert(`Title: ${info.event.title}\nDescription: ${info.event.extendedProps.description}`);
+                }
+            });
+            calendar.render();
+        });
+    </script>
+}

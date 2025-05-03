@@ -1,0 +1,699 @@
+@{
+    ViewData["Title"] = "Facilities Reservation";
+}
+
+@section Styles {
+    <style>
+        .nav-tab {
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem 0.25rem 0 0;
+            font-weight: 500;
+        }
+        .nav-tab-active {
+            background-color: white;
+            border-bottom: 2px solid #4f46e5;
+            color: #4f46e5;
+        }
+        .facility-card {
+            transition: all 0.3s ease;
+        }
+        .facility-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .status-available {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        .status-pending {
+            background-color: #fef9c3;
+            color: #854d0e;
+        }
+        .status-confirmed {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+        .status-cancelled {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+        .status-rejected {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+        .status-completed {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+        .status-full {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+        .status-maintenance {
+            background-color: #f3f4f6;
+            color: #6b7280;
+        }
+        
+        /* Custom input styles */
+        #modal-date,
+        #modal-time-in,
+        #modal-time-out {
+            background-color: transparent;
+        }
+        
+        /* Card styles */
+        .facility-image {
+            height: 180px;
+        }
+    </style>
+}
+
+<div class="bg-white shadow-sm rounded-lg p-6">
+    <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl font-bold text-gray-900">FACILITIES RESERVATION</h1>
+        <div class="flex items-center space-x-2">
+            <input type="date" id="reservation-date" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+        </div>
+    </div>
+
+    <div class="flex space-x-1 border-b border-gray-200 w-full mb-6">
+        <div id="all-tab" class="nav-tab nav-tab-active">All Facilities</div>
+        <div id="recreation-tab" class="nav-tab">Recreation</div>
+        <div id="meeting-tab" class="nav-tab">Meeting Rooms</div>
+        <div id="outdoor-tab" class="nav-tab">Outdoor Spaces</div>
+        <div id="event-tab" class="nav-tab">Event Halls</div>
+    </div>
+
+    <div id="facilities-container" class="mt-4">
+        <!-- Facilities will be loaded here -->
+        <div class="text-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+            <p class="text-gray-500">Loading facilities...</p>
+        </div>
+    </div>
+
+    <div id="my-reservations" class="mt-8 border-t pt-8">
+        <h2 class="text-xl font-medium text-gray-900 mb-4">My Reservation</h2>
+        
+        <div id="my-reservations-list">
+            <!-- User reservations will be loaded here -->
+            <div class="text-center py-12">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                <p class="text-gray-500">Loading your reservations...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reservation Modal -->
+<div id="reservation-modal" class="fixed inset-0 z-50 hidden overflow-auto bg-gray-800 bg-opacity-50 flex justify-center items-start pt-10 transition-opacity duration-300 ease-in-out">
+    <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full mx-4 overflow-hidden relative transform transition-transform duration-300 ease-in-out scale-95">
+        <div class="absolute top-4 right-4">
+            <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="p-6">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4" id="modal-facility-name">Swimming Pool</h2>
+            
+            <div class="mb-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">My Reservation Details</h3>
+                
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <span class="block text-sm font-medium text-gray-900" id="modal-facility-location">123/block st.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <span class="block text-sm font-medium text-gray-900">
+                                <input type="date" id="modal-date" class="border-0 p-0 focus:ring-0 text-sm font-medium text-gray-900 bg-transparent">
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <span class="block text-sm font-medium text-gray-900 flex items-center">
+                                <input type="time" id="modal-time-in" class="border-0 p-0 focus:ring-0 text-sm font-medium text-gray-900 w-20 bg-transparent"> 
+                                <span class="mx-2">-</span> 
+                                <input type="time" id="modal-time-out" class="border-0 p-0 focus:ring-0 text-sm font-medium text-gray-900 w-20 bg-transparent">
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-8 h-8 flex items-center justify-center mt-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <div class="flex items-center">
+                                <input type="number" id="modal-capacity" min="1" class="w-16 border-gray-300 rounded-md shadow-sm text-sm">
+                                <span class="ml-2 text-sm text-gray-500" id="modal-max-capacity">(Maximum: 50 people)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col md:flex-row md:items-center">
+                <img id="modal-facility-img" class="w-full md:w-1/2 h-48 object-cover rounded-lg mb-4 md:mb-0 md:mr-4" src="" alt="Facility image">
+                
+                <div class="md:w-1/2">
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Working Hours</h3>
+                    <div class="grid grid-cols-2 gap-2 mb-4">
+                        <div class="bg-gray-100 rounded p-2">
+                            <span class="text-xs text-gray-500 block">MON - FRI</span>
+                            <span class="text-sm font-medium" id="modal-weekday-hours">9:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="bg-gray-100 rounded p-2">
+                            <span class="text-xs text-gray-500 block">SAT - SUN</span>
+                            <span class="text-sm font-medium" id="modal-weekend-hours">9:00 AM - 8:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <h3 class="text-lg font-medium text-gray-900 mb-2">Rules & Regulations</h3>
+                <div id="modal-rules" class="text-sm text-gray-600 space-y-2 bg-gray-50 p-4 rounded-lg max-h-48 overflow-y-auto">
+                    <!-- Rules content will be inserted here -->
+                </div>
+            </div>
+
+            <div class="mt-6 flex justify-end space-x-3">
+                <button id="modal-reserve" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    RESERVE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Global variables
+        let facilities = [];
+        let myReservations = [];
+        let currentFacilityId = null;
+        let currentFilter = 'all';
+
+        // DOM elements
+        const modal = document.getElementById('reservation-modal');
+        const facilityContainer = document.getElementById('facilities-container');
+        const myReservationsList = document.getElementById('my-reservations-list');
+        const reservationDate = document.getElementById('reservation-date');
+        
+        // Tab elements
+        const allTab = document.getElementById('all-tab');
+        const recreationTab = document.getElementById('recreation-tab');
+        const meetingTab = document.getElementById('meeting-tab');
+        const outdoorTab = document.getElementById('outdoor-tab');
+        const eventTab = document.getElementById('event-tab');
+
+        // Set default date to today
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        reservationDate.value = formattedDate;
+        document.getElementById('modal-date').value = formattedDate;
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', async () => {
+            await Promise.all([
+                loadFacilities(),
+                loadMyReservations()
+            ]);
+            
+            setupEventListeners();
+        });
+
+        // Event listeners
+        function setupEventListeners() {
+            // Tab filters
+            allTab.addEventListener('click', () => filterFacilities('all'));
+            recreationTab.addEventListener('click', () => filterFacilities('Recreation'));
+            meetingTab.addEventListener('click', () => filterFacilities('Meeting Room'));
+            outdoorTab.addEventListener('click', () => filterFacilities('Outdoor Space'));
+            eventTab.addEventListener('click', () => filterFacilities('Event Hall'));
+            
+            // Date filter
+            reservationDate.addEventListener('change', () => {
+                document.getElementById('modal-date').value = reservationDate.value;
+                renderFacilities(currentFilter);
+            });
+            
+            // Modal close buttons
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+            
+            // Reserve button
+            document.getElementById('modal-reserve').addEventListener('click', createReservation);
+        }
+
+        // Load facilities from API
+        async function loadFacilities() {
+            try {
+                const response = await fetch('/homeowner/facilities');
+                if (!response.ok) throw new Error('Failed to load facilities');
+                
+                const data = await response.json();
+                if (data.success) {
+                    facilities = data.facilities;
+                    renderFacilities('all');
+                } else {
+                    showError(facilityContainer, data.message || 'Error loading facilities');
+                }
+            } catch (error) {
+                console.error('Error loading facilities:', error);
+                showError(facilityContainer, 'Failed to load facilities. Please try refreshing the page.');
+            }
+        }
+
+        // Load user's reservations
+        async function loadMyReservations() {
+            try {
+                const response = await fetch('/homeowner/reservations');
+                if (!response.ok) throw new Error('Failed to load reservations');
+                
+                const data = await response.json();
+                if (data.success) {
+                    myReservations = data.reservations;
+                    renderMyReservations();
+                } else {
+                    showError(myReservationsList, data.message || 'Error loading your reservations');
+                }
+            } catch (error) {
+                console.error('Error loading reservations:', error);
+                showError(myReservationsList, 'Failed to load your reservations. Please try refreshing the page.');
+            }
+        }
+
+        // Filter facilities by type
+        function filterFacilities(filter) {
+            // Update active tab
+            [allTab, recreationTab, meetingTab, outdoorTab, eventTab].forEach(tab => {
+                tab.classList.remove('nav-tab-active');
+            });
+            
+            document.getElementById(`${filter === 'all' ? 'all' : (filter.toLowerCase().replace(' ', '-'))}-tab`).classList.add('nav-tab-active');
+            
+            currentFilter = filter;
+            renderFacilities(filter);
+        }
+
+        // Render facilities based on filter
+        function renderFacilities(filter) {
+            facilityContainer.innerHTML = '';
+            
+            let filteredFacilities = facilities;
+            if (filter !== 'all') {
+                filteredFacilities = facilities.filter(f => f.typeOfFacility === filter);
+            }
+            
+            if (filteredFacilities.length === 0) {
+                facilityContainer.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">No facilities found for this category.</p>
+                </div>`;
+                return;
+            }
+            
+            // Create grid layout
+            const grid = document.createElement('div');
+            grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+            
+            filteredFacilities.forEach(facility => {
+                grid.appendChild(createFacilityCard(facility));
+            });
+            
+            // Add empty placeholders to fill the grid if needed
+            const remainingSlots = 6 - (filteredFacilities.length % 6);
+            if (remainingSlots < 6) {
+                for (let i = 0; i < remainingSlots; i++) {
+                    const emptyCard = document.createElement('div');
+                    emptyCard.className = 'h-60'; // Empty placeholder with height
+                    grid.appendChild(emptyCard);
+                }
+            }
+            
+            facilityContainer.appendChild(grid);
+        }
+
+        // Create a facility card
+        function createFacilityCard(facility) {
+            const card = document.createElement('div');
+            card.className = 'facility-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200';
+            
+            // Generate status badge class
+            const statusClass = getStatusClass(facility.status);
+            
+            card.innerHTML = `
+                <div class="relative">
+                    <img src="${facility.facilityImg || '/images/placeholder.jpg'}" alt="${facility.facilityName}" 
+                         class="w-full h-48 object-cover">
+                    ${facility.status.toLowerCase() !== 'available' ? `
+                    <div class="absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                        <div class="bg-white px-4 py-2 rounded-md text-red-600 font-semibold">
+                            ${facility.status}
+                        </div>
+                    </div>
+                    ` : ''}
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-bold text-gray-900 mb-1">${facility.facilityName}</h3>
+                    
+                    <button class="mt-3 w-full py-2 px-4 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                            ${facility.status.toLowerCase() !== 'available' ? 'disabled' : ''}
+                            onclick="openReservationModal(${facility.facilityId})">
+                        ${facility.status.toLowerCase() === 'available' ? 'RESERVE NOW' : 'UNAVAILABLE'}
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Render user's reservations
+        function renderMyReservations() {
+            myReservationsList.innerHTML = '';
+            
+            if (myReservations.length === 0) {
+                myReservationsList.innerHTML = `
+                <div class="col-span-full text-center py-12">
+                    <p class="text-gray-500">You don't have any reservations yet.</p>
+                </div>`;
+                return;
+            }
+            
+            // Create grid layout for reservations
+            const grid = document.createElement('div');
+            grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+            
+            myReservations.slice(0, 3).forEach(reservation => {
+                const statusClass = getStatusClass(reservation.status);
+                const reservationCard = document.createElement('div');
+                reservationCard.className = 'bg-white rounded-lg shadow-md overflow-hidden border border-gray-200';
+                
+                reservationCard.innerHTML = `
+                    <div class="relative">
+                        <img src="${reservation.facilityImage || '/images/placeholder.jpg'}" alt="${reservation.facilityName}" 
+                             class="w-full h-40 object-cover">
+                        <div class="absolute top-2 right-2">
+                            <span class="text-xs font-medium px-2 py-1 rounded-full ${statusClass}">
+                                ${reservation.status}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-1">${reservation.facilityName}</h3>
+                        
+                        <div class="mt-2 space-y-1 text-sm">
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 mt-0.5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-gray-600">${reservation.facilityName} location</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 mt-0.5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-gray-600">${formatDate(reservation.dateOfReservation)}</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 mt-0.5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd" />
+                                </svg>
+                                <span class="text-gray-600">${reservation.timeIn} - ${reservation.timeOut}</span>
+                            </div>
+                            <div class="flex items-start">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 mt-0.5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                                </svg>
+                                <span class="text-gray-600">${reservation.capacity} people</span>
+                            </div>
+                        </div>
+                        
+                        ${reservation.status === 'Pending' ? `
+                        <button onclick="cancelReservation(${reservation.reservationId})" 
+                                class="mt-4 w-full py-2 px-4 rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Cancel
+                        </button>
+                        ` : ''}
+                    </div>
+                `;
+                
+                grid.appendChild(reservationCard);
+            });
+            
+            myReservationsList.appendChild(grid);
+            
+            if (myReservations.length > 3) {
+                const viewMoreButton = document.createElement('div');
+                viewMoreButton.className = 'text-center mt-6';
+                viewMoreButton.innerHTML = `
+                    <a href="/homeowner/myreservations" class="text-indigo-600 hover:text-indigo-800 font-medium">
+                        View all reservations →
+                    </a>
+                `;
+                myReservationsList.appendChild(viewMoreButton);
+            }
+        }
+
+        // Open reservation modal
+        function openReservationModal(facilityId) {
+            currentFacilityId = facilityId;
+            const facility = facilities.find(f => f.facilityId === facilityId);
+            
+            if (!facility) return;
+            
+            // Set modal values
+            document.getElementById('modal-facility-name').textContent = facility.facilityName;
+            document.getElementById('modal-facility-location').textContent = facility.facilityName + " location";
+            document.getElementById('modal-facility-img').src = facility.facilityImg || '/images/placeholder.jpg';
+            
+            // Working hours
+            const [weekday, weekend] = parseWorkingHours(facility.workingHours);
+            document.getElementById('modal-weekday-hours').textContent = weekday;
+            document.getElementById('modal-weekend-hours').textContent = weekend;
+            
+            // Max capacity
+            document.getElementById('modal-max-capacity').textContent = `(Maximum: ${facility.facilityCapacity} people)`;
+            document.getElementById('modal-capacity').max = facility.facilityCapacity;
+            document.getElementById('modal-capacity').value = Math.min(20, facility.facilityCapacity);
+            
+            // Rules
+            document.getElementById('modal-rules').innerHTML = formatRules(facility.rulesRegulations);
+            
+            // Date and time
+            document.getElementById('modal-date').value = reservationDate.value;
+            
+            // Set default times (9 AM to 11 AM)
+            document.getElementById('modal-time-in').value = '09:00';
+            document.getElementById('modal-time-out').value = '11:00';
+            
+            // Show modal with animation
+            const modal = document.getElementById('reservation-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('opacity-0');
+            
+            // Force a reflow to enable transition
+            void modal.offsetWidth;
+            
+            modal.classList.add('opacity-100');
+            modal.querySelector('.bg-white').classList.add('scale-100');
+            modal.querySelector('.bg-white').classList.remove('scale-95');
+        }
+
+        // Close reservation modal
+        function closeModal() {
+            const modal = document.getElementById('reservation-modal');
+            
+            // Hide with animation
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            modal.querySelector('.bg-white').classList.remove('scale-100');
+            modal.querySelector('.bg-white').classList.add('scale-95');
+            
+            // After animation completes, hide the modal
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                currentFacilityId = null;
+            }, 300);
+        }
+
+        // Create a new reservation
+        async function createReservation() {
+            if (!currentFacilityId) return;
+            
+            const modalDate = document.getElementById('modal-date').value;
+            const timeIn = document.getElementById('modal-time-in').value;
+            const timeOut = document.getElementById('modal-time-out').value;
+            const capacity = document.getElementById('modal-capacity').value;
+            
+            // Validation
+            if (!modalDate || !timeIn || !timeOut || !capacity) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const dateObj = new Date(modalDate);
+            const timeInObj = new Date(`${modalDate}T${timeIn}`);
+            const timeOutObj = new Date(`${modalDate}T${timeOut}`);
+            
+            if (timeInObj >= timeOutObj) {
+                alert('Time out must be after time in');
+                return;
+            }
+            
+            // Create reservation object
+            const reservation = {
+                facilityId: currentFacilityId,
+                capacity: parseInt(capacity),
+                dateOfReservation: dateObj.toISOString(),
+                reservationTimeIn: timeInObj.toISOString(),
+                reservationTimeOut: timeOutObj.toISOString()
+            };
+            
+            try {
+                const response = await fetch('/homeowner/reservations/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(reservation)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Reservation created successfully!');
+                    closeModal();
+                    await Promise.all([
+                        loadFacilities(),
+                        loadMyReservations()
+                    ]);
+                } else {
+                    alert(data.message || 'Error creating reservation');
+                }
+            } catch (error) {
+                console.error('Error creating reservation:', error);
+                alert('Failed to create reservation. Please try again.');
+            }
+        }
+
+        // Cancel a reservation
+        async function cancelReservation(reservationId) {
+            if (!confirm('Are you sure you want to cancel this reservation?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/homeowner/reservations/${reservationId}/cancel`, {
+                    method: 'POST'
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Reservation cancelled successfully!');
+                    await loadMyReservations();
+                } else {
+                    alert(data.message || 'Error cancelling reservation');
+                }
+            } catch (error) {
+                console.error('Error cancelling reservation:', error);
+                alert('Failed to cancel reservation. Please try again.');
+            }
+        }
+
+        // Helper functions
+        function getStatusClass(status) {
+            status = status.toLowerCase();
+            if (status === 'available') return 'status-available';
+            if (status === 'pending') return 'status-pending';
+            if (status === 'confirmed') return 'status-confirmed';
+            if (status === 'full') return 'status-full';
+            if (status === 'under maintenance') return 'status-maintenance';
+            return 'bg-gray-100 text-gray-800';
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        function parseWorkingHours(workingHours) {
+            // Default values
+            const defaultWeekday = '9:00 AM - 6:00 PM';
+            const defaultWeekend = '10:00 AM - 4:00 PM';
+            
+            try {
+                // Try to parse working hours, format could be "Weekday: 9AM-6PM; Weekend: 10AM-4PM"
+                const parts = workingHours.split(';');
+                let weekday = defaultWeekday;
+                let weekend = defaultWeekend;
+                
+                parts.forEach(part => {
+                    const trimmed = part.trim();
+                    if (trimmed.toLowerCase().startsWith('weekday')) {
+                        weekday = trimmed.split(':')[1].trim();
+                    } else if (trimmed.toLowerCase().startsWith('weekend')) {
+                        weekend = trimmed.split(':')[1].trim();
+                    }
+                });
+                
+                return [weekday, weekend];
+            } catch (e) {
+                // If parsing fails, return defaults
+                return [defaultWeekday, defaultWeekend];
+            }
+        }
+
+        function formatRules(rulesText) {
+            if (!rulesText) return '<p>No rules specified.</p>';
+            
+            // Convert line breaks to HTML
+            return rulesText.split('\n')
+                .filter(line => line.trim() !== '')
+                .map((line, index) => `<p class="mb-1">${index + 1}. ${line}</p>`)
+                .join('');
+        }
+
+        function showError(container, message) {
+            container.innerHTML = `
+            <div class="col-span-full text-center py-12">
+                <svg class="mx-auto h-12 w-12 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <p class="mt-2 text-gray-500">${message}</p>
+            </div>`;
+        }
+
+        // Make functions accessible to inline event handlers
+        window.openReservationModal = openReservationModal;
+        window.cancelReservation = cancelReservation;
+    </script>
+} 

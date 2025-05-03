@@ -1,0 +1,296 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Beverly Woods Community";
+    ViewData["Page"] = "Landing";
+    Layout = "_UniversalLayout";
+}
+
+<main class="min-vh-100">
+    <!-- Hero Section - Modern Shadcn Style -->
+    <section class="relative isolate overflow-hidden">
+        <!-- Background gradient and pattern -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#e5eae3] to-[#f8faf7] -z-10"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#a7b7a1_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black_70%)] -z-10 opacity-40"></div>
+        
+        <!-- Main hero content -->
+        <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8 lg:py-40">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="max-w-2xl">
+                    <h1 class="text-4xl font-bold tracking-tight text-[#4a5446] sm:text-6xl">
+                        Beverly Woods
+                        <span class="block text-2xl sm:text-3xl font-light mt-2 text-[#5a6855]">Luxury Living in Nature</span>
+                    </h1>
+                    
+                    <p class="mt-6 text-lg leading-8 text-[#5a6855]">
+                        Experience the perfect balance of luxury and nature in our exclusive residential community. 
+                        Where modern amenities meet lush landscapes and every day feels like a retreat.
+                    </p>
+                    
+                    <div class="mt-10 flex items-center gap-x-6">
+                        <a href="/about" class="rounded-md bg-[#5a6855] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#4a5446] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5a6855] transition-all duration-200">
+                            Explore Our Community
+                        </a>
+                        <a href="/contact" class="text-sm font-semibold leading-6 text-[#4a5446] flex items-center group">
+                            Contact Us 
+                            <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg>
+                        </a>
+                    </div>
+                    
+                    <!-- Feature highlights -->
+                    <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="rounded-full bg-[#e0e7dd] p-1.5">
+                                <svg class="w-4 h-4 text-[#4a5446]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm text-[#4a5446] font-medium">Luxury Amenities</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="rounded-full bg-[#e0e7dd] p-1.5">
+                                <svg class="w-4 h-4 text-[#4a5446]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm text-[#4a5446] font-medium">Secure Community</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <div class="rounded-full bg-[#e0e7dd] p-1.5">
+                                <svg class="w-4 h-4 text-[#4a5446]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <span class="text-sm text-[#4a5446] font-medium">Nature-Inspired</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero image with shadcn-style card -->
+                <div class="lg:block relative hidden">
+                    <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#93a58d] to-[#5a6855] opacity-20 blur"></div>
+                    <div class="relative overflow-hidden rounded-xl bg-white p-2 shadow-xl">
+                        <img 
+                            src="/uploads/facilities/967e405e-6692-4a7a-a0b4-ed3959c11c9b_hero.jpg" 
+                            alt="Beverly Woods Luxury Pool" 
+                            class="aspect-[4/3] w-full rounded-lg object-cover" 
+                        />
+                        <div class="absolute inset-0 rounded-lg ring-1 ring-inset ring-white/10"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Decorative elements -->
+        <div class="absolute bottom-0 right-1/4 -z-10">
+            <svg width="400" height="400" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="40" fill="#e0e7dd" fill-opacity="0.2" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Featured Amenities Section - Improved with cards -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-[#4a5446] sm:text-4xl text-center">Luxury Amenities</h2>
+                <p class="mt-4 text-lg text-[#5a6855] max-w-2xl mx-auto text-center">
+                    Experience resort-style living with our carefully designed facilities that blend seamlessly with our natural surroundings.
+                </p>
+            </div>
+
+            <div class="max-w-6xl mx-auto">
+                <!-- Featured Resort-Style Pool -->
+                <div class="rounded-2xl overflow-hidden mb-16 bg-[#f7f9f5] shadow-sm">
+                    <div class="grid md:grid-cols-2 gap-0">
+                        <div class="order-2 md:order-1 p-8 md:p-12 flex flex-col justify-center">
+                            <div class="inline-flex items-center rounded-full bg-[#e0e7dd] px-3 py-1 text-sm text-[#4a5446] mb-6">
+                                <span class="font-medium">Featured Amenity</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-[#4a5446] mb-4">Resort-Style Swimming Pool</h3>
+                            <p class="text-[#5a6855] mb-6">
+                                Our stunning swimming pool is the crown jewel of Beverly Woods, surrounded by lush landscaping 
+                                and mountain views. Enjoy crystal-clear waters in a tranquil setting that feels like a 
+                                luxury resort vacation every day.
+                            </p>
+                            <ul class="space-y-2 mb-8">
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-[#5a6855]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-[#5a6855]">Year-round heated pool</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-[#5a6855]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-[#5a6855]">Comfortable lounge areas</span>
+                                </li>
+                                <li class="flex items-center">
+                                    <svg class="w-5 h-5 mr-2 text-[#5a6855]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span class="text-[#5a6855]">Scenic mountain views</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="order-1 md:order-2 overflow-hidden">
+                            <img src="/img/swimming-pool.jpg" alt="Swimming Pool" class="w-full h-full object-cover max-h-96 md:max-h-none" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Facilities -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Basketball Court -->
+                    <div class="group relative border border-[#e0e7dd] rounded-xl bg-white shadow-sm overflow-hidden hover:shadow-md transition-all">
+                        <div class="aspect-h-4 aspect-w-3 overflow-hidden">
+                            <img src="/img/basketball-court.jpg" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" alt="Basketball Court" />
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-[#4a5446] mb-2">Basketball Court</h3>
+                            <p class="text-[#5a6855]">Professional-grade court with modern equipment for friendly games or serious practice sessions in our vibrant community.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Fitness Gym -->
+                    <div class="group relative border border-[#e0e7dd] rounded-xl bg-white shadow-sm overflow-hidden hover:shadow-md transition-all">
+                        <div class="aspect-h-4 aspect-w-3 overflow-hidden">
+                            <img src="/img/fitness-center.jpg" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" alt="Fitness Gym" />
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-[#4a5446] mb-2">Fitness Gym</h3>
+                            <p class="text-[#5a6855]">State-of-the-art fitness center featuring premium equipment with 24/7 access for residents. Stay fit without leaving your community.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Community Lounge -->
+                    <div class="group relative border border-[#e0e7dd] rounded-xl bg-white shadow-sm overflow-hidden hover:shadow-md transition-all">
+                        <div class="aspect-h-4 aspect-w-3 overflow-hidden">
+                            <img src="/img/community-lounge.jpg" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" alt="Community Lounge" />
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-[#4a5446] mb-2">Community Lounge</h3>
+                            <p class="text-[#5a6855]">Elegant gathering space for socializing, meetings, or relaxing with neighbors in a beautifully designed environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section - Refined design -->
+    <section class="py-24 bg-[#f7f9f5]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto">
+                <div class="relative">
+                    <div class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-[#5a6855] to-[#93a58d]"></div>
+                    <div class="pl-6">
+                        <h2 class="text-3xl font-bold tracking-tight text-[#4a5446] mb-8">MISSION & VISION</h2>
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-xl font-semibold text-[#4a5446] mb-3">Our Mission</h3>
+                                <p class="text-[#5a6855]">
+                                    Our mission is to provide a well-planned and well-maintained subdivision that
+                                    fosters a strong sense of community, security, and environmental responsibility.
+                                    We are committed to delivering high-quality amenities, efficient services, and a
+                                    peaceful environment for our residents. Through continuous development,
+                                    proper management, and resident engagement, we strive to enhance the overall
+                                    living experience and ensure a vibrant and harmonious community for
+                                    generations to come.
+                                </p>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold text-[#4a5446] mb-3">Our Vision</h3>
+                                <p class="text-[#5a6855]">
+                                    Our vision is to create a safe, sustainable, and thriving residential community
+                                    where families and individuals can experience comfort, security, and a high
+                                    quality of life. We aim to be the premier choice for modern suburban living,
+                                    blending nature, innovation, and strong neighborhood values.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section - Shadcn style -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-[#4a5446] sm:text-4xl mb-4">What Our Residents Say</h2>
+                <p class="text-lg text-[#5a6855] max-w-2xl mx-auto">
+                    Hear from our community members about their experiences living in Beverly Woods.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Testimonial 1 -->
+                <div class="bg-[#f7f9f5] p-8 rounded-xl relative">
+                    <svg class="absolute text-[#93a58d] opacity-20 top-6 left-6 w-16 h-16 -z-10" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                    <div class="flex items-center mb-6">
+                        <div class="h-12 w-12 rounded-full bg-[#d9e0d6] flex items-center justify-center text-[#4a5446] font-bold">JD</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-[#4a5446]">John Doe</h4>
+                            <p class="text-[#5a6855]">Resident since 2018</p>
+                        </div>
+                    </div>
+                    <p class="text-[#5a6855] relative z-10">"Living in Beverly Woods has been an absolute pleasure. The community is friendly, the amenities are top-notch, and the management team is always responsive to our needs."</p>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="bg-[#f7f9f5] p-8 rounded-xl relative">
+                    <svg class="absolute text-[#93a58d] opacity-20 top-6 left-6 w-16 h-16 -z-10" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                    <div class="flex items-center mb-6">
+                        <div class="h-12 w-12 rounded-full bg-[#d9e0d6] flex items-center justify-center text-[#4a5446] font-bold">AS</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-[#4a5446]">Alice Smith</h4>
+                            <p class="text-[#5a6855]">Resident since 2020</p>
+                        </div>
+                    </div>
+                    <p class="text-[#5a6855] relative z-10">"The security and peace of mind I get from living here is unmatched. The facilities are well-maintained, and there's always something to do for the whole family."</p>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="bg-[#f7f9f5] p-8 rounded-xl relative">
+                    <svg class="absolute text-[#93a58d] opacity-20 top-6 left-6 w-16 h-16 -z-10" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                    <div class="flex items-center mb-6">
+                        <div class="h-12 w-12 rounded-full bg-[#d9e0d6] flex items-center justify-center text-[#4a5446] font-bold">RJ</div>
+                        <div class="ml-4">
+                            <h4 class="text-lg font-semibold text-[#4a5446]">Robert Johnson</h4>
+                            <p class="text-[#5a6855]">Resident since 2015</p>
+                        </div>
+                    </div>
+                    <p class="text-[#5a6855] relative z-10">"I've lived in several communities, but Beverly Woods stands out for its commitment to creating a true neighborhood. The events and activities bring everyone together."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section - Enhanced design -->
+    <section class="py-24 bg-[#5a6855] relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(#93a58d_1px,transparent_1px)] [background-size:20px_20px] opacity-20"></div>
+        <div class="container mx-auto px-4 relative">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold tracking-tight sm:text-4xl mb-6 text-white">Join Our Community</h2>
+                <p class="text-lg text-[#e0e7dd] mb-8">
+                    Experience the Beverly Woods lifestyle for yourself. Contact us today to learn more about available properties and membership opportunities.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="/contact" class="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-[#4a5446] shadow-sm transition-colors hover:bg-[#e0e7dd] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                        Contact Us
+                    </a>
+                    <a href="/about" class="inline-flex items-center justify-center rounded-md bg-transparent border border-white px-6 py-3 text-sm font-medium text-white shadow-sm transition-colors hover:bg-white/10">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

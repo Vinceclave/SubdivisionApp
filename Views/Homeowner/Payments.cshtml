@@ -1,0 +1,340 @@
+@{
+    ViewData["Title"] = "Bill Payments";
+    ViewData["UserType"] = "Homeowner";
+    ViewData["Page"] = "Payments";
+    Layout = "_UniversalLayout";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-gray-900">Bill Payments</h1>
+        <p class="text-gray-600">View and pay your bills</p>
+    </div>
+
+    <!-- Bills List -->
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="space-y-4">
+            <h2 class="text-lg font-semibold text-gray-900">Pending Bills</h2>
+            <div id="pendingBills" class="space-y-4">
+                <!-- Will be populated with pending bills -->
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <h2 class="text-lg font-semibold text-gray-900">Payment History</h2>
+            <div id="paymentHistory" class="space-y-4">
+                <!-- Will be populated with payment history -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Payment Modal -->
+<div id="paymentModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+    <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+        <div class="mt-3">
+            <h3 class="text-lg font-medium leading-6 text-gray-900 mb-4">Make Payment</h3>
+            <form id="paymentForm" class="space-y-4">
+                <input type="hidden" id="billId">
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Amount</label>
+                    <input type="number" id="amount" name="amount" step="0.01" required 
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Payment Method</label>
+                    <select id="paymentMethod" name="paymentMethod" required 
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        <option value="">Select Payment Method</option>
+                        <option value="Credit/Debit Card">Credit/Debit Card</option>
+                        <option value="Online Banking">Online Banking</option>
+                    </select>
+                </div>
+
+                <!-- Credit/Debit Card Details -->
+                <div id="cardDetails" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Cardholder Name</label>
+                        <input type="text" id="cardholderName" name="cardholderName" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Card Number</label>
+                        <input type="text" id="cardNumber" name="cardNumber" maxlength="16" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Expiry Date</label>
+                            <input type="month" id="expiryDate" name="expiryDate" 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">CVV</label>
+                            <input type="text" id="cvv" name="cvv" maxlength="4" 
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Online Banking Details -->
+                <div id="bankingDetails" class="space-y-4 hidden">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Bank Name</label>
+                        <input type="text" id="bankName" name="bankName" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Account Holder Name</label>
+                        <input type="text" id="accountHolderName" name="accountHolderName" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Account Number</label>
+                        <input type="text" id="accountNumber" name="accountNumber" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Reference Number</label>
+                        <input type="text" id="refNumber" name="refNumber" 
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                    </div>
+                </div>
+
+                <div class="mt-5 flex justify-end space-x-2">
+                    <button type="button" onclick="hidePaymentModal()" 
+                            class="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md">
+                        Cancel
+                    </button>
+                    <button type="submit" 
+                            class="px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-md">
+                        Pay Now
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            loadBills();
+            setupPaymentForm();
+        });
+
+        async function loadBills() {
+            try {
+                const response = await fetch('/homeowner/payments/bills');
+                const data = await response.json();
+                
+                if (!data.success) {
+                    throw new Error(data.message);
+                }
+
+                displayBills(data.bills);
+            } catch (error) {
+                console.error('Error loading bills:', error);
+                showError('Failed to load bills');
+            }
+        }
+
+        function displayBills(bills) {
+            const pendingBillsContainer = document.getElementById('pendingBills');
+            const paymentHistoryContainer = document.getElementById('paymentHistory');
+            
+            pendingBillsContainer.innerHTML = '';
+            paymentHistoryContainer.innerHTML = '';
+
+            bills.forEach(bill => {
+                const remainingAmount = bill.amount - bill.amountPaid;
+                const billElement = createBillElement(bill, remainingAmount);
+                
+                if (bill.status !== 'Paid') {
+                    pendingBillsContainer.appendChild(billElement);
+                } else {
+                    paymentHistoryContainer.appendChild(billElement);
+                }
+            });
+
+            if (pendingBillsContainer.children.length === 0) {
+                pendingBillsContainer.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        No pending bills
+                    </div>
+                `;
+            }
+
+            if (paymentHistoryContainer.children.length === 0) {
+                paymentHistoryContainer.innerHTML = `
+                    <div class="text-center py-8 text-gray-500">
+                        No payment history
+                    </div>
+                `;
+            }
+        }
+
+        function createBillElement(bill, remainingAmount) {
+            const div = document.createElement('div');
+            div.className = 'bg-white rounded-lg shadow-md p-4 space-y-2';
+            
+            const isPaid = bill.status === 'Paid';
+            const statusColor = isPaid ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800';
+            
+            div.innerHTML = `
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h3 class="font-medium text-gray-900">${bill.billType}</h3>
+                        <p class="text-sm text-gray-500">Due: ${new Date(bill.dueDate).toLocaleDateString()}</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs font-semibold rounded-full ${statusColor}">
+                        ${bill.status}
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div>
+                        <p class="text-sm text-gray-600">Total: ₱${bill.amount.toFixed(2)}</p>
+                        <p class="text-sm text-gray-600">Paid: ₱${bill.amountPaid.toFixed(2)}</p>
+                        ${!isPaid ? `<p class="text-sm font-medium text-primary">Remaining: ₱${remainingAmount.toFixed(2)}</p>` : ''}
+                    </div>
+                    ${!isPaid ? `
+                        <button onclick="showPaymentModal(${bill.billId}, ${remainingAmount})" 
+                                class="px-4 py-2 text-sm font-medium text-white bg-primary hover:bg-primary-dark rounded-md">
+                            Pay Now
+                        </button>
+                    ` : ''}
+                </div>
+                ${bill.payments && bill.payments.length > 0 ? `
+                    <div class="mt-4">
+                        <p class="text-sm font-medium text-gray-700 mb-2">Payment History:</p>
+                        <div class="space-y-2">
+                            ${bill.payments.map(payment => `
+                                <div class="text-sm text-gray-600">
+                                    <div class="flex justify-between">
+                                        <span>${new Date(payment.dateOfPayment).toLocaleDateString()}</span>
+                                        <span>₱${payment.amountPaid.toFixed(2)}</span>
+                                    </div>
+                                    <div class="text-xs text-gray-500">${payment.modeOfPayment}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            `;
+            
+            return div;
+        }
+
+        function showPaymentModal(billId, maxAmount) {
+            document.getElementById('billId').value = billId;
+            const amountInput = document.getElementById('amount');
+            amountInput.max = maxAmount;
+            amountInput.placeholder = `Max: ₱${maxAmount.toFixed(2)}`;
+            document.getElementById('paymentModal').classList.remove('hidden');
+        }
+
+        function hidePaymentModal() {
+            document.getElementById('paymentModal').classList.add('hidden');
+            document.getElementById('paymentForm').reset();
+            document.getElementById('cardDetails').classList.add('hidden');
+            document.getElementById('bankingDetails').classList.add('hidden');
+        }
+
+        function setupPaymentForm() {
+            const paymentMethod = document.getElementById('paymentMethod');
+            const cardDetails = document.getElementById('cardDetails');
+            const bankingDetails = document.getElementById('bankingDetails');
+
+            paymentMethod.addEventListener('change', function() {
+                cardDetails.classList.add('hidden');
+                bankingDetails.classList.add('hidden');
+
+                if (this.value === 'Credit/Debit Card') {
+                    cardDetails.classList.remove('hidden');
+                } else if (this.value === 'Online Banking') {
+                    bankingDetails.classList.remove('hidden');
+                }
+            });
+
+            document.getElementById('paymentForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const formData = {
+                    billId: parseInt(document.getElementById('billId').value),
+                    amountPaid: parseFloat(document.getElementById('amount').value),
+                    modeOfPayment: document.getElementById('paymentMethod').value
+                };
+
+                if (formData.modeOfPayment === 'Credit/Debit Card') {
+                    formData.cardDetails = {
+                        cardholderName: document.getElementById('cardholderName').value,
+                        cardNumber: document.getElementById('cardNumber').value,
+                        expiryDate: new Date(document.getElementById('expiryDate').value),
+                        cvv: document.getElementById('cvv').value
+                    };
+                } else if (formData.modeOfPayment === 'Online Banking') {
+                    formData.bankDetails = {
+                        bankName: document.getElementById('bankName').value,
+                        accountHolderName: document.getElementById('accountHolderName').value,
+                        accountNumber: document.getElementById('accountNumber').value,
+                        transactionRefNumber: document.getElementById('refNumber').value
+                    };
+                }
+
+                try {
+                    const response = await fetch('/homeowner/payments/pay', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+
+                    const data = await response.json();
+                    if (!data.success) {
+                        throw new Error(data.message);
+                    }
+
+                    showSuccess('Payment processed successfully');
+                    hidePaymentModal();
+                    loadBills();
+                } catch (error) {
+                    console.error('Error processing payment:', error);
+                    showError(error.message || 'Failed to process payment');
+                }
+            });
+        }
+
+        function showSuccess(message) {
+            const alert = document.createElement('div');
+            alert.className = 'fixed top-4 right-4 bg-green-50 border border-green-500 text-green-700 px-4 py-3 rounded-md shadow-lg z-50';
+            alert.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                    <span>${message}</span>
+                </div>
+            `;
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        function showError(message) {
+            const alert = document.createElement('div');
+            alert.className = 'fixed top-4 right-4 bg-red-50 border border-red-500 text-red-700 px-4 py-3 rounded-md shadow-lg z-50';
+            alert.innerHTML = `
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span>${message}</span>
+                </div>
+            `;
+            document.body.appendChild(alert);
+            setTimeout(() => alert.remove(), 3000);
+        }
+    </script>
+}

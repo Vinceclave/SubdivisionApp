@@ -1,0 +1,437 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\datan\\source\\repos\\Subdivision\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\bill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\bill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\contact.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\facility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\facility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\announcement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\announcement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\wwwroot\\css\\custom.css||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:wwwroot\\css\\custom.css||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\data\\subdivisiondbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:data\\subdivisiondbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\homeowner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\homeowner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\forumreplies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\forumreplies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\eventvisibility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\eventvisibility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\eventcalendar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\eventcalendar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\staff.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\vehicle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\visitorpass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\visitorpass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\forum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\forum.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\servicerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\servicerequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\visitorpassrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\visitorpassrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\complaint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\complaint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|c:\\users\\datan\\source\\repos\\subdivision\\models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{646CE41A-D1CA-4E27-8F0E-1C00C6F67534}|Subdivision.csproj|solutionrelative:models\\feedback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "Models\\Payment.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Payment.cs",
+              "RelativeToolTip": "Models\\Payment.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAuwBEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T07:11:07.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Bill.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Bill.cs",
+              "RelativeDocumentMoniker": "Models\\Bill.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Bill.cs",
+              "RelativeToolTip": "Models\\Bill.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T07:10:37.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ForumReplies.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\ForumReplies.cs",
+              "RelativeDocumentMoniker": "Models\\ForumReplies.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\ForumReplies.cs",
+              "RelativeToolTip": "Models\\ForumReplies.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T06:15:59.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Homeowner.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Homeowner.cs",
+              "RelativeDocumentMoniker": "Models\\Homeowner.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Homeowner.cs",
+              "RelativeToolTip": "Models\\Homeowner.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T21:06:43.212Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Announcement.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Announcement.cs",
+              "RelativeDocumentMoniker": "Models\\Announcement.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Announcement.cs",
+              "RelativeToolTip": "Models\\Announcement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T21:27:06.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "custom.css",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\css\\custom.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\custom.css",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\css\\custom.css",
+              "RelativeToolTip": "wwwroot\\css\\custom.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-04-03T22:49:02.902Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAkwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T21:13:43.791Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Facility.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Facility.cs",
+              "RelativeDocumentMoniker": "Models\\Facility.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Facility.cs",
+              "RelativeToolTip": "Models\\Facility.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T07:00:29.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Contact.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Contact.cs",
+              "RelativeDocumentMoniker": "Models\\Contact.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Contact.cs",
+              "RelativeToolTip": "Models\\Contact.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T21:26:20.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFgAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T22:04:42.735Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAADUAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-03T22:05:29.391Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SubdivisionDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Data\\SubdivisionDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\SubdivisionDbContext.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Data\\SubdivisionDbContext.cs",
+              "RelativeToolTip": "Data\\SubdivisionDbContext.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAAwMAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T21:11:37.909Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-04-02T21:12:24.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Reservation.cs",
+              "RelativeDocumentMoniker": "Models\\Reservation.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Reservation.cs",
+              "RelativeToolTip": "Models\\Reservation.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAswBMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T06:59:48.3Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "EventVisibility.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\EventVisibility.cs",
+              "RelativeDocumentMoniker": "Models\\EventVisibility.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\EventVisibility.cs",
+              "RelativeToolTip": "Models\\EventVisibility.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T06:28:41.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "EventCalendar.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\EventCalendar.cs",
+              "RelativeDocumentMoniker": "Models\\EventCalendar.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\EventCalendar.cs",
+              "RelativeToolTip": "Models\\EventCalendar.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T06:27:58.671Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Vehicle.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Vehicle.cs",
+              "RelativeDocumentMoniker": "Models\\Vehicle.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Vehicle.cs",
+              "RelativeToolTip": "Models\\Vehicle.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T06:10:24.91Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "VisitorPass.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\VisitorPass.cs",
+              "RelativeDocumentMoniker": "Models\\VisitorPass.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\VisitorPass.cs",
+              "RelativeToolTip": "Models\\VisitorPass.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAmwA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T05:50:22.319Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Admin.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Admin.cs",
+              "RelativeDocumentMoniker": "Models\\Admin.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Admin.cs",
+              "RelativeToolTip": "Models\\Admin.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAwA0AAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T21:06:34.81Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Forum.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Forum.cs",
+              "RelativeDocumentMoniker": "Models\\Forum.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Forum.cs",
+              "RelativeToolTip": "Models\\Forum.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T06:15:37.901Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Models\\User.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\User.cs",
+              "RelativeToolTip": "Models\\User.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T21:06:17.374Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ServiceRequest.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\ServiceRequest.cs",
+              "RelativeDocumentMoniker": "Models\\ServiceRequest.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\ServiceRequest.cs",
+              "RelativeToolTip": "Models\\ServiceRequest.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA4wBEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T06:01:03.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Staff.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Staff.cs",
+              "RelativeDocumentMoniker": "Models\\Staff.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Staff.cs",
+              "RelativeToolTip": "Models\\Staff.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAowA4AAABfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T21:06:47.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "VisitorPassRequest.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\VisitorPassRequest.cs",
+              "RelativeDocumentMoniker": "Models\\VisitorPassRequest.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\VisitorPassRequest.cs",
+              "RelativeToolTip": "Models\\VisitorPassRequest.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAzwBQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T05:51:04.965Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Complaint.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Complaint.cs",
+              "RelativeDocumentMoniker": "Models\\Complaint.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Complaint.cs",
+              "RelativeToolTip": "Models\\Complaint.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T22:12:21.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "Feedback.cs",
+              "DocumentMoniker": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Feedback.cs",
+              "RelativeDocumentMoniker": "Models\\Feedback.cs",
+              "ToolTip": "C:\\Users\\datan\\source\\repos\\Subdivision\\Models\\Feedback.cs",
+              "RelativeToolTip": "Models\\Feedback.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAYwAQAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-02T22:12:06.967Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
