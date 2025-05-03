@@ -1,0 +1,337 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Subdivision.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Subdivision.nfelfezy7u.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\css\\custom.css",
+      "PackagePath": "staticwebassets\\css\\custom.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\facilities\\967e405e-6692-4a7a-a0b4-ed3959c11c9b_hero.jpg",
+      "PackagePath": "staticwebassets\\uploads\\facilities\\967e405e-6692-4a7a-a0b4-ed3959c11c9b_hero.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\083cb9cd-dfef-49b2-8900-35e8cb70041c_Screenshot 2025-01-23 234654.png",
+      "PackagePath": "staticwebassets\\uploads\\forums\\083cb9cd-dfef-49b2-8900-35e8cb70041c_Screenshot 2025-01-23 234654.png"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\39e848d6-4188-4197-b169-45f287e61cae_470189187_2629335467268867_627334099173836786_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\forums\\39e848d6-4188-4197-b169-45f287e61cae_470189187_2629335467268867_627334099173836786_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\45061dcd-10ea-4a6f-993d-1ebeb74fa060_Screenshot 2025-01-24 022504.png",
+      "PackagePath": "staticwebassets\\uploads\\forums\\45061dcd-10ea-4a6f-993d-1ebeb74fa060_Screenshot 2025-01-24 022504.png"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\4e339d55-7d2c-4e35-9a75-b9f363d51407_470189187_2629335467268867_627334099173836786_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\forums\\4e339d55-7d2c-4e35-9a75-b9f363d51407_470189187_2629335467268867_627334099173836786_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\4fc70933-f96d-4e1a-ae76-c4a6f0ffafd4_470189187_2629335467268867_627334099173836786_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\forums\\4fc70933-f96d-4e1a-ae76-c4a6f0ffafd4_470189187_2629335467268867_627334099173836786_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\5595a657-aaeb-4411-be69-d9518c012ad0_20250405_011852.mp4",
+      "PackagePath": "staticwebassets\\uploads\\forums\\5595a657-aaeb-4411-be69-d9518c012ad0_20250405_011852.mp4"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\c7beaad7-69f7-48c7-955a-c75a118fd7f4_DSC_1054.JPG",
+      "PackagePath": "staticwebassets\\uploads\\forums\\c7beaad7-69f7-48c7-955a-c75a118fd7f4_DSC_1054.JPG"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\ec6bb6ee-d092-4fb3-bad9-9c4793e8e990_470189187_2629335467268867_627334099173836786_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\forums\\ec6bb6ee-d092-4fb3-bad9-9c4793e8e990_470189187_2629335467268867_627334099173836786_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\f1247804-05a2-413d-8dff-b5c915a04507_470189187_2629335467268867_627334099173836786_n.jpg",
+      "PackagePath": "staticwebassets\\uploads\\forums\\f1247804-05a2-413d-8dff-b5c915a04507_470189187_2629335467268867_627334099173836786_n.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\basketballcourt.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\home\\basketballcourt.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\gym.jpg",
+      "PackagePath": "staticwebassets\\uploads\\home\\gym.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\hero.jpg",
+      "PackagePath": "staticwebassets\\uploads\\home\\hero.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\swimmingpool.jpeg",
+      "PackagePath": "staticwebassets\\uploads\\home\\swimmingpool.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\profiles\\ac7b3cbd-b540-4b8f-b6da-353442ba7615_hero.jpg",
+      "PackagePath": "staticwebassets\\uploads\\profiles\\ac7b3cbd-b540-4b8f-b6da-353442ba7615_hero.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Subdivision.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Subdivision.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Subdivision.props",
+      "PackagePath": "build\\Subdivision.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Subdivision.props",
+      "PackagePath": "buildMultiTargeting\\Subdivision.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Subdivision.props",
+      "PackagePath": "buildTransitive\\Subdivision.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

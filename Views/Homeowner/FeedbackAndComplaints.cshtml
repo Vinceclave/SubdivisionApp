@@ -1,0 +1,299 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Feedback & Complaints";
+    ViewData["Page"] = "FeedbackAndComplaints";
+    Layout = "_UniversalLayout";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-900">Feedback & Complaints</h1>
+    </div>
+
+    <!-- Tabs -->
+    <div class="mb-6">
+        <div class="border-b border-gray-200">
+            <nav class="-mb-px flex space-x-8">
+                <button class="tab-btn active border-b-2 border-homeowner px-1 py-4 text-sm font-medium text-homeowner" 
+                        onclick="switchTab('feedback')">
+                    Feedback
+                </button>
+                <button class="tab-btn border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700" 
+                        onclick="switchTab('complaints')">
+                    Complaints
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Feedback Section -->
+    <div id="feedback-section" class="tab-content">
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold text-gray-900">My Feedback</h2>
+                <button onclick="openFeedbackModal()" 
+                        class="bg-homeowner text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors">
+                    Submit Feedback
+                </button>
+            </div>
+            <div id="feedbackList" class="space-y-4">
+                <!-- Feedback items will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Complaints Section -->
+    <div id="complaints-section" class="tab-content hidden">
+        <div class="bg-white rounded-lg shadow p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-semibold text-gray-900">My Complaints</h2>
+                <button onclick="openComplaintModal()" 
+                        class="bg-homeowner text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors">
+                    File Complaint
+                </button>
+            </div>
+            <div id="complaintList" class="space-y-4">
+                <!-- Complaint items will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Feedback Modal -->
+<div id="feedbackModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div class="p-6">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Submit Feedback</h3>
+                <form id="feedbackForm" onsubmit="submitFeedback(event)">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                        <div class="flex space-x-4">
+                            @for (int i = 1; i <= 5; i++)
+                            {
+                                <label class="flex items-center">
+                                    <input type="radio" name="rating" value="@i" required class="mr-1">
+                                    <span>@i</span>
+                                </label>
+                            }
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2" for="feedbackContent">
+                            Your Feedback
+                        </label>
+                        <textarea id="feedbackContent" name="feedbackContent" rows="4" 
+                                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-homeowner focus:ring-homeowner"
+                                  required></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="closeModal('feedbackModal')"
+                                class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                            Cancel
+                        </button>
+                        <button type="submit"
+                                class="px-4 py-2 bg-homeowner text-white rounded-md hover:bg-green-700">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Complaint Modal -->
+<div id="complaintModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden">
+    <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div class="p-6">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">File a Complaint</h3>
+                <form id="complaintForm" onsubmit="submitComplaint(event)">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-2" for="complaintContent">
+                            Complaint Details
+                        </label>
+                        <textarea id="complaintContent" name="complaintContent" rows="4" 
+                                  class="w-full rounded-md border-gray-300 shadow-sm focus:border-homeowner focus:ring-homeowner"
+                                  required></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3">
+                        <button type="button" onclick="closeModal('complaintModal')"
+                                class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                            Cancel
+                        </button>
+                        <button type="submit"
+                                class="px-4 py-2 bg-homeowner text-white rounded-md hover:bg-green-700">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Load feedback and complaints when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFeedback();
+            loadComplaints();
+        });
+
+        function switchTab(tab) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Show selected tab content
+            document.getElementById(`${tab}-section`).classList.remove('hidden');
+
+            // Update tab button styles
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('border-homeowner', 'text-homeowner');
+                btn.classList.add('border-transparent', 'text-gray-500');
+            });
+
+            // Style active tab
+            event.currentTarget.classList.remove('border-transparent', 'text-gray-500');
+            event.currentTarget.classList.add('border-homeowner', 'text-homeowner');
+        }
+
+        function openFeedbackModal() {
+            document.getElementById('feedbackModal').classList.remove('hidden');
+        }
+
+        function openComplaintModal() {
+            document.getElementById('complaintModal').classList.remove('hidden');
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+        }
+
+        async function loadFeedback() {
+            const feedbackList = document.getElementById('feedbackList');
+            try {
+                const response = await fetch('/api/homeowner/feedback');
+                const data = await response.json();
+                
+                feedbackList.innerHTML = data.map(feedback => `
+                    <div class="border rounded-lg p-4 bg-gray-50">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-sm font-medium">Rating: ${feedback.rating}/5</span>
+                                <span class="text-gray-500">•</span>
+                                <span class="text-sm text-gray-500">${new Date(feedback.feedbackDate).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">${feedback.feedbackContent}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading feedback:', error);
+            }
+        }
+
+        async function loadComplaints() {
+            const complaintList = document.getElementById('complaintList');
+            try {
+                const response = await fetch('/api/homeowner/complaints');
+                const data = await response.json();
+                
+                complaintList.innerHTML = data.map(complaint => `
+                    <div class="border rounded-lg p-4 bg-gray-50">
+                        <div class="flex justify-between items-start mb-2">
+                            <div class="flex items-center space-x-2">
+                                <span class="px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(complaint.status)}">
+                                    ${complaint.status}
+                                </span>
+                                <span class="text-gray-500">•</span>
+                                <span class="text-sm text-gray-500">${new Date(complaint.complaintDate).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">${complaint.complaintContent}</p>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading complaints:', error);
+            }
+        }
+
+        function getStatusColor(status) {
+            switch (status.toLowerCase()) {
+                case 'pending':
+                    return 'bg-yellow-100 text-yellow-800';
+                case 'in progress':
+                    return 'bg-blue-100 text-blue-800';
+                case 'resolved':
+                    return 'bg-green-100 text-green-800';
+                default:
+                    return 'bg-gray-100 text-gray-800';
+            }
+        }
+
+        async function submitFeedback(event) {
+            event.preventDefault();
+            const form = event.target;
+            const rating = form.querySelector('input[name="rating"]:checked').value;
+            const content = form.querySelector('#feedbackContent').value;
+
+            try {
+                const response = await fetch('/api/homeowner/feedback', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        rating: parseInt(rating),
+                        feedbackContent: content
+                    })
+                });
+
+                if (response.ok) {
+                    closeModal('feedbackModal');
+                    form.reset();
+                    loadFeedback();
+                    alert('Feedback submitted successfully!');
+                } else {
+                    alert('Failed to submit feedback. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                alert('An error occurred while submitting feedback.');
+            }
+        }
+
+        async function submitComplaint(event) {
+            event.preventDefault();
+            const form = event.target;
+            const content = form.querySelector('#complaintContent').value;
+
+            try {
+                const response = await fetch('/api/homeowner/complaints', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        complaintContent: content
+                    })
+                });
+
+                if (response.ok) {
+                    closeModal('complaintModal');
+                    form.reset();
+                    loadComplaints();
+                    alert('Complaint submitted successfully!');
+                } else {
+                    alert('Failed to submit complaint. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error submitting complaint:', error);
+                alert('An error occurred while submitting complaint.');
+            }
+        }
+    </script>
+}

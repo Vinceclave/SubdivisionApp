@@ -1,0 +1,141 @@
+@{
+    ViewData["Title"] = "Events";
+    ViewData["UserType"] = "Homeowner";
+    ViewData["Page"] = "Events";
+    Layout = "_UniversalLayout";
+}
+
+<!-- Add FullCalendar CSS -->
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' />
+
+<div class="space-y-6">
+    <!-- Header with title only (no action buttons) -->
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-semibold text-gray-900">Events</h1>
+    </div>
+
+    <!-- View Toggle -->
+    <div class="bg-white rounded-lg shadow p-4">
+        <div class="flex space-x-4">
+            <button id="listViewBtn" class="px-4 py-2 text-sm font-medium text-primary border-b-2 border-primary">
+                List View
+            </button>
+            <button id="calendarViewBtn" class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                Calendar View
+            </button>
+        </div>
+    </div>
+
+    <!-- List View -->
+    <div id="listView" class="bg-white rounded-lg shadow overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Visibility</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Organized By</th>
+                    </tr>
+                </thead>
+                <tbody id="eventsList" class="bg-white divide-y divide-gray-200">
+                    <!-- Events will be listed here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Calendar View -->
+    <div id="calendarView" class="bg-white rounded-lg shadow p-4 hidden">
+        <div id="calendar"></div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Add FullCalendar JS -->
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script>
+        let calendar;
+        document.addEventListener('DOMContentLoaded', function() {
+            // View toggle
+            const listViewBtn = document.getElementById('listViewBtn');
+            const calendarViewBtn = document.getElementById('calendarViewBtn');
+            const listView = document.getElementById('listView');
+            const calendarView = document.getElementById('calendarView');
+            listViewBtn.addEventListener('click', function() {
+                listView.classList.remove('hidden');
+                calendarView.classList.add('hidden');
+            });
+            calendarViewBtn.addEventListener('click', function() {
+                listView.classList.add('hidden');
+                calendarView.classList.remove('hidden');
+                if (calendar) {
+                    calendar.updateSize();
+                }
+            });
+
+            // FullCalendar
+            const calendarEl = document.getElementById('calendar');
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                events: function(info, successCallback, failureCallback) {
+                    const year = new Date().getFullYear();
+                    fetch(`/homeowner/events/list?start=${year}-01-01&end=${year}-12-31`)
+                        .then(r => r.json())
+                        .then(data => successCallback(data.map(evt => ({
+                            id: evt.eventId,
+                            title: evt.eventTitle,
+                            start: evt.eventDateTime,
+                            end: new Date(new Date(evt.eventDateTime).getTime() + 60*60*1000),
+                            allDay: false,
+                            backgroundColor: evt.visibility === 'public' ? '#10B981' : '#3B82F6',
+                            borderColor: evt.visibility === 'public' ? '#059669' : '#2563EB',
+                            textColor: '#FFFFFF',
+                            extendedProps: {
+                                description: evt.eventDesc,
+                                visibility: evt.visibility,
+                                organizedBy: evt.organizedBy
+                            }
+                        })))).catch(failureCallback);
+                },
+                eventClick: function(info) {
+                    // View only
+                    alert(`Title: ${info.event.title}\nDescription: ${info.event.extendedProps.description}`);
+                }
+            });
+            calendar.render();
+            // List view
+            async function loadEvents() {
+                const year = new Date().getFullYear();
+                const response = await fetch(`/homeowner/events/list?start=${year}-01-01&end=${year}-12-31`);
+                const events = await response.json();
+                const tbody = document.getElementById('eventsList');
+                tbody.innerHTML = '';
+                if (!events.length) {
+                    tbody.innerHTML = `<tr><td colspan="5" class="text-center py-8 text-gray-500">No events found</td></tr>`;
+                    return;
+                }
+                events.forEach(event => {
+                    const date = new Date(event.eventDateTime);
+                    const formattedDate = date.toLocaleString();
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="px-6 py-4">${event.eventTitle}</td>
+                        <td class="px-6 py-4">${event.eventDesc}</td>
+                        <td class="px-6 py-4">${formattedDate}</td>
+                        <td class="px-6 py-4">${event.visibility}</td>
+                        <td class="px-6 py-4">${event.organizedBy || 'Admin'}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+            loadEvents();
+        });
+    </script>
+}

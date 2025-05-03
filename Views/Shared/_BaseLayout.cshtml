@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Beverly Woods</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @@layer utilities {
+            .nav-link {
+                @@apply text-gray-600 hover:text-gray-900 transition-colors duration-200;
+            }
+            .nav-link-active {
+                @@apply text-gray-900 font-medium;
+            }
+            .btn-primary {
+                @@apply bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200;
+            }
+            .dropdown-item {
+                @@apply px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200;
+            }
+        }
+    </style>
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+
+<body class="h-full bg-white">
+    @{
+        var userType = Context.Session.GetInt32("UserType");
+        var isLoggedIn = Context.Session.GetInt32("UserId") != null;
+        var username = Context.Session.GetString("Username");
+        var isHomePage = Context.Request.Path == "/" || Context.Request.Path == "/home";
+    }
+
+    @if (!ViewData.ContainsKey("HideNav") || !(bool)ViewData["HideNav"]!)
+    {
+        <header class="bg-white shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-8">
+                        <a href="/" class="flex items-center space-x-2 text-gray-900 font-semibold text-xl">
+                            <span>Beverly Woods</span>
+                        </a>
+                        @if (isLoggedIn && !isHomePage)
+                        {
+                            <div class="flex items-center space-x-8">
+                                @if (userType == (int)UserType.Admin)
+                                {
+                                    <a href="/admin/dashboard" class="nav-link @(ViewData["Page"]?.ToString() == "Dashboard" ? "nav-link-active" : "")">DASHBOARD</a>
+                                    <a href="/admin/events" class="nav-link @(ViewData["Page"]?.ToString() == "Events" ? "nav-link-active" : "")">EVENTS</a>
+                                    <a href="/admin/residents" class="nav-link @(ViewData["Page"]?.ToString() == "Residents" ? "nav-link-active" : "")">RESIDENTS</a>
+                                    <a href="/admin/security" class="nav-link @(ViewData["Page"]?.ToString() == "Security" ? "nav-link-active" : "")">SECURITY</a>
+                                }
+                                else if (userType == (int)UserType.Staff)
+                                {
+                                    <a href="/staff/dashboard" class="nav-link @(ViewData["Page"]?.ToString() == "Dashboard" ? "nav-link-active" : "")">DASHBOARD</a>
+                                    <a href="/staff/tasks" class="nav-link @(ViewData["Page"]?.ToString() == "Tasks" ? "nav-link-active" : "")">TASKS</a>
+                                    <a href="/staff/schedule" class="nav-link @(ViewData["Page"]?.ToString() == "Schedule" ? "nav-link-active" : "")">SCHEDULE</a>
+                                }
+                                else if (userType == (int)UserType.Homeowner)
+                                {
+                                    <a href="/homeowner/dashboard" class="nav-link @(ViewData["Page"]?.ToString() == "Dashboard" ? "nav-link-active" : "")">DASHBOARD</a>
+                                    <a href="/homeowner/events" class="nav-link @(ViewData["Page"]?.ToString() == "Events" ? "nav-link-active" : "")">EVENTS</a>
+                                    <a href="/homeowner/payments" class="nav-link @(ViewData["Page"]?.ToString() == "Payments" ? "nav-link-active" : "")">PAYMENTS</a>
+                                    <a href="/homeowner/visitors" class="nav-link @(ViewData["Page"]?.ToString() == "Visitors" ? "nav-link-active" : "")">VISITORS</a>
+                                }
+
+                                <div class="relative">
+                                    <button id="profile-btn" 
+                                            class="w-8 h-8 rounded-full bg-white text-primary font-medium flex items-center justify-center hover:bg-gray-100 transition-colors duration-200">
+                                        @(username?[0].ToString().ToUpper())
+                                    </button>
+                                    <div id="profile-dropdown" 
+                                         class="absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 hidden">
+                                        <div class="py-1">
+                                            @if (userType == (int)UserType.Admin)
+                                            {
+                                                <a href="/admin/profile" class="dropdown-item">Profile</a>
+                                                <a href="/admin/settings" class="dropdown-item">Settings</a>
+                                            }
+                                            else if (userType == (int)UserType.Staff)
+                                            {
+                                                <a href="/staff/profile" class="dropdown-item">Profile</a>
+                                            }
+                                            else if (userType == (int)UserType.Homeowner)
+                                            {
+                                                <a href="/homeowner/profile" class="dropdown-item">Profile</a>
+                                                <a href="/homeowner/settings" class="dropdown-item">Settings</a>
+                                            }
+                                        </div>
+                                        <div class="py-1">
+                                            <a href="/auth/logout" class="dropdown-item text-red-600 hover:bg-red-50">Sign out</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else if (!isLoggedIn && !isHomePage)
+                        {
+                            <div class="flex items-center space-x-8">
+                                <a href="/" class="nav-link">HOME</a>
+                                <a href="/facilities" class="nav-link">FACILITIES</a>
+                                <a href="/about" class="nav-link">ABOUT</a>
+                                <a href="/contact" class="nav-link">CONTACT</a>
+                                <a href="/login" class="btn-primary">Login</a>
+                            </div>
+                        }
+                        else if (isHomePage)
+                        {
+                            <div class="flex items-center">
+                                <a href="/login" class="btn-primary">Login</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </header>
+    }
+
+    <main class="@(!ViewData.ContainsKey("HideNav") || !(bool)ViewData["HideNav"]! ? "pt-20" : "") min-h-screen">
+        @RenderBody()
+    </main>
+
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileBtn = document.getElementById('profile-btn');
+            const dropdownMenu = document.getElementById('profile-dropdown');
+            
+            if (profileBtn && dropdownMenu) {
+                function showDropdown() {
+                    dropdownMenu.classList.remove('hidden');
+                }
+
+                function hideDropdown() {
+                    dropdownMenu.classList.add('hidden');
+                }
+                
+                profileBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (dropdownMenu.classList.contains('hidden')) {
+                        showDropdown();
+                    } else {
+                        hideDropdown();
+                    }
+                });
+                
+                document.addEventListener('click', function(e) {
+                    if (!profileBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                        hideDropdown();
+                    }
+                });
+                
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        hideDropdown();
+                    }
+                });
+            }
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    @if (TempData["Success"] != null)
+    {
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '@TempData["Success"]',
+                icon: 'success',
+                confirmButtonColor: '#0f172a'
+            });
+        </script>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <script>
+            Swal.fire({
+                title: 'Error!',
+                text: '@TempData["Error"]',
+                icon: 'error',
+                confirmButtonColor: '#0f172a'
+            });
+        </script>
+    }
+</body>
+</html>

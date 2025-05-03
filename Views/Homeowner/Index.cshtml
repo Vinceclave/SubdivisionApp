@@ -1,0 +1,380 @@
+@{
+    ViewData["Title"] = "Homeowner Dashboard";
+    Layout = "~/Views/Shared/_UniversalLayout.cshtml";
+}
+
+<div class="container mx-auto px-4 py-8">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900">Welcome, @Context.Session.GetString("Username")!</h1>
+        <p class="text-gray-600 mt-2">Manage your home and community activities from your dashboard.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Left column: Dashboard cards -->
+        <div class="lg:col-span-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- My Reservations Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-gray-900">My Reservations</h2>
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-4">View and manage your facility reservations.</p>
+                    <a asp-action="MyReservations" class="text-primary hover:text-primary-dark font-medium">View Reservations →</a>
+                </div>
+
+                <!-- Service Requests Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-gray-900">Service Requests</h2>
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-4">Submit and track maintenance requests.</p>
+                    <a asp-action="ServiceRequests" class="text-primary hover:text-primary-dark font-medium">View Requests →</a>
+                </div>
+
+                <!-- Payments Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-gray-900">Payments</h2>
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-4">View your payment history and make payments.</p>
+                    <a asp-action="Payments" class="text-primary hover:text-primary-dark font-medium">View Payments →</a>
+                </div>
+
+                <!-- My Profile Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-gray-900">My Profile</h2>
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-4">Update your profile information.</p>
+                    <a asp-action="MyProfile" class="text-primary hover:text-primary-dark font-medium">View Profile →</a>
+                </div>
+
+                <!-- Documents Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-gray-900">Documents</h2>
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-4">Access important community documents.</p>
+                    <a asp-action="Documents" class="text-primary hover:text-primary-dark font-medium">View Documents →</a>
+                </div>
+
+                <!-- Settings Card -->
+                <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-xl font-semibold text-gray-900">Settings</h2>
+                        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </div>
+                    <p class="text-gray-600 mb-4">Manage your account settings.</p>
+                    <a asp-action="Settings" class="text-primary hover:text-primary-dark font-medium">View Settings →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right column: Community section -->
+        <div class="lg:col-span-1 space-y-6">
+            <!-- Announcements Section -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h3 class="text-lg font-semibold text-gray-900">Announcements</h3>
+                </div>
+                <div class="p-6 space-y-4" id="announcements-container">
+                    <div class="text-center py-6">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                        <p class="text-gray-500 text-sm">Loading announcements...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forum Section -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h3 class="text-lg font-semibold text-gray-900">Community Forum</h3>
+                    <button id="create-forum-btn" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-dark h-9 px-4">
+                        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Post
+                    </button>
+                </div>
+                <div class="p-6 space-y-4" id="forums-container">
+                    <div class="text-center py-6">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                        <p class="text-gray-500 text-sm">Loading forum posts...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Forum Post Modal -->
+<div id="create-forum-modal" class="fixed inset-0 z-50 hidden overflow-auto bg-gray-800 bg-opacity-50 flex justify-center items-start pt-10">
+    <div class="relative w-full max-w-lg bg-white rounded-lg shadow-xl mx-4 p-6">
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+            <h5 class="text-lg font-semibold">Create New Forum Post</h5>
+            <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <form id="forum-form" class="space-y-4">
+            <div class="space-y-2">
+                <label for="forum-title" class="text-sm font-medium">Title</label>
+                <input type="text" id="forum-title" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" required>
+            </div>
+            <div class="space-y-2">
+                <label for="forum-content" class="text-sm font-medium">Content</label>
+                <textarea id="forum-content" rows="3" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+            </div>
+            <div class="space-y-2">
+                <label for="forum-image" class="text-sm font-medium">Upload Image (Optional)</label>
+                <input type="file" id="forum-image" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div class="flex justify-end space-x-2 pt-4">
+                <button type="button" id="cancel-forum" class="px-4 py-2.5 border border-gray-300 rounded-md text-sm font-medium bg-white text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="submit" id="submit-forum" class="px-4 py-2.5 border border-transparent rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-dark">Create Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Load announcements and forum posts
+            await Promise.all([
+                loadAnnouncements(),
+                loadForumPosts()
+            ]);
+            
+            // Forum modal event listeners
+            const createForumBtn = document.getElementById('create-forum-btn');
+            const createForumModal = document.getElementById('create-forum-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const cancelForumBtn = document.getElementById('cancel-forum');
+            const forumForm = document.getElementById('forum-form');
+            
+            createForumBtn.addEventListener('click', () => {
+                createForumModal.classList.remove('hidden');
+            });
+            
+            const closeModal = () => {
+                createForumModal.classList.add('hidden');
+                forumForm.reset();
+            };
+            
+            closeModalBtn.addEventListener('click', closeModal);
+            cancelForumBtn.addEventListener('click', closeModal);
+            
+            // Form submission
+            forumForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitBtn = document.getElementById('submit-forum');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Posting...';
+                
+                const title = document.getElementById('forum-title').value;
+                const content = document.getElementById('forum-content').value;
+                const imageFile = document.getElementById('forum-image').files[0];
+                
+                const formData = new FormData();
+                formData.append('ForumTitle', title);
+                formData.append('Content', content);
+                if (imageFile) {
+                    formData.append('image', imageFile);
+                }
+                
+                try {
+                    const response = await fetch('/homeowner/community/create-forum', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        closeModal();
+                        await loadForumPosts(); // Reload forum posts
+                        alert('Forum post created successfully!');
+                    } else {
+                        alert(result.message || 'Error creating forum post');
+                    }
+                } catch (error) {
+                    console.error('Error creating forum post:', error);
+                    alert('An error occurred while creating your post. Please try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Create Post';
+                }
+            });
+        });
+        
+        // Load announcements
+        async function loadAnnouncements() {
+            const announcementsContainer = document.getElementById('announcements-container');
+            
+            try {
+                const response = await fetch('/homeowner/community/announcements');
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.announcements.length === 0) {
+                        announcementsContainer.innerHTML = `
+                            <div class="text-center py-6 text-gray-500">
+                                No announcements at this time.
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    // Render announcements
+                    announcementsContainer.innerHTML = '';
+                    data.announcements.forEach(announcement => {
+                        const date = new Date(announcement.dateTimePosted).toLocaleDateString();
+                        const announcementEl = document.createElement('div');
+                        announcementEl.className = 'rounded-lg border bg-gray-50 p-4';
+                        announcementEl.innerHTML = `
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="font-medium text-gray-900">${announcement.title}</h4>
+                                <span class="text-xs text-gray-500">${date}</span>
+                            </div>
+                            <p class="text-sm text-gray-600">${announcement.description}</p>
+                        `;
+                        announcementsContainer.appendChild(announcementEl);
+                    });
+                } else {
+                    throw new Error(data.message || 'Failed to load announcements');
+                }
+            } catch (error) {
+                console.error('Error loading announcements:', error);
+                announcementsContainer.innerHTML = `
+                    <div class="text-center py-6 text-gray-500">
+                        Error loading announcements. Please refresh the page.
+                    </div>
+                `;
+            }
+        }
+        
+        // Load forum posts
+        async function loadForumPosts() {
+            const forumsContainer = document.getElementById('forums-container');
+            
+            try {
+                const response = await fetch('/homeowner/community/forums');
+                const data = await response.json();
+                
+                if (data.success) {
+                    if (data.forums.length === 0) {
+                        forumsContainer.innerHTML = `
+                            <div class="text-center py-6 text-gray-500">
+                                No forum posts yet. Be the first to post!
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    // Render forum posts
+                    forumsContainer.innerHTML = '';
+                    
+                    // Display only the 3 most recent posts
+                    const recentPosts = data.forums.slice(0, 3);
+                    
+                    recentPosts.forEach(forum => {
+                        const date = new Date(forum.dateTimePosted).toLocaleDateString();
+                        const forumEl = document.createElement('div');
+                        forumEl.className = 'rounded-lg border bg-gray-50 p-4';
+                        
+                        let posterInfo = '';
+                        if (forum.posterInfo.isHomeowner) {
+                            posterInfo = `
+                                <div class="flex items-center space-x-2">
+                                    <div class="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center">
+                                        <span class="text-xs text-primary font-medium">H</span>
+                                    </div>
+                                    <p class="text-sm font-medium">Homeowner</p>
+                                </div>
+                            `;
+                        } else if (forum.posterInfo.isAdmin) {
+                            posterInfo = `
+                                <div class="flex items-center space-x-2">
+                                    <div class="h-7 w-7 rounded-full bg-red-100 flex items-center justify-center">
+                                        <span class="text-xs text-red-600 font-medium">A</span>
+                                    </div>
+                                    <p class="text-sm font-medium">Admin</p>
+                                </div>
+                            `;
+                        } else if (forum.posterInfo.isStaff) {
+                            posterInfo = `
+                                <div class="flex items-center space-x-2">
+                                    <div class="h-7 w-7 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <span class="text-xs text-blue-600 font-medium">S</span>
+                                    </div>
+                                    <p class="text-sm font-medium">Staff</p>
+                                </div>
+                            `;
+                        }
+                        
+                        let imageHtml = '';
+                        if (forum.imagePath) {
+                            imageHtml = `<img src="${forum.imagePath}" alt="Forum image" class="mt-2 rounded-lg max-w-full h-auto" />`;
+                        }
+                        
+                        forumEl.innerHTML = `
+                            <div class="flex justify-between items-start mb-2">
+                                ${posterInfo}
+                                <span class="text-xs text-gray-500">${date}</span>
+                            </div>
+                            <h4 class="font-medium text-gray-900 mt-2">${forum.forumTitle}</h4>
+                            <p class="text-sm text-gray-600 mt-1">${forum.content}</p>
+                            ${imageHtml}
+                        `;
+                        
+                        forumsContainer.appendChild(forumEl);
+                    });
+                    
+                    // Add a "View All" link if there are more than 3 posts
+                    if (data.forums.length > 3) {
+                        const viewAllLink = document.createElement('div');
+                        viewAllLink.className = 'text-center mt-4';
+                        viewAllLink.innerHTML = `
+                            <a href="/homeowner/community" class="text-primary hover:text-primary-dark font-medium text-sm">
+                                View all ${data.forums.length} posts →
+                            </a>
+                        `;
+                        forumsContainer.appendChild(viewAllLink);
+                    }
+                } else {
+                    throw new Error(data.message || 'Failed to load forum posts');
+                }
+            } catch (error) {
+                console.error('Error loading forum posts:', error);
+                forumsContainer.innerHTML = `
+                    <div class="text-center py-6 text-gray-500">
+                        Error loading forum posts. Please refresh the page.
+                    </div>
+                `;
+            }
+        }
+    </script>
+} 
