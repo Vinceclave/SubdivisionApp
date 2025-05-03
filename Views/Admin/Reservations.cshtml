@@ -1,0 +1,918 @@
+@model dynamic
+@{
+    ViewData["Title"] = "Reservations";
+    ViewData["UserType"] = "Admin";
+    ViewData["Page"] = "Reservations";
+    Layout = "_UniversalLayout";
+}
+
+<div class="container-fluid">
+    <h1 class="text-center text-gray-800 font-semibold text-xl my-4">FACILITIES MANAGEMENT</h1>
+
+    <div class="grid grid-cols-5 gap-4">
+        <!-- Side Navigation -->
+        <div class="col-span-1">
+            <div class="bg-white shadow rounded-lg overflow-hidden">
+                <div class="bg-green-800 text-white p-3">
+                    <h2 class="font-medium">All Facilities</h2>
+                </div>
+                <ul class="divide-y divide-gray-200" id="facilityTypesList">
+                    <!-- Facility types will be loaded here -->
+                    <li class="p-3 flex items-center justify-between hover:bg-gray-50 cursor-pointer">
+                        <span>Loading...</span>
+                    </li>
+                </ul>
+                <div class="p-3 border-t border-gray-200">
+                    <button id="addFacilityBtn" class="w-full flex items-center justify-center space-x-2 p-2 bg-green-800 text-white rounded hover:bg-green-700 transition-colors">
+                        <span>+</span>
+                        <span>Add New Facility</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-span-4">
+            <!-- Date Picker -->
+            <div class="bg-white shadow rounded-lg p-4 mb-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <svg class="w-5 h-5 text-gray-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                    </svg>
+                    <input type="date" id="facilityDate" class="border-0 focus:ring-0 text-gray-700" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                </div>
+                <div class="text-right text-green-800 font-medium" id="selectedFacilityType">
+                    All Facilities
+                </div>
+            </div>
+
+            <!-- Facility Cards Grid -->
+            <div class="grid grid-cols-2 gap-4 mb-6" id="facilitiesGrid">
+                <!-- Facilities will be loaded here -->
+                <div class="bg-white shadow rounded-lg p-6 flex items-center justify-center">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-800"></div>
+                    <span class="ml-2">Loading facilities...</span>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mb-6" id="facilitiesPagination">
+                <!-- Pagination will be added here if needed -->
+            </div>
+
+            <!-- All Reservations Section (Previously Pending) -->
+            <div class="bg-white shadow rounded-lg p-4 mb-6">
+                <h2 class="text-xl font-medium text-gray-700 mb-4">All Reservations</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Facility</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Homeowner</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capacity</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="pendingReservationsList" class="bg-white divide-y divide-gray-200">
+                            <!-- Reservations will be loaded here -->
+                            <tr>
+                                <td colspan="6" class="px-6 py-4 text-center text-gray-500">Loading reservations...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Facility Modal -->
+<div id="addFacilityModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md">
+        <div class="flex justify-between items-center p-4 border-b">
+            <h3 class="text-lg font-medium text-gray-900">ADD NEW FACILITY</h3>
+            <button id="closeAddFacilityModal" class="text-gray-400 hover:text-gray-500">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <form id="addFacilityForm">
+            <div class="p-4 space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="facilityType" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select id="facilityType" name="TypeOfFacility" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="">Select</option>
+                            <option value="Recreation">Recreation</option>
+                            <option value="Meeting Room">Meeting Room</option>
+                            <option value="Outdoor Space">Outdoor Space</option>
+                            <option value="Event Hall">Event Hall</option>
+                        </select>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="col-span-2">
+                            <label for="facilityName" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <input type="text" id="facilityName" name="FacilityName" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        </div>
+                        <div>
+                            <label for="facilityCapacity" class="block text-sm font-medium text-gray-700 mb-1">Capacity</label>
+                            <input type="number" id="facilityCapacity" name="FacilityCapacity" required min="1" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                    <input type="text" id="address" name="Address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Working Hours</label>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="monday" name="days_monday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="monday" class="text-sm text-gray-700">Monday</label>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="tuesday" name="days_tuesday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="tuesday" class="text-sm text-gray-700">Tuesday</label>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="wednesday" name="days_wednesday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="wednesday" class="text-sm text-gray-700">Wednesday</label>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="thursday" name="days_thursday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="thursday" class="text-sm text-gray-700">Thursday</label>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="friday" name="days_friday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="friday" class="text-sm text-gray-700">Friday</label>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-10">From</label>
+                                <input type="time" name="monday_from" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-10">From</label>
+                                <input type="time" name="tuesday_from" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-10">From</label>
+                                <input type="time" name="wednesday_from" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-10">From</label>
+                                <input type="time" name="thursday_from" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-10">From</label>
+                                <input type="time" name="friday_from" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-8">To</label>
+                                <input type="time" name="monday_to" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-8">To</label>
+                                <input type="time" name="tuesday_to" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-8">To</label>
+                                <input type="time" name="wednesday_to" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-8">To</label>
+                                <input type="time" name="thursday_to" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                            <div class="flex items-center">
+                                <label class="text-sm text-gray-700 w-8">To</label>
+                                <input type="time" name="friday_to" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="rules" class="block text-sm font-medium text-gray-700 mb-1">Rules & Regulations</label>
+                    <textarea id="rules" name="RulesRegulations" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                </div>
+                
+                <div class="flex justify-center">
+                    <button type="button" id="uploadImageBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">
+                        Upload Image
+                    </button>
+                    <input type="file" id="facilityImage" name="FacilityImage" class="hidden" accept="image/*">
+                </div>
+            </div>
+            
+            <div class="bg-gray-100 px-4 py-3 text-right">
+                <button type="submit" class="px-6 py-2 bg-green-800 text-white rounded-md hover:bg-green-700">ADD</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Facility Modal -->
+<div id="editFacilityModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-lg">
+        <!-- Facility Image Header -->
+        <div class="relative h-40 bg-gray-200 flex items-center justify-center" id="editFacilityImageContainer">
+            <img id="editFacilityImage" src="" alt="Facility" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="flex justify-between items-center p-4 border-b">
+            <h3 class="text-lg font-medium text-gray-900">EDIT FACILITY</h3>
+            <button id="closeEditFacilityModal" class="text-gray-400 hover:text-gray-500">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <form id="editFacilityForm">
+            <input type="hidden" id="editFacilityId" name="FacilityId">
+            
+            <div class="p-4 space-y-4">
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label for="editFacilityType" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select id="editFacilityType" name="TypeOfFacility" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                            <option value="Recreation">Recreation</option>
+                            <option value="Meeting Room">Meeting Room</option>
+                            <option value="Outdoor Space">Outdoor Space</option>
+                            <option value="Event Hall">Event Hall</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="editFacilityCapacity" class="block text-sm font-medium text-gray-700 mb-1">Capacity</label>
+                        <input type="number" id="editFacilityCapacity" name="FacilityCapacity" required min="1" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label for="editFacilityName" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                        <input type="text" id="editFacilityName" name="FacilityName" required class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="editAddress" class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+                    <input type="text" id="editAddress" name="Address" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Working Hours</label>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="editMonday" name="days_monday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="editMonday" class="text-sm text-gray-700">Monday</label>
+                                <div class="flex ml-2">
+                                    <input type="time" name="monday_from" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <span class="mx-1 self-center">-</span>
+                                    <input type="time" name="monday_to" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="editTuesday" name="days_tuesday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="editTuesday" class="text-sm text-gray-700">Tuesday</label>
+                                <div class="flex ml-2">
+                                    <input type="time" name="tuesday_from" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <span class="mx-1 self-center">-</span>
+                                    <input type="time" name="tuesday_to" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="editWednesday" name="days_wednesday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="editWednesday" class="text-sm text-gray-700">Wednesday</label>
+                                <div class="flex ml-2">
+                                    <input type="time" name="wednesday_from" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <span class="mx-1 self-center">-</span>
+                                    <input type="time" name="wednesday_to" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="editThursday" name="days_thursday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="editThursday" class="text-sm text-gray-700">Thursday</label>
+                                <div class="flex ml-2">
+                                    <input type="time" name="thursday_from" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <span class="mx-1 self-center">-</span>
+                                    <input type="time" name="thursday_to" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <input type="checkbox" id="editFriday" name="days_friday" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                <label for="editFriday" class="text-sm text-gray-700">Friday</label>
+                                <div class="flex ml-2">
+                                    <input type="time" name="friday_from" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                    <span class="mx-1 self-center">-</span>
+                                    <input type="time" name="friday_to" class="w-24 text-xs rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="editRules" class="block text-sm font-medium text-gray-700 mb-1">Rules & Regulations</label>
+                        <textarea id="editRules" name="RulesRegulations" rows="9" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-100 px-4 py-3 text-right">
+                <button type="submit" class="px-6 py-2 bg-green-800 text-white rounded-md hover:bg-green-700">SAVE</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize variables
+            let currentFacilityType = 'All';
+            let currentPage = 1;
+            const facilitiesPerPage = 4;
+            
+            // Elements
+            const addFacilityBtn = document.getElementById('addFacilityBtn');
+            const addFacilityModal = document.getElementById('addFacilityModal');
+            const closeAddFacilityModal = document.getElementById('closeAddFacilityModal');
+            const addFacilityForm = document.getElementById('addFacilityForm');
+            const uploadImageBtn = document.getElementById('uploadImageBtn');
+            const facilityImage = document.getElementById('facilityImage');
+            
+            const editFacilityModal = document.getElementById('editFacilityModal');
+            const closeEditFacilityModal = document.getElementById('closeEditFacilityModal');
+            const editFacilityForm = document.getElementById('editFacilityForm');
+            
+            const facilityTypesList = document.getElementById('facilityTypesList');
+            const facilitiesGrid = document.getElementById('facilitiesGrid');
+            const pendingReservationsList = document.getElementById('pendingReservationsList');
+            const facilityDate = document.getElementById('facilityDate');
+            const selectedFacilityType = document.getElementById('selectedFacilityType');
+            
+            // Initialize the page
+            loadFacilityTypes();
+            loadFacilities();
+            loadAllReservations();
+            
+            // Add event listeners
+            addFacilityBtn.addEventListener('click', showAddFacilityModal);
+            closeAddFacilityModal.addEventListener('click', hideAddFacilityModal);
+            addFacilityForm.addEventListener('submit', handleAddFacility);
+            
+            uploadImageBtn.addEventListener('click', function() {
+                facilityImage.click();
+            });
+            
+            facilityImage.addEventListener('change', function(e) {
+                if (e.target.files && e.target.files[0]) {
+                    // Show file name or preview if needed
+                    uploadImageBtn.textContent = e.target.files[0].name;
+                }
+            });
+            
+            closeEditFacilityModal.addEventListener('click', hideEditFacilityModal);
+            editFacilityForm.addEventListener('submit', handleEditFacility);
+            
+            facilityDate.addEventListener('change', function() {
+                loadFacilities();
+            });
+            
+            // Modal functions
+            function showAddFacilityModal() {
+                addFacilityModal.classList.remove('hidden');
+                // Reset form and set default values
+                addFacilityForm.reset();
+                uploadImageBtn.textContent = 'Upload Image';
+            }
+            
+            function hideAddFacilityModal() {
+                addFacilityModal.classList.add('hidden');
+                addFacilityForm.reset();
+            }
+            
+            function showEditFacilityModal(facilityId) {
+                // Fetch facility details
+                fetchFacilityDetails(facilityId).then(facility => {
+                    // Populate form with facility details
+                    document.getElementById('editFacilityId').value = facility.facilityId;
+                    document.getElementById('editFacilityName').value = facility.facilityName;
+                    document.getElementById('editFacilityType').value = facility.typeOfFacility;
+                    document.getElementById('editFacilityCapacity').value = facility.facilityCapacity;
+                    document.getElementById('editAddress').value = facility.address || '';
+                    document.getElementById('editRules').value = facility.rulesRegulations;
+                    
+                    // Display image
+                    const facilityImg = document.getElementById('editFacilityImage');
+                    facilityImg.src = facility.facilityImg || '/images/facilities/default.jpg';
+                    
+                    // Set working hours
+                    setWorkingHours(facility);
+                    
+                    // Show modal
+                    editFacilityModal.classList.remove('hidden');
+                }).catch(error => {
+                    console.error('Error fetching facility details:', error);
+                    showToast('error', 'Failed to load facility details. Please try again.');
+                });
+            }
+            
+            function hideEditFacilityModal() {
+                editFacilityModal.classList.add('hidden');
+                editFacilityForm.reset();
+            }
+            
+            function setWorkingHours(facility) {
+                // Parse working days and hours from facility data
+                // This is a placeholder - you'll need to adapt this based on your data structure
+                const workingDays = facility.workingDays || '';
+                const workingHours = facility.workingHours || '';
+                
+                // Example: Parse "Monday-Friday, 9:00 AM - 5:00 PM"
+                const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+                
+                // Simple parsing example - adjust based on your actual data format
+                days.forEach(day => {
+                    const checkbox = document.getElementById(`edit${day.charAt(0).toUpperCase() + day.slice(1)}`);
+                    const fromInput = editFacilityForm.querySelector(`input[name="${day}_from"]`);
+                    const toInput = editFacilityForm.querySelector(`input[name="${day}_to"]`);
+                    
+                    // Check if day is included in working days
+                    if (workingDays.toLowerCase().includes(day)) {
+                        checkbox.checked = true;
+                        
+                        // Set hours if available
+                        if (workingHours) {
+                            // This is a very simple parsing example
+                            // You'll need to adapt this to your actual format
+                            const match = workingHours.match(/(\d+:\d+)\s*(?:AM|PM)\s*-\s*(\d+:\d+)\s*(?:AM|PM)/i);
+                            if (match) {
+                                fromInput.value = '09:00'; // Placeholder 
+                                toInput.value = '17:00';   // Placeholder
+                            }
+                        }
+                    } else {
+                        checkbox.checked = false;
+                    }
+                });
+            }
+            
+            async function fetchFacilityDetails(facilityId) {
+                const response = await fetch(`/admin/facilities/${facilityId}`);
+                if (!response.ok) throw new Error('Failed to fetch facility details');
+                return await response.json();
+            }
+            
+            // Main functions
+            async function loadFacilityTypes() {
+                try {
+                    const response = await fetch('/admin/facilities/counts');
+                    if (!response.ok) throw new Error('Failed to load facility types');
+                    
+                    const facilityCounts = await response.json();
+                    renderFacilityTypes(facilityCounts);
+                } catch (error) {
+                    console.error('Error loading facility types:', error);
+                    showToast('error', 'Failed to load facility types. Please try again.');
+                }
+            }
+            
+            async function loadFacilities() {
+                try {
+                    // Show loading state
+                    facilitiesGrid.innerHTML = `
+                        <div class="col-span-2 bg-white shadow rounded-lg p-6 flex items-center justify-center">
+                            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-800"></div>
+                            <span class="ml-2">Loading facilities...</span>
+                        </div>
+                    `;
+                    
+                    // Build the URL
+                    let url = '/admin/facilities';
+                    if (currentFacilityType !== 'All') {
+                        url += `?type=${currentFacilityType}`;
+                    }
+                    
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error('Failed to load facilities');
+                    
+                    const facilities = await response.json();
+                    renderFacilities(facilities);
+                } catch (error) {
+                    console.error('Error loading facilities:', error);
+                    facilitiesGrid.innerHTML = `
+                        <div class="col-span-2 bg-white shadow rounded-lg p-6 text-center text-red-600">
+                            <p>Failed to load facilities. Please try refreshing the page.</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            async function loadAllReservations() {
+                try {
+                    // Show loading state
+                    pendingReservationsList.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                                <div class="flex justify-center">
+                                    <div class="animate-spin rounded-full h-5 w-5 border-b-2 border-green-800 mr-2"></div>
+                                    Loading reservations...
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                    
+                    const response = await fetch('/admin/reservations/pending');
+                    if (!response.ok) throw new Error('Failed to load reservations');
+                    
+                    const reservations = await response.json();
+                    renderAllReservations(reservations);
+                } catch (error) {
+                    console.error('Error loading reservations:', error);
+                    pendingReservationsList.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="px-6 py-4 text-center text-red-600">
+                                Failed to load reservations. Please try refreshing the page.
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+            
+            async function handleAddFacility(e) {
+                e.preventDefault();
+                
+                try {
+                    const formData = new FormData(addFacilityForm);
+                    
+                    // Process working days and hours
+                    const workingDays = [];
+                    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+                    
+                    days.forEach(day => {
+                        if (formData.get(`days_${day}`)) {
+                            workingDays.push(day.charAt(0).toUpperCase() + day.slice(1));
+                            
+                            // Add time range data if needed
+                            const fromTime = formData.get(`${day}_from`);
+                            const toTime = formData.get(`${day}_to`);
+                            
+                            // You can format these as needed for your backend
+                        }
+                    });
+                    
+                    // Add working days to form data
+                    formData.set('WorkingDays', workingDays.join(', '));
+                    
+                    // Format working hours
+                    // This is a simple example - adapt to your needs
+                    formData.set('WorkingHours', '9:00 AM - 5:00 PM');
+                    
+                    // Handle image upload
+                    if (facilityImage.files && facilityImage.files[0]) {
+                        formData.set('facilityImage', facilityImage.files[0]);
+                    }
+                    
+                    // Remove day-specific form data to avoid confusion on server
+                    days.forEach(day => {
+                        formData.delete(`days_${day}`);
+                        formData.delete(`${day}_from`);
+                        formData.delete(`${day}_to`);
+                    });
+                    
+                    const response = await fetch('/admin/facilities/create', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to create facility');
+                    
+                    // Hide modal and show success message
+                    hideAddFacilityModal();
+                    showToast('success', 'Facility created successfully!');
+                    
+                    // Reload facilities and facility types
+                    loadFacilityTypes();
+                    loadFacilities();
+                } catch (error) {
+                    console.error('Error creating facility:', error);
+                    showToast('error', 'Failed to create facility. Please try again.');
+                }
+            }
+            
+            async function handleEditFacility(e) {
+                e.preventDefault();
+                
+                try {
+                    const formData = new FormData(editFacilityForm);
+                    const facilityId = formData.get('FacilityId');
+                    
+                    // Process working days and hours (similar to add facility)
+                    const workingDays = [];
+                    const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+                    
+                    days.forEach(day => {
+                        if (formData.get(`days_${day}`)) {
+                            workingDays.push(day.charAt(0).toUpperCase() + day.slice(1));
+                        }
+                    });
+                    
+                    formData.set('WorkingDays', workingDays.join(', '));
+                    formData.set('WorkingHours', '9:00 AM - 5:00 PM'); // Placeholder
+                    
+                    // Remove day-specific form data
+                    days.forEach(day => {
+                        formData.delete(`days_${day}`);
+                        formData.delete(`${day}_from`);
+                        formData.delete(`${day}_to`);
+                    });
+                    
+                    const response = await fetch(`/admin/facilities/${facilityId}`, {
+                        method: 'PUT',
+                        body: formData
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to update facility');
+                    
+                    // Hide modal and show success message
+                    hideEditFacilityModal();
+                    showToast('success', 'Facility updated successfully!');
+                    
+                    // Reload facilities
+                    loadFacilities();
+                } catch (error) {
+                    console.error('Error updating facility:', error);
+                    showToast('error', 'Failed to update facility. Please try again.');
+                }
+            }
+            
+            // Render functions
+            function renderFacilityTypes(facilityCounts) {
+                // Start with 'All' option
+                let html = `
+                    <li data-type="All" class="p-3 flex items-center justify-between hover:bg-gray-50 cursor-pointer facility-type-item ${currentFacilityType === 'All' ? 'bg-green-50 text-green-800' : ''}">
+                        <span>All Facilities</span>
+                        <span class="bg-gray-200 rounded-full h-5 w-5 flex items-center justify-center text-xs">${facilityCounts.reduce((total, item) => total + item.count, 0)}</span>
+                    </li>
+                `;
+                
+                // Add each facility type
+                facilityCounts.forEach(item => {
+                    html += `
+                        <li data-type="${item.type}" class="p-3 flex items-center justify-between hover:bg-gray-50 cursor-pointer facility-type-item ${currentFacilityType === item.type ? 'bg-green-50 text-green-800' : ''}">
+                            <span>${item.type}</span>
+                            <span class="bg-gray-200 rounded-full h-5 w-5 flex items-center justify-center text-xs">${item.count}</span>
+                        </li>
+                    `;
+                });
+                
+                facilityTypesList.innerHTML = html;
+                
+                // Add click events to facility type items
+                document.querySelectorAll('.facility-type-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        currentFacilityType = this.dataset.type;
+                        selectedFacilityType.textContent = currentFacilityType === 'All' ? 'All Facilities' : currentFacilityType;
+                        
+                        // Update active state
+                        document.querySelectorAll('.facility-type-item').forEach(el => {
+                            el.classList.remove('bg-green-50', 'text-green-800');
+                        });
+                        this.classList.add('bg-green-50', 'text-green-800');
+                        
+                        // Reload facilities
+                        loadFacilities();
+                    });
+                });
+            }
+            
+            function renderFacilities(facilities) {
+                if (facilities.length === 0) {
+                    facilitiesGrid.innerHTML = `
+                        <div class="col-span-2 bg-white shadow rounded-lg p-8 text-center">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                            <h3 class="mt-2 text-sm font-medium text-gray-900">No facilities found</h3>
+                            <p class="mt-1 text-sm text-gray-500">Get started by creating a new facility.</p>
+                            <div class="mt-4">
+                                <button type="button" onclick="document.getElementById('addFacilityBtn').click()" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-800 hover:bg-green-700">
+                                    <svg class="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                    Add Facility
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Calculate pagination
+                const totalPages = Math.ceil(facilities.length / facilitiesPerPage);
+                const startIndex = (currentPage - 1) * facilitiesPerPage;
+                const endIndex = Math.min(startIndex + facilitiesPerPage, facilities.length);
+                const facilitiesToDisplay = facilities.slice(startIndex, endIndex);
+                
+                // Generate facility cards
+                let html = '';
+                facilitiesToDisplay.forEach(facility => {
+                    let statusClass, statusText;
+                    switch (facility.status) {
+                        case 'Available':
+                            statusClass = 'bg-green-600';
+                            statusText = 'AVAILABLE';
+                            break;
+                        case 'Full Booked':
+                            statusClass = 'bg-red-600';
+                            statusText = 'FULL BOOKED';
+                            break;
+                        case 'Maintenance':
+                            statusClass = 'bg-blue-600';
+                            statusText = 'MAINTENANCE';
+                            break;
+                        case 'Disabled':
+                            statusClass = 'bg-gray-600';
+                            statusText = 'DISABLED';
+                            break;
+                        default:
+                            statusClass = 'bg-gray-600';
+                            statusText = facility.status.toUpperCase();
+                    }
+                    
+                    html += `
+                        <div class="bg-white shadow rounded-lg overflow-hidden">
+                            <div class="p-4">
+                                <div class="text-gray-700 font-semibold text-lg">${facility.facilityName}</div>
+                                <div class="text-gray-500 text-sm">${facility.typeOfFacility}</div>
+                                <div class="text-gray-500 text-sm mt-1">${facility.facilityCapacity} CAPACITY</div>
+                                <div class="text-gray-500 text-xs mt-1">Created by: ${facility.createdBy || 'Admin'}</div>
+                            </div>
+                            <div class="relative h-40 overflow-hidden">
+                                <img src="${facility.facilityImg || '/images/facilities/default.jpg'}" alt="${facility.facilityName}" class="w-full h-full object-cover">
+                                <div class="absolute top-2 right-2">
+                                    <span class="px-2 py-1 ${statusClass} text-white text-xs rounded">${statusText}</span>
+                                </div>
+                            </div>
+                            <div class="p-3 grid grid-cols-2 gap-2">
+                                <button class="bg-green-800 text-white text-sm p-2 rounded" 
+                                        onclick="updateFacilityStatus(${facility.facilityId}, '${facility.status === 'Maintenance' ? 'Available' : 'Maintenance'}')">
+                                    ${facility.status === 'Maintenance' ? 'REMOVE MAINTENANCE' : 'SET MAINTENANCE'}
+                                </button>
+                                <button class="bg-gray-200 text-gray-700 text-sm p-2 rounded" 
+                                        onclick="editFacility(${facility.facilityId})">EDIT</button>
+                                <button class="col-span-2 bg-red-600 text-white text-sm p-2 rounded"
+                                        onclick="updateFacilityStatus(${facility.facilityId}, '${facility.status === 'Disabled' ? 'Available' : 'Disabled'}')">
+                                    ${facility.status === 'Disabled' ? 'ENABLE' : 'DISABLE'}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                facilitiesGrid.innerHTML = html;
+                
+                // Render pagination if needed
+                if (totalPages > 1) {
+                    renderPagination(totalPages);
+                } else {
+                    document.getElementById('facilitiesPagination').innerHTML = '';
+                }
+            }
+            
+            function renderAllReservations(reservations) {
+                if (reservations.length === 0) {
+                    pendingReservationsList.innerHTML = `
+                        <tr>
+                            <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                                <p class="text-sm font-medium">No reservations found</p>
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                let html = '';
+                reservations.forEach(reservation => {
+                    html += `
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${reservation.facilityName}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${reservation.homeownerName}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${reservation.reservationDate}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${reservation.timeIn} - ${reservation.timeOut}</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${reservation.capacity} / ${reservation.facilityCapacity}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${reservation.status.toLowerCase() === 'approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">
+                                    ${reservation.status}
+                                </span>
+                            </td>
+                        </tr>
+                    `;
+                });
+                
+                pendingReservationsList.innerHTML = html;
+            }
+            
+            function renderPagination(totalPages) {
+                let html = `
+                    <nav class="inline-flex rounded-md shadow">
+                        <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : ''}" 
+                           onclick="${currentPage > 1 ? 'changePage(' + (currentPage - 1) + '); return false;' : 'return false;'}">
+                            «
+                        </a>
+                `;
+                
+                for (let i = 1; i <= totalPages; i++) {
+                    html += `
+                        <a href="#" class="px-3 py-2 border-t border-b border-gray-300 bg-white ${currentPage === i ? 'text-green-800 border-l border-r' : 'text-gray-500 hover:bg-gray-50 border-l border-r'}" 
+                           onclick="changePage(${i}); return false;">
+                            ${i}
+                        </a>
+                    `;
+                }
+                
+                html += `
+                        <a href="#" class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''}" 
+                           onclick="${currentPage < totalPages ? 'changePage(' + (currentPage + 1) + '); return false;' : 'return false;'}">
+                            »
+                        </a>
+                    </nav>
+                `;
+                
+                document.getElementById('facilitiesPagination').innerHTML = html;
+            }
+            
+            // Expose functions to global scope for event handlers
+            window.changePage = function(page) {
+                currentPage = page;
+                loadFacilities();
+            };
+            
+            window.updateFacilityStatus = async function(facilityId, status) {
+                try {
+                    const response = await fetch(`/admin/facilities/${facilityId}/status`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(status)
+                    });
+                    
+                    if (!response.ok) throw new Error('Failed to update facility status');
+                    
+                    showToast('success', `Facility ${status.toLowerCase() === 'disabled' ? 'disabled' : status.toLowerCase() === 'maintenance' ? 'set to maintenance' : 'updated'} successfully!`);
+                    loadFacilities();
+                } catch (error) {
+                    console.error('Error updating facility status:', error);
+                    showToast('error', 'Failed to update facility status. Please try again.');
+                }
+            };
+            
+            window.editFacility = function(facilityId) {
+                showEditFacilityModal(facilityId);
+            };
+            
+            // Helper function to show toast messages
+            function showToast(type, message) {
+                // Create toast element
+                const toast = document.createElement('div');
+                toast.className = `fixed top-4 right-4 px-4 py-2 rounded-lg shadow-lg z-50 ${
+                    type === 'success' ? 'bg-green-50 text-green-800 border border-green-300' : 
+                    'bg-red-50 text-red-800 border border-red-300'
+                }`;
+                
+                toast.innerHTML = `
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            ${type === 'success' 
+                                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>' 
+                                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>'}
+                        </svg>
+                        <span>${message}</span>
+                    </div>
+                `;
+                
+                // Add to DOM
+                document.body.appendChild(toast);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    toast.remove();
+                }, 3000);
+            }
+        });
+    </script>
+}

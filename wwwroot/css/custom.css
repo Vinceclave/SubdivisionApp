@@ -1,0 +1,35 @@
+﻿:root {
+    --beverly-light-green: #D9DED5;
+    --beverly-green: #445E4F;
+    --beverly-cream: #F9FBF3;
+    --beverly-dark-green: #374836;
+    --beverly-off-white: #FBFCF4;
+}
+
+body {
+    font-family: 'Poppins', 'Helvetica', 'Arial', sans-serif;
+}
+
+.bg-beverly-light-green {
+    background-color: var(--beverly-light-green) !important;
+}
+
+.text-beverly-green {
+    color: var(--beverly-green) !important;
+}
+
+.bg-beverly-cream {
+    background-color: var(--beverly-cream) !important;
+}
+
+.bg-beverly-dark-green {
+    background-color: var(--beverly-dark-green) !important;
+}
+
+.bg-beverly-off-white {
+    background-color: var(--beverly-off-white) !important;
+}
+
+.border-beverly-green {
+    border-color: var(--beverly-green) !important;
+}

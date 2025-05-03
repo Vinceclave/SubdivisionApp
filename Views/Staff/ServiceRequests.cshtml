@@ -1,0 +1,63 @@
+@{
+    ViewData["Title"] = "Service Requests";
+    ViewData["UserType"] = "Staff";
+    ViewData["Page"] = "ServiceRequests";
+    Layout = "_UniversalLayout";
+}
+
+<div class="space-y-6">
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-semibold text-gray-900">Assigned Service Requests</h1>
+    </div>
+    <div class="bg-white rounded-lg shadow p-4">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Priority</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Requested By</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date & Time</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                    </tr>
+                </thead>
+                <tbody id="serviceRequestsList" class="bg-white divide-y divide-gray-200">
+                    <!-- Service requests will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            async function loadServiceRequests() {
+                const response = await fetch('/staff/service-requests/list');
+                const data = await response.json();
+                const tbody = document.getElementById('serviceRequestsList');
+                tbody.innerHTML = '';
+                if (!data.success || !data.requests || !data.requests.length) {
+                    tbody.innerHTML = `<tr><td colspan="6" class="text-center py-8 text-gray-500">No assigned service requests found.</td></tr>`;
+                    return;
+                }
+                data.requests.forEach(req => {
+                    const date = new Date(req.requestDateTime);
+                    const formattedDate = date.toLocaleString();
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="px-6 py-4">${req.requestType}</td>
+                        <td class="px-6 py-4">${req.priority}</td>
+                        <td class="px-6 py-4">${req.description}</td>
+                        <td class="px-6 py-4">${req.homeownerName || ''}</td>
+                        <td class="px-6 py-4">${formattedDate}</td>
+                        <td class="px-6 py-4">${req.serviceStatus}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+            loadServiceRequests();
+        });
+    </script>
+}

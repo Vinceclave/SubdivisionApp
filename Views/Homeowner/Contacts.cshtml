@@ -1,0 +1,171 @@
+@model List<Subdivision.Models.Contact>
+
+@{
+    ViewData["Title"] = "Contact Directory";
+    ViewData["UserType"] = "Homeowner";
+    ViewData["Page"] = "Contacts";
+    Layout = "_UniversalLayout";
+}
+
+<div class="container mx-auto p-4">
+    <div class="mb-8 text-center">
+        <h1 class="text-2xl font-bold">Contact Directory</h1>
+        <p class="text-gray-600">
+            If you would like more information or report an issue. Please
+            contact our contact below. We will respond as soon as possible.
+        </p>
+    </div>
+
+    <!-- Contact Category Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+        <button class="py-2 px-4 bg-gray-700 text-white rounded-md shadow-sm" id="all-contacts-btn">
+            All Contacts
+        </button>
+        <button class="py-2 px-4 bg-gray-200 text-gray-700 rounded-md shadow-sm" id="hoa-boards-btn">
+            HOA Boards
+        </button>
+        <button class="py-2 px-4 bg-gray-200 text-gray-700 rounded-md shadow-sm" id="security-btn">
+            Security
+        </button>
+        <button class="py-2 px-4 bg-gray-200 text-gray-700 rounded-md shadow-sm" id="fire-department-btn">
+            Fire Department
+        </button>
+        <button class="py-2 px-4 bg-gray-200 text-gray-700 rounded-md shadow-sm" id="medical-emergency-btn">
+            Medical Emergency
+        </button>
+    </div>
+
+    <!-- Contact Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        @foreach (var contact in Model.Where(c => c.Category == ContactCategory.HOA_Boards))
+        {
+            <div class="contact-card hoa-boards bg-white border rounded-lg shadow-sm p-6">
+                <h3 class="text-xl font-semibold mb-1">@contact.ContactPersonName</h3>
+                <p class="text-gray-500 text-sm mb-2">HOA President</p>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-gray-700">+ @contact.PhoneNumber</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-gray-700">@contact.Email</span>
+                </div>
+            </div>
+        }
+        
+        @foreach (var contact in Model.Where(c => c.Category == ContactCategory.Security))
+        {
+            <div class="contact-card security bg-white border rounded-lg shadow-sm p-6">
+                <h3 class="text-xl font-semibold mb-1">@contact.ContactPersonName</h3>
+                <p class="text-gray-500 text-sm mb-2">Security</p>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-gray-700">+ @contact.PhoneNumber</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-gray-700">@contact.Email</span>
+                </div>
+            </div>
+        }
+        
+        @foreach (var contact in Model.Where(c => c.Category == ContactCategory.Fire_Department))
+        {
+            <div class="contact-card fire-department bg-white border rounded-lg shadow-sm p-6">
+                <h3 class="text-xl font-semibold mb-1">@contact.ContactPersonName</h3>
+                <p class="text-gray-500 text-sm mb-2">Fire Department</p>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-gray-700">+ @contact.PhoneNumber</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-gray-700">@contact.Email</span>
+                </div>
+            </div>
+        }
+        
+        @foreach (var contact in Model.Where(c => c.Category == ContactCategory.Medical_Emergency))
+        {
+            <div class="contact-card medical-emergency bg-white border rounded-lg shadow-sm p-6">
+                <h3 class="text-xl font-semibold mb-1">@contact.ContactPersonName</h3>
+                <p class="text-gray-500 text-sm mb-2">Medical Emergency</p>
+                <div class="flex items-center gap-2 mb-2">
+                    <span class="text-gray-700">+ @contact.PhoneNumber</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-gray-700">@contact.Email</span>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const allBtn = document.getElementById('all-contacts-btn');
+            const hoaBtn = document.getElementById('hoa-boards-btn');
+            const securityBtn = document.getElementById('security-btn');
+            const fireBtn = document.getElementById('fire-department-btn');
+            const medicalBtn = document.getElementById('medical-emergency-btn');
+            
+            const allCards = document.querySelectorAll('.contact-card');
+            const hoaCards = document.querySelectorAll('.hoa-boards');
+            const securityCards = document.querySelectorAll('.security');
+            const fireCards = document.querySelectorAll('.fire-department');
+            const medicalCards = document.querySelectorAll('.medical-emergency');
+            
+            // Reset button styles
+            function resetButtons() {
+                [allBtn, hoaBtn, securityBtn, fireBtn, medicalBtn].forEach(btn => {
+                    btn.classList.remove('bg-gray-700', 'text-white');
+                    btn.classList.add('bg-gray-200', 'text-gray-700');
+                });
+            }
+            
+            // Show all contacts
+            allBtn.addEventListener('click', function() {
+                resetButtons();
+                allBtn.classList.add('bg-gray-700', 'text-white');
+                allBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                
+                allCards.forEach(card => card.style.display = 'block');
+            });
+            
+            // Show only HOA Boards
+            hoaBtn.addEventListener('click', function() {
+                resetButtons();
+                hoaBtn.classList.add('bg-gray-700', 'text-white');
+                hoaBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                
+                allCards.forEach(card => card.style.display = 'none');
+                hoaCards.forEach(card => card.style.display = 'block');
+            });
+            
+            // Show only Security
+            securityBtn.addEventListener('click', function() {
+                resetButtons();
+                securityBtn.classList.add('bg-gray-700', 'text-white');
+                securityBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                
+                allCards.forEach(card => card.style.display = 'none');
+                securityCards.forEach(card => card.style.display = 'block');
+            });
+            
+            // Show only Fire Department
+            fireBtn.addEventListener('click', function() {
+                resetButtons();
+                fireBtn.classList.add('bg-gray-700', 'text-white');
+                fireBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                
+                allCards.forEach(card => card.style.display = 'none');
+                fireCards.forEach(card => card.style.display = 'block');
+            });
+            
+            // Show only Medical Emergency
+            medicalBtn.addEventListener('click', function() {
+                resetButtons();
+                medicalBtn.classList.add('bg-gray-700', 'text-white');
+                medicalBtn.classList.remove('bg-gray-200', 'text-gray-700');
+                
+                allCards.forEach(card => card.style.display = 'none');
+                medicalCards.forEach(card => card.style.display = 'block');
+            });
+        });
+    </script>
+}

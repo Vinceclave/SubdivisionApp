@@ -1,0 +1,266 @@
+@{
+    ViewData["Title"] = "Admin Home";
+    ViewData["UserType"] = "Admin";
+    ViewData["Page"] = "Index";
+    Layout = "_UniversalLayout";
+
+    // Fix nullable warning
+    string userRole = ViewBag.UserRole as string ?? "Homeowner";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Total Users -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Total Users</h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="d-flex align-items-end">
+                                <span class="display-4">2,436</span>
+                                <span class="ml-2 text-muted">Users</span>
+                            </div>
+                            <div class="mt-3">
+                                <div class="d-flex justify-content-between">
+                                    <span>Residents</span>
+                                    <span class="font-weight-bold">1,218</span>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <span>Staff</span>
+                                    <span class="font-weight-bold">1,218</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="icon bg-primary text-white rounded-circle p-3">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Visitors -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Total Visitors</h5>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="d-flex align-items-end">
+                                <span class="display-4">50</span>
+                                <span class="ml-2 text-muted">Visitors</span>
+                            </div>
+                            <div class="mt-3 text-success">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.5% from last month</span>
+                            </div>
+                        </div>
+                        <div class="icon bg-secondary text-white rounded-circle p-3">
+                            <i class="fas fa-user-friends fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Most Booked Facilities -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Most Booked Facilities</h5>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Swimming Pool</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Function Hall</span>
+                            <span>70%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Fitness Gym</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Library</span>
+                            <span>45%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Tennis Court</span>
+                            <span>55%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 55%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Recent Activities -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title">Recent Activities</h5>
+                        <a href="#" class="text-primary">View All</a>
+                    </div>
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <span>New Forum Post</span>
+                                <span class="text-muted">5 min ago</span>
+                            </div>
+                            <p class="mb-0">James Wilson has posted!</p>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <span>New Forum Post</span>
+                                <span class="text-muted">1 min ago</span>
+                            </div>
+                            <p class="mb-0">James Lee has posted!</p>
+                        </div>
+                        <div class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <span>Payment Received</span>
+                                <span class="text-muted">3 hrs ago</span>
+                            </div>
+                            <p class="mb-0">Sarah Johnson paid rent in full.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Service Request Status -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Service Request Status</h5>
+                    <div class="d-flex justify-content-center my-4">
+                        <div class="position-relative" style="width: 150px; height: 150px;">
+                            <svg viewBox="0 0 100 100" class="w-100 h-100">
+                                <!-- Green (Completed) -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#10b981" stroke-width="20" stroke-dasharray="251.3" stroke-dashoffset="125.7" transform="rotate(-90 50 50)"></circle>
+                                <!-- Yellow (Open) -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#f59e0b" stroke-width="20" stroke-dasharray="75.4" stroke-dashoffset="0" transform="rotate(-90 50 50)"></circle>
+                                <!-- Blue (In Progress) -->
+                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#3b82f6" stroke-width="20" stroke-dasharray="50.3" stroke-dashoffset="0" transform="rotate(18 50 50)"></circle>
+                                <circle cx="50" cy="50" r="30" fill="white"></circle>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <div class="d-flex align-items-center">
+                            <div class="bg-warning rounded-circle mr-2" style="width: 15px; height: 15px;"></div>
+                            <span>Open</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-primary rounded-circle mr-2" style="width: 15px; height: 15px;"></div>
+                            <span>In Progress</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="bg-success rounded-circle mr-2" style="width: 15px; height: 15px;"></div>
+                            <span>Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Financial Review -->
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Financial Review</h5>
+                    <div class="border-top border-primary pt-4">
+                        <div class="position-relative mb-4" style="height: 250px;">
+                            <div class="position-absolute w-100 h-100 d-flex flex-column justify-content-between text-muted">
+                                <div>$80,000</div>
+                                <div>$70,000</div>
+                                <div>$60,000</div>
+                                <div>$50,000</div>
+                                <div>$40,000</div>
+                                <div>$30,000</div>
+                                <div>$20,000</div>
+                                <div>$10,000</div>
+                                <div>$5,000</div>
+                                <div>$0</div>
+                            </div>
+                            <div class="d-flex position-relative h-100 align-items-end">
+                                <div class="w-20 d-flex flex-column align-items-center">
+                                    <div class="d-flex w-100">
+                                        <div class="bg-primary h-75 w-50"></div>
+                                        <div class="bg-info h-50 w-50"></div>
+                                    </div>
+                                    <div class="mt-2 text-xs">JAN</div>
+                                </div>
+                                <div class="w-20 d-flex flex-column align-items-center">
+                                    <div class="d-flex w-100">
+                                        <div class="bg-primary h-70 w-50"></div>
+                                        <div class="bg-info h-65 w-50"></div>
+                                    </div>
+                                    <div class="mt-2 text-xs">FEB</div>
+                                </div>
+                                <div class="w-20 d-flex flex-column align-items-center">
+                                    <div class="d-flex w-100">
+                                        <div class="bg-primary h-65 w-50"></div>
+                                        <div class="bg-info h-65 w-50"></div>
+                                    </div>
+                                    <div class="mt-2 text-xs">MAR</div>
+                                </div>
+                                <div class="w-20 d-flex flex-column align-items-center">
+                                    <div class="d-flex w-100">
+                                        <div class="bg-primary h-75 w-50"></div>
+                                        <div class="bg-info h-60 w-50"></div>
+                                    </div>
+                                    <div class="mt-2 text-xs">APR</div>
+                                </div>
+                                <div class="w-20 d-flex flex-column align-items-center">
+                                    <div class="d-flex w-100">
+                                        <div class="bg-primary h-70 w-50"></div>
+                                        <div class="bg-info h-50 w-50"></div>
+                                    </div>
+                                    <div class="mt-2 text-xs">MAY</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-start align-items-center mt-4">
+                            <div class="d-flex align-items-center mr-4">
+                                <div class="bg-primary rounded-circle mr-2" style="width: 15px; height: 15px;"></div>
+                                <span>Bills Issued</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="bg-info rounded-circle mr-2" style="width: 15px; height: 15px;"></div>
+                                <span>Payments Collected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

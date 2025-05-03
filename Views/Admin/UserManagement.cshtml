@@ -1,0 +1,570 @@
+@model List<Subdivision.Models.User>
+
+@{
+    ViewData["Title"] = "User Management";
+    ViewData["UserType"] = "Admin";
+    ViewData["Page"] = "UserManagement";
+    Layout = "_UniversalLayout";
+}
+
+@if (TempData["UserManagementError"] != null)
+{
+    <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-red-700">@TempData["UserManagementError"]</p>
+            </div>
+        </div>
+    </div>
+}
+else if (TempData["UserManagementSuccess"] != null)
+{
+    <div class="bg-green-50 border-l-4 border-green-500 p-4 mb-6">
+        <div class="flex">
+            <div class="flex-shrink-0">
+                <svg class="h-5 w-5 text-green-500" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+            </div>
+            <div class="ml-3">
+                <p class="text-sm text-green-700">@TempData["UserManagementSuccess"]</p>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="container-fluid p-6">
+    <!-- Header -->
+    <div class="mb-6">
+        <h1 class="text-2xl font-semibold text-gray-900">User Management</h1>
+        <p class="mt-2 text-sm text-gray-700">Manage users, their roles, and permissions in the system.</p>
+    </div>
+
+    <!-- Search and Add User -->
+    <div class="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between mb-6">
+        <div class="relative flex-1 max-w-md">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            <input type="text" 
+                   id="searchInput" 
+                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary sm:text-sm" 
+                   placeholder="Search users..."
+                   onkeyup="filterUsers()">
+        </div>
+        <button class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200"
+                data-bs-toggle="modal" 
+                data-bs-target="#addUserModal">
+            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Add New User
+        </button>
+    </div>
+
+    <!-- Users Table -->
+    <div class="bg-white shadow rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200" id="userTable">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Full Name</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Address</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact No.</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            </tr>
+        </thead>
+                <tbody class="bg-white divide-y divide-gray-200" id="userTableBody">
+            @if (Model != null && Model.Any())
+            {
+                foreach (var user in Model)
+                {
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    @user.FirstName @user.LastName
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@user.Username</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@user.Address</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@user.PhoneNumber</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">@user.Email</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium 
+                                           @(user.UserType.ToString() == "Staff" ? "bg-blue-100 text-blue-800" : "bg-green-100 text-green-800")">
+                                        @user.UserType.ToString()
+                                    </span>
+                        </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
+                                    <button class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-primary-700 bg-primary-100 hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                                            data-bs-toggle="modal" 
+                                            data-bs-target="#editUserModal" 
+                                            data-user-id="@user.LoginId" 
+                                            onclick="loadUserForEdit(@user.LoginId)">
+                                        <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                        Edit
+                                    </button>
+                                    <button type="button" 
+                                            class="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                            onclick="confirmDeleteUser(@user.LoginId, '@user.FirstName @user.LastName')">
+                                        <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        Remove
+                                    </button>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                            <td colspan="7" class="px-6 py-4 text-center text-sm text-gray-500">
+                                <div class="flex flex-col items-center justify-center py-8">
+                                    <svg class="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    </svg>
+                                    <p class="mt-2">No users found.</p>
+                                </div>
+                            </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+        </div>
+    </div>
+</div>
+
+<!-- Add User Modal -->
+<div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="flex min-h-screen items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/50 transition-opacity"></div>
+        <div class="relative w-full max-w-lg transform rounded-lg border bg-background p-6 shadow-xl transition-all">
+            <div class="flex items-center justify-between border-b pb-4">
+                <h5 class="text-lg font-semibold text-gray-900" id="addUserModalLabel">Add New User</h5>
+                <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" data-bs-dismiss="modal" aria-label="Close">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-4">
+                <form method="post" action="@Url.Action("CreateUser", "Admin")" class="space-y-6" id="addUserForm">
+                    <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                            <input type="text" 
+                                   id="username" 
+                                   name="Username" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <input type="password" 
+                                   id="password" 
+                                   name="Password" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                        <div>
+                            <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                            <input type="text" 
+                                   id="firstName" 
+                                   name="FirstName" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                        <div>
+                            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                            <input type="text" 
+                                   id="lastName" 
+                                   name="LastName" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                        <div class="sm:col-span-2">
+                            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                            <input type="text" 
+                                   id="address" 
+                                   name="Address" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                        <div>
+                            <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Contact No.</label>
+                            <input type="text" 
+                                   id="phoneNumber" 
+                                   name="PhoneNumber" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" 
+                                   id="email" 
+                                   name="Email" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                    </div>
+                        <div>
+                            <label for="userType" class="block text-sm font-medium text-gray-700">Role</label>
+                            <select id="userType" 
+                                    name="UserType" 
+                                    required 
+                                    onchange="toggleStaffPosition()"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                            <option value="Staff">Staff</option>
+                            <option value="Homeowner">Homeowner</option>
+                        </select>
+                    </div>
+                        <div id="staffPositionDiv">
+                            <label for="staffPosition" class="block text-sm font-medium text-gray-700">Staff Position</label>
+                            <select id="staffPosition" 
+                                    name="StaffPosition"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                            <option value="0">Security</option>
+                            <option value="1">Maintenance</option>
+                            <option value="2">Housekeeping</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" 
+                                class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                                data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" 
+                                id="addUserSubmitBtn"
+                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            Create User
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit User Modal -->
+<div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
+    <div class="flex min-h-screen items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/50 transition-opacity"></div>
+        <div class="relative w-full max-w-lg transform rounded-lg border bg-background p-6 shadow-xl transition-all">
+            <div class="flex items-center justify-between border-b pb-4">
+                <h5 class="text-lg font-semibold text-gray-900" id="editUserModalLabel">Edit User</h5>
+                <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" data-bs-dismiss="modal" aria-label="Close">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="mt-4" id="editUserModalContent">
+                <form id="editUserForm" method="post" action="@Url.Action("EditUser", "Admin")" onsubmit="return submitEditUserForm(event)" class="space-y-6">
+                    <input type="hidden" name="LoginId" id="editLoginId" />
+                    <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-2">
+                        <div>
+                            <label for="editUsername" class="block text-sm font-medium text-gray-700">Username</label>
+                            <input type="text" 
+                                   id="editUsername" 
+                                   name="Username" 
+                                   disabled 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-50 text-gray-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="editFirstName" class="block text-sm font-medium text-gray-700">First Name</label>
+                            <input type="text" 
+                                   id="editFirstName" 
+                                   name="FirstName" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="editLastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+                            <input type="text" 
+                                   id="editLastName" 
+                                   name="LastName" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label for="editAddress" class="block text-sm font-medium text-gray-700">Address</label>
+                            <input type="text" 
+                                   id="editAddress" 
+                                   name="Address" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="editPhoneNumber" class="block text-sm font-medium text-gray-700">Contact No.</label>
+                            <input type="text" 
+                                   id="editPhoneNumber" 
+                                   name="PhoneNumber" 
+                                   required 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="editEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" 
+                                   id="editEmail" 
+                                   name="Email" 
+                                   disabled 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-50 text-gray-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="editUserType" class="block text-sm font-medium text-gray-700">Role</label>
+                            <input type="text" 
+                                   id="editUserType" 
+                                   name="UserType" 
+                                   disabled 
+                                   class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 bg-gray-50 text-gray-500 sm:text-sm" />
+                            <input type="hidden" name="UserType" id="editUserTypeHidden" />
+                        </div>
+                        <div id="editStaffPositionDiv" style="display: none;">
+                            <label for="editStaffPosition" class="block text-sm font-medium text-gray-700">Staff Position</label>
+                            <select id="editStaffPosition" 
+                                    name="StaffPosition"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-primary focus:border-primary sm:text-sm">
+                                <option value="0">Security</option>
+                                <option value="1">Maintenance</option>
+                                <option value="2">Housekeeping</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" 
+                                class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                                data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" 
+                                id="editUserSubmitBtn"
+                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            Update User
+                        </button>
+                    </div>
+                </form>
+            </div>
+                    </div>
+                    </div>
+                    </div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <div class="flex min-h-screen items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/50 transition-opacity"></div>
+        <div class="relative w-full max-w-md transform rounded-lg border bg-background p-6 shadow-xl transition-all">
+            <div class="flex items-center justify-between border-b pb-4">
+                <h5 class="text-lg font-semibold text-gray-900" id="deleteUserModalLabel">Confirm Deletion</h5>
+                <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" data-bs-dismiss="modal" aria-label="Close">
+                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                    </div>
+            <div class="mt-4">
+                <p class="text-sm text-gray-700">Are you sure you want to delete the user <span id="deleteUserName" class="font-medium"></span>? This action cannot be undone.</p>
+                <form id="deleteUserForm" method="post" action="" class="mt-6">
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" 
+                                class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                                data-bs-dismiss="modal">
+                            Cancel
+                        </button>
+                        <button type="submit" 
+                                id="deleteUserSubmitBtn"
+                                class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Delete User
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize all modals
+        var modals = document.querySelectorAll('.modal');
+        modals.forEach(function(modal) {
+            new bootstrap.Modal(modal, {
+                backdrop: 'static',
+                keyboard: false
+            });
+        });
+
+        // Add event listeners for modal triggers
+        var addUserTrigger = document.querySelector('[data-bs-target="#addUserModal"]');
+        if (addUserTrigger) {
+            addUserTrigger.addEventListener('click', function() {
+                var modal = document.getElementById('addUserModal');
+                modal.classList.remove('hidden');
+                var bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+                bsModal.show();
+            });
+        }
+
+        // Handle form submissions
+        var addUserForm = document.getElementById('addUserForm');
+        if (addUserForm) {
+            addUserForm.addEventListener('submit', function(e) {
+                var submitButton = document.getElementById('addUserSubmitBtn');
+                if (submitButton) {
+                    submitButton.disabled = true;
+                    submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Processing...';
+                }
+            });
+        }
+    });
+
+    function loadUserForEdit(userId) {
+        $.get('@Url.Action("EditUser", "Admin")/' + userId, function (data) {
+            $('#editLoginId').val(data.loginId);
+            $('#editUsername').val(data.username);
+            $('#editFirstName').val(data.firstName);
+            $('#editLastName').val(data.lastName);
+            $('#editAddress').val(data.address);
+            $('#editPhoneNumber').val(data.phoneNumber);
+            $('#editEmail').val(data.email);
+            $('#editUserType').val(data.userType);
+            $('#editUserTypeHidden').val(data.userType);
+            
+            // Handle staff position display and selection
+            if (data.userType === "Staff") {
+                $('#editStaffPositionDiv').show();
+                $('#editStaffPosition').val(data.staffPosition || "0");
+            } else {
+                $('#editStaffPositionDiv').hide();
+            }
+            
+            var modal = document.getElementById('editUserModal');
+            modal.classList.remove('hidden');
+            var bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+            bsModal.show();
+        }).fail(function() {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Error loading user data.',
+                confirmButtonColor: '#1e40af'
+            });
+        });
+    }
+
+    function toggleStaffPosition() {
+        const userType = document.getElementById("userType").value;
+        const staffPositionDiv = document.getElementById("staffPositionDiv");
+        staffPositionDiv.style.display = userType === "Staff" ? "block" : "none";
+    }
+
+    function submitEditUserForm(event) {
+        event.preventDefault();
+
+        const submitButton = document.getElementById('editUserSubmitBtn');
+        if (submitButton) {
+            submitButton.disabled = true;
+            submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Processing...';
+        }
+
+        const userData = {
+            LoginId: $('#editLoginId').val(),
+            FirstName: $('#editFirstName').val(),
+            LastName: $('#editLastName').val(),
+            Address: $('#editAddress').val(),
+            PhoneNumber: $('#editPhoneNumber').val(),
+        };
+        
+        // Add StaffPosition if user is a Staff member
+        if ($('#editUserType').val() === 'Staff') {
+            userData.StaffPosition = $('#editStaffPosition').val();
+        }
+
+        $.ajax({
+            url: '@Url.Action("EditUser", "Admin")',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(userData),
+            success: function(response) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: response,
+                    confirmButtonColor: '#1e40af'
+                }).then(() => {
+                    location.reload();
+                });
+            },
+            error: function(xhr) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error: ' + xhr.responseText,
+                    confirmButtonColor: '#1e40af'
+                });
+                
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = 'Update User';
+                }
+            }
+        });
+        
+        return false;
+    }
+
+    function confirmDeleteUser(userId, userName) {
+        // Set the user name in the confirmation modal
+        document.getElementById('deleteUserName').textContent = userName;
+        
+        // Set the form action
+        document.getElementById('deleteUserForm').action = '@Url.Action("DeleteUser", "Admin")/' + userId;
+        
+        // Show the modal
+        var modal = document.getElementById('deleteUserModal');
+        modal.classList.remove('hidden');
+        var bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
+        bsModal.show();
+    }
+
+    function filterUsers() {
+        var input = document.getElementById("searchInput");
+        var filter = input.value.toLowerCase();
+        var tbody = document.getElementById("userTableBody");
+        var rows = tbody.getElementsByTagName("tr");
+
+        for (var i = 0; i < rows.length; i++) {
+            var cells = rows[i].getElementsByTagName("td");
+            var found = false;
+            for (var j = 0; j < cells.length; j++) {
+                var cell = cells[j];
+                if (cell) {
+                    var text = cell.textContent || cell.innerText;
+                    if (text.toLowerCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            rows[i].style.display = found ? "" : "none";
+        }
+    }
+
+    // Initialize staff position visibility
+    document.addEventListener('DOMContentLoaded', function() {
+        toggleStaffPosition();
+    });
+</script>
