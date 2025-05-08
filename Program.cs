@@ -25,10 +25,17 @@ namespace Subdivision
                 options.Cookie.IsEssential = true;
             });
 
-            // Register the ApplicationDbContext with the connection string
+            // Register the ApplicationDbContext with the connection string and enable retry logic
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
             builder.Services.AddDbContext<SubdivisionDbContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString, sqlOptions =>
+                    sqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 5,  // Max retry attempts
+                        maxRetryDelay: TimeSpan.FromSeconds(10),  // Max delay between retries
+                        errorNumbersToAdd: null  // Optionally, specify error codes to trigger retries (null retries on all transient errors)
+                    )
+                )
+            );
 
             var app = builder.Build();
 
