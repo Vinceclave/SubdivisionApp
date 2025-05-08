@@ -29,13 +29,47 @@ namespace Subdivision.Controllers
             ViewData["UserType"] = "Admin";
             ViewData["Page"] = "Dashboard";
 
-            // Get counts for the dashboard
+            // User Statistics
             ViewBag.TotalUsers = await _context.Users.CountAsync();
             ViewBag.TotalResidents = await _context.Homeowners.CountAsync();
             ViewBag.TotalStaff = await _context.Staffs.CountAsync();
 
-            // Returning view with layout
-            return View("~/Views/Admin/Index.cshtml"); // This view will be rendered with the _Layout.cshtml
+            // Service Request Statistics
+            ViewBag.TotalServiceRequests = await _context.ServiceRequests.CountAsync();
+            ViewBag.PendingServiceRequests = await _context.ServiceRequests.CountAsync(sr => sr.ServiceStatus == "Pending");
+            ViewBag.InProgressServiceRequests = await _context.ServiceRequests.CountAsync(sr => sr.ServiceStatus == "In Progress");
+
+            // Facilities Statistics
+            ViewBag.TotalFacilities = await _context.Facilities.CountAsync();
+            ViewBag.AvailableFacilities = await _context.Facilities.CountAsync(f => f.Status == "Available");
+            ViewBag.MaintenanceFacilities = await _context.Facilities.CountAsync(f => f.Status == "Maintenance");
+
+            // Bills Statistics
+            ViewBag.TotalBills = await _context.Bills.CountAsync();
+            ViewBag.PendingBills = await _context.Bills.CountAsync(b => b.Status == "Pending");
+            ViewBag.PaidBills = await _context.Bills.CountAsync(b => b.Status == "Paid");
+
+            // Events Statistics
+            var today = DateTime.Today;
+            ViewBag.TotalEvents = await _context.EventCalendars.CountAsync();
+            ViewBag.UpcomingEvents = await _context.EventCalendars.CountAsync(e => e.EventDateTime >= today);
+
+            // Reservations Statistics
+            ViewBag.TotalReservations = await _context.Reservations.CountAsync();
+            ViewBag.PendingReservations = await _context.Reservations.CountAsync(r => r.Status == "Pending");
+            ViewBag.ApprovedReservations = await _context.Reservations.CountAsync(r => r.Status == "Approved");
+
+            // Feedback and Complaints Statistics
+            ViewBag.TotalFeedback = await _context.Feedbacks.CountAsync() + await _context.Complaints.CountAsync();
+            ViewBag.FeedbackCount = await _context.Feedbacks.CountAsync();
+            ViewBag.ComplaintsCount = await _context.Complaints.CountAsync();
+
+            // Calculate Average Rating
+            var ratings = await _context.Feedbacks.Select(f => f.Rating).ToListAsync();
+            ViewBag.TotalRatings = ratings.Count;
+            ViewBag.AverageRating = ratings.Any() ? Math.Round(ratings.Average(), 1) : 0;
+
+            return View("~/Views/Admin/Index.cshtml");
         }
 
         [Route("admin/dashboard")]
@@ -62,13 +96,24 @@ namespace Subdivision.Controllers
             ViewData["Page"] = "Community";
 
             // Fetch announcements and forums from the database
-            var announcements = _context.Announcements.ToList(); // Fetch announcements
-            var forums = _context.Forums.ToList(); // Fetch forums
+            var announcements = _context.Announcements
+                .OrderByDescending(a => a.DateTimePosted)
+                .ToList(); // Fetch announcements
+            var forums = _context.Forums
+                .OrderByDescending(f => f.DateTimePosted)
+                .ToList(); // Fetch forums
 
             // Create a ValueTuple to pass to the view
-            var model = (forums, announcements); // This creates a tuple of (List<Forum>, List<Announcement>)
+            var model = (forums, announcements);
 
-            return View("~/Views/Admin/Community.cshtml", model); // Pass the ValueTuple to the view
+            // Ensure TempData is initialized
+            if (TempData["CommunitySuccess"] == null && TempData["CommunityError"] == null)
+            {
+                TempData["CommunitySuccess"] = null;
+                TempData["CommunityError"] = null;
+            }
+
+            return View("~/Views/Admin/Community.cshtml", model);
         }
 
         [Route("admin/events")]
@@ -300,46 +345,35 @@ namespace Subdivision.Controllers
 
         [HttpPost]
         [Route("admin/contacts/add")]
-        public async Task<IActionResult> AddContact([FromForm] Contact contact)
+        public async Task<IActionResult> AddContact([Bind("ContactPersonName,PhoneNumber,Email,Category")] Contact contact)
         {
-            try
+            // Check if the model state is valid
+
+            // Set the AdminId from the session
+            var adminId = HttpContext.Session.GetInt32("AdminId");
+            if (adminId == null)
             {
-                var adminId = HttpContext.Session.GetInt32("AdminId");
-                if (adminId == null)
-                {
-                    TempData["Error"] = "Not authorized. Please log in as an admin.";
-                    return RedirectToAction(nameof(Contacts));
-                }
-
-                // Set the AdminId property
-                contact.AdminId = adminId.Value;
-
-                if (!ModelState.IsValid)
-                {
-                    var errors = string.Join("; ", ModelState.Values
-                        .SelectMany(v => v.Errors)
-                        .Select(e => e.ErrorMessage));
-                    TempData["Error"] = $"Please fill in all required fields correctly. {errors}";
-                    return RedirectToAction(nameof(Contacts));
-                }
-
-                // Validate category
-                if (!Enum.IsDefined(typeof(ContactCategory), contact.Category))
-                {
-                    TempData["Error"] = "Please select a valid category";
-                    return RedirectToAction(nameof(Contacts));
-                }
-
-                _context.Contacts.Add(contact);
-                await _context.SaveChangesAsync();
-                TempData["Success"] = "Contact added successfully!";
+                TempData["Error"] = "Not authorized.";
+                return RedirectToAction(nameof(Contacts));
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error adding contact");
-                TempData["Error"] = $"An error occurred while adding the contact: {ex.Message}";
-            }
+            contact.AdminId = adminId.Value; // Set the AdminId
 
+            // Add the contact to the database
+            _context.Contacts.Add(contact);
+            await _context.SaveChangesAsync(); // Save changes asynchronously
+
+            TempData["Success"] = "Contact added successfully!";
+            return RedirectToAction(nameof(Contacts)); // Redirect to the Contacts view
+        }
+
+        [HttpPost]
+        [Route("admin/contacts/create")]
+        public async Task<IActionResult> CreateContact([Bind("ContactPersonName,PhoneNumber,Email,Category")] Contact contact)
+        {
+            var adminId = HttpContext.Session.GetInt32("AdminId");
+            contact.AdminId = adminId ?? 0;
+            _context.Contacts.Add(contact);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Contacts));
         }
 
@@ -1596,6 +1630,183 @@ namespace Subdivision.Controllers
             {
                 _logger.LogError(ex, "Error fetching homeowners list");
                 return StatusCode(500, new { message = "Error fetching homeowners" });
+            }
+        }
+
+        [HttpGet]
+        [Route("admin/GetContact/{id}")]
+        public async Task<IActionResult> GetContact(int id)
+        {
+            var contact = await _context.Contacts.FindAsync(id);
+            if (contact == null)
+            {
+                return NotFound();
+            }
+
+            return Json(new
+            {
+                contactId = contact.ContactId,
+                contactPersonName = contact.ContactPersonName,
+                phoneNumber = contact.PhoneNumber,
+                email = contact.Email,
+                category = (int)contact.Category
+            });
+        }
+
+        [HttpPost]
+        [Route("admin/contacts/update")]
+        public async Task<IActionResult> UpdateContact([Bind("ContactId,ContactPersonName,PhoneNumber,Email,Category")] Contact contact)
+        {
+            var existingContact = await _context.Contacts.FindAsync(contact.ContactId);
+            if (existingContact == null)
+            {
+                return RedirectToAction(nameof(Contacts));
+            }
+
+            existingContact.ContactPersonName = contact.ContactPersonName;
+            existingContact.PhoneNumber = contact.PhoneNumber;
+            existingContact.Email = contact.Email;
+            existingContact.Category = contact.Category;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Contacts));
+        }
+
+        [HttpGet]
+        [Route("api/admin/dashboard/stats")]
+        public async Task<IActionResult> GetDashboardStats([FromQuery] int days = 30)
+        {
+            try
+            {
+                var today = DateTime.Today;
+                var startDate = today.AddDays(-days);
+                
+                // Basic Statistics
+                var basicStats = new
+                {
+                    totalServiceRequests = await _context.ServiceRequests.CountAsync(),
+                    pendingServiceRequests = await _context.ServiceRequests
+                        .CountAsync(sr => sr.ServiceStatus == "Pending"),
+                    inProgressServiceRequests = await _context.ServiceRequests
+                        .CountAsync(sr => sr.ServiceStatus == "In Progress"),
+
+                    totalReservations = await _context.Reservations.CountAsync(),
+                    pendingReservations = await _context.Reservations
+                        .CountAsync(r => r.Status == "Pending"),
+                    approvedReservations = await _context.Reservations
+                        .CountAsync(r => r.Status == "Approved"),
+
+                    totalBills = await _context.Bills.CountAsync(),
+                    pendingBills = await _context.Bills
+                        .CountAsync(b => b.Status == "Pending"),
+                    paidBills = await _context.Bills
+                        .CountAsync(b => b.Status == "Paid"),
+
+                    totalEvents = await _context.EventCalendars.CountAsync(),
+                    upcomingEvents = await _context.EventCalendars
+                        .CountAsync(e => e.EventDateTime >= today)
+                };
+
+                // Service Requests Chart Data
+                var serviceRequestsData = await _context.ServiceRequests
+                    .Where(sr => sr.RequestDateTime >= startDate)
+                    .GroupBy(sr => sr.RequestDateTime.Date)
+                    .Select(g => new { Date = g.Key, Count = g.Count() })
+                    .OrderBy(x => x.Date)
+                    .ToListAsync();
+
+                // Bills Chart Data
+                var billsData = await _context.Bills
+                    .Where(b => b.DueDate >= startDate)
+                    .GroupBy(b => b.DueDate.Date)
+                    .Select(g => new
+                    {
+                        Date = g.Key,
+                        BillAmount = g.Sum(b => b.Amount),
+                        PaymentAmount = g.Sum(b => b.Payments.Sum(p => p.AmountPaid))
+                    })
+                    .OrderBy(x => x.Date)
+                    .ToListAsync();
+
+                // Reservations Chart Data
+                var reservationsData = await _context.Reservations
+                    .Where(r => r.DateOfReservation >= startDate)
+                    .GroupBy(r => r.DateOfReservation.Date)
+                    .Select(g => new { Date = g.Key, Count = g.Count() })
+                    .OrderBy(x => x.Date)
+                    .ToListAsync();
+
+                // Events Chart Data
+                var now = DateTime.Now;
+                var weekEnd = now.AddDays(7);
+                var monthEnd = now.AddMonths(1);
+
+                var eventsData = new
+                {
+                    upcomingEvents = await _context.EventCalendars
+                        .CountAsync(e => e.EventDateTime >= now),
+                    thisWeekEvents = await _context.EventCalendars
+                        .CountAsync(e => e.EventDateTime >= now && e.EventDateTime <= weekEnd),
+                    thisMonthEvents = await _context.EventCalendars
+                        .CountAsync(e => e.EventDateTime >= now && e.EventDateTime <= monthEnd)
+                };
+
+                // Prepare chart data in the format expected by the frontend
+                var chartData = new
+                {
+                    serviceRequestsData = new
+                    {
+                        labels = serviceRequestsData.Select(x => x.Date.ToString("MMM dd")).ToArray(),
+                        values = serviceRequestsData.Select(x => x.Count).ToArray()
+                    },
+                    billsData = new
+                    {
+                        labels = billsData.Select(x => x.Date.ToString("MMM dd")).ToArray(),
+                        billAmounts = billsData.Select(x => (double)x.BillAmount).ToArray(),
+                        paymentAmounts = billsData.Select(x => (double)x.PaymentAmount).ToArray()
+                    },
+                    reservationsData = new
+                    {
+                        labels = reservationsData.Select(x => x.Date.ToString("MMM dd")).ToArray(),
+                        values = reservationsData.Select(x => x.Count).ToArray()
+                    },
+                    eventsData = new
+                    {
+                        upcomingEvents = eventsData.upcomingEvents,
+                        thisWeekEvents = eventsData.thisWeekEvents,
+                        thisMonthEvents = eventsData.thisMonthEvents
+                    }
+                };
+
+                // Combine basic stats and chart data
+                var response = new
+                {
+                    // Basic statistics
+                    basicStats.totalServiceRequests,
+                    basicStats.pendingServiceRequests,
+                    basicStats.inProgressServiceRequests,
+                    basicStats.totalReservations,
+                    basicStats.pendingReservations,
+                    basicStats.approvedReservations,
+                    basicStats.totalBills,
+                    basicStats.pendingBills,
+                    basicStats.paidBills,
+                    basicStats.totalEvents,
+                    basicStats.upcomingEvents,
+
+                    // Chart data
+                    chartData.serviceRequestsData,
+                    chartData.billsData,
+                    chartData.reservationsData,
+                    chartData.eventsData
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching dashboard statistics");
+                return StatusCode(500, new { message = "Error fetching dashboard statistics", error = ex.Message });
             }
         }
     }

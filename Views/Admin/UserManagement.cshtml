@@ -59,7 +59,7 @@ else if (TempData["UserManagementSuccess"] != null)
                    placeholder="Search users..."
                    onkeyup="filterUsers()">
         </div>
-        <button class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200"
+        <button class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-black hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors duration-200"
                 data-bs-toggle="modal" 
                 data-bs-target="#addUserModal">
             <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,7 +149,7 @@ else if (TempData["UserManagementSuccess"] != null)
 <div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="flex min-h-screen items-center justify-center p-4">
         <div class="fixed inset-0 bg-black/50 transition-opacity"></div>
-        <div class="relative w-full max-w-lg transform rounded-lg border bg-background p-6 shadow-xl transition-all">
+        <div class="relative w-full max-w-lg transform rounded-lg border bg-white p-6 shadow-xl transition-all">
             <div class="flex items-center justify-between border-b pb-4">
                 <h5 class="text-lg font-semibold text-gray-900" id="addUserModalLabel">Add New User</h5>
                 <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" data-bs-dismiss="modal" aria-label="Close">
@@ -261,7 +261,7 @@ else if (TempData["UserManagementSuccess"] != null)
 <div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="editUserModal" tabindex="-1" aria-labelledby="editUserModalLabel" aria-hidden="true">
     <div class="flex min-h-screen items-center justify-center p-4">
         <div class="fixed inset-0 bg-black/50 transition-opacity"></div>
-        <div class="relative w-full max-w-lg transform rounded-lg border bg-background p-6 shadow-xl transition-all">
+        <div class="relative w-full max-w-lg transform rounded-lg border bg-white p-6 shadow-xl transition-all">
             <div class="flex items-center justify-between border-b pb-4">
                 <h5 class="text-lg font-semibold text-gray-900" id="editUserModalLabel">Edit User</h5>
                 <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" data-bs-dismiss="modal" aria-label="Close">
@@ -364,7 +364,7 @@ else if (TempData["UserManagementSuccess"] != null)
 <div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
     <div class="flex min-h-screen items-center justify-center p-4">
         <div class="fixed inset-0 bg-black/50 transition-opacity"></div>
-        <div class="relative w-full max-w-md transform rounded-lg border bg-background p-6 shadow-xl transition-all">
+        <div class="relative w-full max-w-md transform rounded-lg border bg-white p-6 shadow-xl transition-all">
             <div class="flex items-center justify-between border-b pb-4">
                 <h5 class="text-lg font-semibold text-gray-900" id="deleteUserModalLabel">Confirm Deletion</h5>
                 <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" data-bs-dismiss="modal" aria-label="Close">
@@ -401,9 +401,18 @@ else if (TempData["UserManagementSuccess"] != null)
         // Initialize all modals
         var modals = document.querySelectorAll('.modal');
         modals.forEach(function(modal) {
-            new bootstrap.Modal(modal, {
-                backdrop: 'static',
-                keyboard: false
+            new bootstrap.Modal(modal);
+            
+            // Add click handlers for close buttons within this modal
+            const closeButtons = modal.querySelectorAll('[data-bs-dismiss="modal"]');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                    const bsModal = bootstrap.Modal.getInstance(modal);
+                    if (bsModal) {
+                        bsModal.hide();
+                    }
+                });
             });
         });
 

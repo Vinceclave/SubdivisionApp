@@ -285,6 +285,10 @@
       "PackagePath": "staticwebassets\\uploads\\forums\\c7beaad7-69f7-48c7-955a-c75a118fd7f4_DSC_1054.JPG"
     },
     {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\eb578ceb-7f58-432d-8199-75bc401399a9_DSC_0048.JPG",
+      "PackagePath": "staticwebassets\\uploads\\forums\\eb578ceb-7f58-432d-8199-75bc401399a9_DSC_0048.JPG"
+    },
+    {
       "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\forums\\ec6bb6ee-d092-4fb3-bad9-9c4793e8e990_470189187_2629335467268867_627334099173836786_n.jpg",
       "PackagePath": "staticwebassets\\uploads\\forums\\ec6bb6ee-d092-4fb3-bad9-9c4793e8e990_470189187_2629335467268867_627334099173836786_n.jpg"
     },
@@ -293,12 +297,28 @@
       "PackagePath": "staticwebassets\\uploads\\forums\\f1247804-05a2-413d-8dff-b5c915a04507_470189187_2629335467268867_627334099173836786_n.jpg"
     },
     {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\OIP.jfif",
+      "PackagePath": "staticwebassets\\uploads\\home\\OIP.jfif"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\basketball.jfif",
+      "PackagePath": "staticwebassets\\uploads\\home\\basketball.jfif"
+    },
+    {
       "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\basketballcourt.jpeg",
       "PackagePath": "staticwebassets\\uploads\\home\\basketballcourt.jpeg"
     },
     {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\community.jpg",
+      "PackagePath": "staticwebassets\\uploads\\home\\community.jpg"
+    },
+    {
       "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\gym.jpg",
       "PackagePath": "staticwebassets\\uploads\\home\\gym.jpg"
+    },
+    {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\gym.webp",
+      "PackagePath": "staticwebassets\\uploads\\home\\gym.webp"
     },
     {
       "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\hero.jpg",

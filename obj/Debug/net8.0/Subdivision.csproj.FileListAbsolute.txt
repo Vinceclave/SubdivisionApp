@@ -171,3 +171,4 @@ C:\Users\datan\source\repos\Subdivision\obj\Debug\net8.0\Subdivision.genruntimec
 C:\Users\datan\source\repos\Subdivision\obj\Debug\net8.0\ref\Subdivision.dll
 C:\Users\datan\source\repos\Subdivision\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\datan\source\repos\Subdivision\bin\Debug\net8.0\Dapper.dll
+C:\Users\datan\source\repos\Subdivision\obj\Debug\net8.0\Subdivision.sourcelink.json

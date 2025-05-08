@@ -5,7 +5,484 @@
     Layout = "_UniversalLayout";
 }
 
+<style>
+    :root {
+        --color-primary: #4a5446;
+        --color-secondary: #5a6855;
+        --color-accent: #93a58d;
+        --color-background: #f7f9f5;
+        --color-highlight: #e0e7dd;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .chart-card {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1.5rem;
+        height: 400px;
+    }
+
+    .chart-container {
+        width: 100%;
+        height: 350px;
+    }
+
+    .chart-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--color-primary);
+        margin-bottom: 1rem;
+    }
+
+    .loading { opacity: 0.7; }
+
+    .date-filter select {
+        padding: 0.5rem;
+        border-radius: 6px;
+        border: 1px solid var(--color-highlight);
+        background-color: white;
+        color: var(--color-primary);
+    }
+
+    .refresh-btn {
+        background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .refresh-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(90, 104, 85, 0.2);
+    }
+
+    .stat-value {
+        color: var(--color-primary);
+        font-size: 1.75rem;
+        font-weight: 700;
+    }
+
+    .stat-detail {
+        color: var(--color-secondary);
+        font-size: 0.875rem;
+    }
+</style>
+
 <div class="container-fluid py-4">
-    <h2>Dashboard</h2>
-    <p>Welcome to the admin dashboard. Here you can see an overview of the system.</p>
-</div> 
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="m-0" style="color: var(--color-primary)">Dashboard Overview</h2>
+            <p class="text-muted mb-0">Real-time statistics and monitoring</p>
+        </div>
+        <div class="d-flex gap-3">
+            <select id="dateRangeFilter" class="form-select">
+                <option value="7">Last 7 Days</option>
+                <option value="30" selected>Last 30 Days</option>
+                <option value="90">Last 3 Months</option>
+                <option value="365">Last Year</option>
+            </select>
+            <button id="refreshStats" class="refresh-btn">
+                <i class="fas fa-sync-alt"></i>
+                <span>Refresh</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <!-- Service Requests Summary -->
+        <div class="stat-card">
+            <div class="stat-title">
+                <i class="fas fa-tools me-2"></i>
+                Service Requests
+            </div>
+            <div class="h3 mb-2" id="totalServiceRequests">-</div>
+            <div class="d-flex justify-content-between text-muted">
+                <span>Pending: <span id="pendingRequests">-</span></span>
+                <span>In Progress: <span id="inProgressRequests">-</span></span>
+            </div>
+        </div>
+
+        <!-- Reservations Summary -->
+        <div class="stat-card">
+            <div class="stat-title">
+                <i class="fas fa-calendar-check me-2"></i>
+                Reservations
+            </div>
+            <div class="h3 mb-2" id="totalReservations">-</div>
+            <div class="d-flex justify-content-between text-muted">
+                <span>Pending: <span id="pendingReservations">-</span></span>
+                <span>Approved: <span id="approvedReservations">-</span></span>
+            </div>
+        </div>
+
+        <!-- Bills Summary -->
+        <div class="stat-card">
+            <div class="stat-title">
+                <i class="fas fa-file-invoice-dollar me-2"></i>
+                Bills
+            </div>
+            <div class="h3 mb-2" id="totalBills">-</div>
+            <div class="d-flex justify-content-between text-muted">
+                <span>Pending: <span id="pendingBills">-</span></span>
+                <span>Paid: <span id="paidBills">-</span></span>
+            </div>
+        </div>
+
+        <!-- Events Summary -->
+        <div class="stat-card">
+            <div class="stat-title">
+                <i class="fas fa-calendar-alt me-2"></i>
+                Events
+            </div>
+            <div class="h3 mb-2" id="totalEvents">-</div>
+            <div class="d-flex justify-content-between text-muted">
+                <span>Upcoming: <span id="upcomingEvents">-</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="row mt-4">
+        <!-- Service Requests Chart -->
+        <div class="col-xl-6 mb-4">
+            <div class="chart-card">
+                <div class="chart-title">Service Requests Overview</div>
+                <div class="chart-container">
+                    <canvas id="serviceRequestsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bills & Payments Chart -->
+        <div class="col-xl-6 mb-4">
+            <div class="chart-card">
+                <div class="chart-title">Bills & Payments Overview</div>
+                <div class="chart-container">
+                    <canvas id="billsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reservations Timeline -->
+        <div class="col-xl-8 mb-4">
+            <div class="chart-card">
+                <div class="chart-title">Facility Reservations Timeline</div>
+                <div class="chart-container">
+                    <canvas id="reservationsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Distribution -->
+        <div class="col-xl-4 mb-4">
+            <div class="chart-card">
+                <div class="chart-title">Upcoming Events</div>
+                <div class="chart-container">
+                    <canvas id="eventsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let serviceRequestsChart, billsChart, reservationsChart, eventsChart;
+        const chartColors = {
+            primary: '#4a5446',
+            secondary: '#5a6855',
+            accent: '#93a58d',
+            highlight: '#e0e7dd',
+            background: '#f7f9f5',
+            gradients: {
+                primary: createGradient('#4a5446', '#93a58d'),
+                secondary: createGradient('#5a6855', '#e0e7dd')
+            }
+        };
+
+        function createGradient(color1, color2) {
+            const ctx = document.createElement('canvas').getContext('2d');
+            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            return gradient;
+        }
+
+        const chartConfig = {
+            line: {
+                tension: 0.4,
+                borderWidth: 2,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+                fill: true
+            },
+            bar: {
+                borderRadius: 6,
+                maxBarThickness: 40
+            }
+        };
+
+        function initializeCharts() {
+            // Service Requests Chart
+            const serviceRequestsCtx = document.getElementById('serviceRequestsChart').getContext('2d');
+            serviceRequestsChart = new Chart(serviceRequestsCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'New Requests',
+                        borderColor: chartColors.primary,
+                        backgroundColor: chartColors.gradients.primary,
+                        ...chartConfig.line,
+                        data: []
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: {
+                                color: '#e0e7dd40'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+
+            // Bills Chart
+            const billsCtx = document.getElementById('billsChart').getContext('2d');
+            billsChart = new Chart(billsCtx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [
+                        {
+                            label: 'Bills Amount',
+                            backgroundColor: chartColors.accent,
+                            ...chartConfig.bar,
+                            data: []
+                        },
+                        {
+                            label: 'Payments Received',
+                            backgroundColor: chartColors.primary,
+                            ...chartConfig.bar,
+                            data: []
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: {
+                                color: '#e0e7dd40'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Reservations Chart
+            const reservationsCtx = document.getElementById('reservationsChart').getContext('2d');
+            reservationsChart = new Chart(reservationsCtx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Reservations',
+                        backgroundColor: chartColors.gradients.secondary,
+                        ...chartConfig.bar,
+                        data: []
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { 
+                            beginAtZero: true,
+                            grid: {
+                                color: '#e0e7dd40'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Events Chart
+            const eventsCtx = document.getElementById('eventsChart').getContext('2d');
+            eventsChart = new Chart(eventsCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Upcoming', 'This Week', 'This Month'],
+                    datasets: [{
+                        data: [],
+                        backgroundColor: [
+                            chartColors.primary,
+                            chartColors.secondary,
+                            chartColors.accent
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    },
+                    cutout: '70%'
+                }
+            });
+        }
+
+        function loadDashboardStats() {
+            $('.stat-card').addClass('loading');
+            const days = $('#dateRangeFilter').val();
+            
+            $.ajax({
+                url: '/api/admin/dashboard/stats',
+                method: 'GET',
+                data: { days: days },
+                success: function(data) {
+                    // Update summary statistics
+                    updateSummaryStats(data);
+                    
+                    // Update charts
+                    updateServiceRequestsChart(data.serviceRequestsData);
+                    updateBillsChart(data.billsData);
+                    updateReservationsChart(data.reservationsData);
+                    updateEventsChart(data.eventsData);
+
+                    $('.stat-card').removeClass('loading');
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error loading dashboard statistics:', error);
+                    $('.stat-card').removeClass('loading');
+                }
+            });
+        }
+
+        function updateSummaryStats(data) {
+            $('#totalServiceRequests').text(data.totalServiceRequests);
+            $('#pendingRequests').text(data.pendingServiceRequests);
+            $('#inProgressRequests').text(data.inProgressServiceRequests);
+            $('#totalReservations').text(data.totalReservations);
+            $('#pendingReservations').text(data.pendingReservations);
+            $('#approvedReservations').text(data.approvedReservations);
+            $('#totalBills').text(data.totalBills);
+            $('#pendingBills').text(data.pendingBills);
+            $('#paidBills').text(data.paidBills);
+            $('#totalEvents').text(data.totalEvents);
+            $('#upcomingEvents').text(data.upcomingEvents);
+        }
+
+        function updateServiceRequestsChart(data) {
+            serviceRequestsChart.data.labels = data.labels;
+            serviceRequestsChart.data.datasets[0].data = data.values;
+            serviceRequestsChart.update();
+        }
+
+        function updateBillsChart(data) {
+            billsChart.data.labels = data.labels;
+            billsChart.data.datasets[0].data = data.billAmounts;
+            billsChart.data.datasets[1].data = data.paymentAmounts;
+            billsChart.update();
+        }
+
+        function updateReservationsChart(data) {
+            reservationsChart.data.labels = data.labels;
+            reservationsChart.data.datasets[0].data = data.values;
+            reservationsChart.update();
+        }
+
+        function updateEventsChart(data) {
+            eventsChart.data.datasets[0].data = [
+                data.upcomingEvents,
+                data.thisWeekEvents,
+                data.thisMonthEvents
+            ];
+            eventsChart.update();
+        }
+
+        $(document).ready(function() {
+            // Initialize charts
+            initializeCharts();
+
+            // Load initial stats
+            loadDashboardStats();
+
+            // Setup refresh button
+            $('#refreshStats').click(function() {
+                $(this).find('i').addClass('fa-spin');
+                loadDashboardStats();
+                setTimeout(() => $(this).find('i').removeClass('fa-spin'), 1000);
+            });
+
+            // Setup date range filter
+            $('#dateRangeFilter').change(function() {
+                loadDashboardStats();
+            });
+
+            // Auto refresh every 30 seconds
+            setInterval(loadDashboardStats, 30000);
+        });
+    </script>
+}

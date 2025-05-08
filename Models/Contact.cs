@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Subdivision.Models
 {
@@ -13,27 +12,14 @@ namespace Subdivision.Models
 
     public class Contact
     {
-        [Key]
         public int ContactId { get; set; }
-
-        [Required, StringLength(100)]
-        [Display(Name = "Contact Person")]
         public string ContactPersonName { get; set; } = string.Empty;
-
-        [Required, StringLength(20)]
-        [Phone]
         public string PhoneNumber { get; set; } = string.Empty;
-
-        [Required, StringLength(100)]
-        [EmailAddress]
         public string Email { get; set; } = string.Empty;
-
-        [Required]
-        public ContactCategory Category { get; set; } // Property for category
-
+        public ContactCategory Category { get; set; }
+        
         [ForeignKey(nameof(Admin))]
         public int AdminId { get; set; }
-
         public virtual Admin Admin { get; set; } = null!;
     }
 }

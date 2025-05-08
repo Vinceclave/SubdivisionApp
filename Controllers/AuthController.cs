@@ -27,7 +27,7 @@ namespace Subdivision.Controllers
         {
             if (IsLoggedIn())
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Dashboard", "Admin");
             }
 
             ViewData["Page"] = "Login";
@@ -41,7 +41,7 @@ namespace Subdivision.Controllers
             switch (userType)
             {
                 case UserType.Admin:
-                    return RedirectToAction("Index", "Admin");
+                    return RedirectToAction("Dashboard", "Admin");
                 case UserType.Staff:
                     return RedirectToAction("Index", "Staff");
                 case UserType.Homeowner:

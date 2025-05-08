@@ -27,7 +27,7 @@ namespace Subdivision.Controllers
                 return RedirectToAction("Login", "Auth");
             }
 
-            ViewData["Page"] = "Dashboard";
+            ViewData["Page"] = "Index";
             ViewData["UserType"] = "Staff";
             return View();
         }
