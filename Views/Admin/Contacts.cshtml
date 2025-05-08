@@ -44,7 +44,7 @@ else if (TempData["Success"] != null)
             <h2 class="text-2xl font-bold tracking-tight">Contact Directory</h2>
             <p class="text-muted-foreground">Manage and view all contact information for the community.</p>
         </div>
-        <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" data-bs-toggle="modal" data-bs-target="#addContactModal">
+        <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2" onclick="showAddModal()">
             <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
             </svg>
@@ -62,17 +62,11 @@ else if (TempData["Success"] != null)
                             <h3 class="font-medium leading-none">@contact.ContactPersonName</h3>
                             <p class="text-sm text-muted-foreground">@contact.Email</p>
                             <p class="text-sm text-muted-foreground">@contact.PhoneNumber</p>
-                            <p class="text-sm text-muted-foreground">@contact.Category.ToString().Replace("_", " ")</p>
                         </div>
                         <div class="flex items-center space-x-2">
-                            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 w-9 p-0">
+                            <button onclick="editContact(@contact.ContactId)" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 w-9 p-0">
                                 <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
-                                </svg>
-                            </button>
-                            <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-violet-ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 w-9 p-0 text-red-500">
-                                <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                                 </svg>
                             </button>
                         </div>
@@ -89,50 +83,46 @@ else if (TempData["Success"] != null)
     </div>
 </div>
 
-<!-- Add Contact Modal -->
-<div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+<!-- Contact Modal -->
+<div class="modal fade fixed inset-0 z-50 overflow-y-auto hidden" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel">
     <div class="flex min-h-screen items-center justify-center p-4">
-        <div class="fixed inset-0 bg-black/50 transition-opacity"></div>
-        <div class="relative w-full max-w-lg transform rounded-lg border bg-background p-6 shadow-xl transition-all">
+        <div class="fixed inset-0 bg-black/50 transition-opacity" onclick="hideModal()"></div>
+        <div class="relative w-full max-w-lg transform rounded-lg border bg-white p-6 shadow-xl transition-all">
             <div class="flex items-center justify-between border-b pb-4">
-                <h5 class="text-lg font-semibold" id="addContactModalLabel">Add New Contact</h5>
-                <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" data-bs-dismiss="modal" aria-label="Close">
+                <h5 class="text-lg font-semibold" id="contactModalLabel">Add Contact</h5>
+                <button type="button" class="rounded-md opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2" onclick="hideModal()">
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
-            <div class="mt-4">
-                <form method="post" action="/admin/contacts/add" class="space-y-4">
+            <div class="mt-4 bg-gray-50 p-4 rounded-md">
+                <form id="contactForm" method="post" action="@Url.Action("CreateContact", "Admin")" class="space-y-4">
+                    <input type="hidden" id="contactId" name="ContactId" value="0" />
                     <div class="space-y-2">
-                        <label for="contactPersonName" class="text-sm font-medium leading-none">Contact Person Name *</label>
-                        <input type="text" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="contactPersonName" name="ContactPersonName" maxlength="100" required>
-                        <span class="text-xs text-gray-500">Maximum 100 characters</span>
+                        <label for="contactPersonName">Contact Person</label>
+                        <input type="text" id="contactPersonName" name="ContactPersonName" class="flex h-10 w-full rounded-md border px-3">
                     </div>
                     <div class="space-y-2">
-                        <label for="phoneNumber" class="text-sm font-medium leading-none">Phone Number *</label>
-                        <input type="tel" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="phoneNumber" name="PhoneNumber" pattern="[0-9+\-\(\) ]+" maxlength="20" placeholder="e.g. +1 234-567-8900" required>
-                        <span class="text-xs text-gray-500">Valid phone number format required (max 20 characters)</span>
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" id="phoneNumber" name="PhoneNumber" class="flex h-10 w-full rounded-md border px-3">
                     </div>
                     <div class="space-y-2">
-                        <label for="email" class="text-sm font-medium leading-none">Email Address *</label>
-                        <input type="email" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="email" name="Email" maxlength="100" placeholder="example@email.com" required>
-                        <span class="text-xs text-gray-500">Valid email address required (max 100 characters)</span>
+                        <label for="email">Email</label>
+                        <input type="text" id="email" name="Email" class="flex h-10 w-full rounded-md border px-3">
                     </div>
                     <div class="space-y-2">
-                        <label for="category" class="text-sm font-medium leading-none">Category *</label>
-                        <select class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="category" name="Category" required>
-                            <option value="">Select a category</option>
+                        <label for="category">Category</label>
+                        <select id="category" name="Category" class="flex h-10 w-full rounded-md border px-3">
                             <option value="0">HOA Boards</option>
                             <option value="1">Security</option>
                             <option value="2">Fire Department</option>
                             <option value="3">Medical Emergency</option>
                         </select>
-                        <span class="text-xs text-gray-500">Please select a category</span>
                     </div>
                     <div class="flex justify-end space-x-2 pt-4">
-                        <button type="button" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">Add Contact</button>
+                        <button type="button" class="px-4 py-2 border rounded-md hover:bg-gray-100" onclick="hideModal()">Cancel</button>
+                        <button type="submit" class="bg-primary text-black px-4 py-2 rounded-md">Save Contact</button>
                     </div>
                 </form>
             </div>
@@ -141,35 +131,66 @@ else if (TempData["Success"] != null)
 </div>
 
 @section Scripts {
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize modal
-            var modal = document.getElementById('addContactModal');
-            new bootstrap.Modal(modal, {
-                backdrop: 'static',
-                keyboard: false
-            });
+<script>
+    function showAddModal() {
+        const modal = document.getElementById('contactModal');
+        const form = document.getElementById('contactForm');
+        const title = document.getElementById('contactModalLabel');
+        
+        // Reset form
+        form.reset();
+        document.getElementById('contactId').value = '0';
+        title.textContent = 'Add Contact';
+        
+        // Show modal
+        modal.classList.remove('hidden');
+    }
 
-            // Add event listener for modal trigger
-            var contactTrigger = document.querySelector('[data-bs-target="#addContactModal"]');
-            if (contactTrigger) {
-                contactTrigger.addEventListener('click', function() {
-                    var modal = document.getElementById('addContactModal');
-                    modal.classList.remove('hidden');
-                    var bsModal = bootstrap.Modal.getInstance(modal) || new bootstrap.Modal(modal);
-                    bsModal.show();
-                });
-            }
+    function hideModal() {
+        const modal = document.getElementById('contactModal');
+        modal.classList.add('hidden');
+    }
 
-            // Handle form submission
-            var form = document.querySelector('form');
-            form.addEventListener('submit', function(e) {
-                var submitButton = form.querySelector('button[type="submit"]');
-                if (submitButton) {
-                    submitButton.disabled = true;
-                    submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Processing...';
-                }
-            });
-        });
-    </script>
+    function editContact(contactId) {
+        const modal = document.getElementById('contactModal');
+        const title = document.getElementById('contactModalLabel');
+        const form = document.getElementById('contactForm');
+        
+        // Update form action for edit
+        form.action = '@Url.Action("UpdateContact", "Admin")';
+        title.textContent = 'Edit Contact';
+        
+        // Fetch contact data and populate form
+        fetch(`/Admin/GetContact/${contactId}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('contactId').value = data.contactId;
+                document.getElementById('contactPersonName').value = data.contactPersonName;
+                document.getElementById('phoneNumber').value = data.phoneNumber;
+                document.getElementById('email').value = data.email;
+                document.getElementById('category').value = data.category;
+                
+                // Show modal
+                modal.classList.remove('hidden');
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    // Close modal when clicking outside
+    document.addEventListener('click', function(event) {
+        const modal = document.getElementById('contactModal');
+        const modalContent = modal.querySelector('.relative');
+        
+        if (event.target === modal) {
+            hideModal();
+        }
+    });
+
+    // Close modal with escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            hideModal();
+        }
+    });
+</script>
 }
