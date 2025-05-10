@@ -1,0 +1,364 @@
+@model (List<Subdivision.Models.Forum> Forums, List<Subdivision.Models.Announcement> Announcements)
+@{
+    ViewData["Title"] = "Community";
+    ViewData["UserType"] = "Homeowner";
+    ViewData["Page"] = "Community";
+    Layout = "_UniversalLayout";
+}
+
+<div class="space-y-6">
+    <div class="flex justify-between items-center">
+        <div>
+            <h2 class="text-2xl font-bold text-gray-900">Community Hub</h2>
+            <p class="text-gray-600">View announcements and forum posts for the community.</p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Announcements Section -->
+        <div class="md:col-span-1">
+            <div class="rounded-lg border bg-white shadow-sm">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h3 class="text-lg font-semibold">Announcements</h3>
+                </div>
+                <div class="p-6 space-y-4">
+                    @if (!Model.Item2.Any())
+                    {
+                        <div class="text-center py-6 text-gray-500">
+                            No announcements at this time.
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var announcement in Model.Item2)
+                        {
+                            <div class="rounded-lg border bg-gray-50 p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-medium text-gray-900">@announcement.Title</h4>
+                                    <span class="text-xs text-gray-500">@announcement.DateTimePosted.ToShortDateString()</span>
+                                </div>
+                                <p class="text-sm text-gray-600">@announcement.Description</p>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Forums Section -->
+        <div class="md:col-span-2">
+            <div class="rounded-lg border bg-white shadow-sm">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h3 class="text-lg font-semibold">Community Forum</h3>
+                    <button id="create-forum-btn" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-dark h-9 px-4">
+                        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        New Post
+                    </button>
+                </div>
+                <div class="p-6 space-y-6">
+                    @if (!Model.Item1.Any())
+                    {
+                        <div class="text-center py-6 text-gray-500">
+                            No forum posts yet. Be the first to post!
+                        </div>
+                    }
+                    else
+                    {
+                        @foreach (var forum in Model.Item1)
+                        {
+                            <div class="rounded-lg border bg-gray-50 p-6">
+                                <div class="flex items-center space-x-4 mb-4">
+                                    @{
+                                        var posterType = "H";
+                                        var posterTitle = "Homeowner";
+                                        var bgColor = "bg-primary/10";
+                                        var textColor = "text-primary";
+                                        
+                                        if (forum.AdminId.HasValue)
+                                        {
+                                            posterType = "A";
+                                            posterTitle = "Admin";
+                                            bgColor = "bg-red-100";
+                                            textColor = "text-red-600";
+                                        }
+                                        else if (forum.StaffId.HasValue)
+                                        {
+                                            posterType = "S";
+                                            posterTitle = "Staff";
+                                            bgColor = "bg-blue-100";
+                                            textColor = "text-blue-600";
+                                        }
+                                    }
+                                    <div class="h-10 w-10 rounded-full @bgColor flex items-center justify-center">
+                                        <span class="text-sm font-medium @textColor">@posterType</span>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">@posterTitle</p>
+                                        <p class="text-xs text-gray-500">@forum.DateTimePosted.ToShortDateString()</p>
+                                    </div>
+                                </div>
+                                <h4 class="text-lg font-semibold mb-2">@forum.ForumTitle</h4>
+                                <p class="text-gray-600 mb-4">@forum.Content</p>
+                                @if (!string.IsNullOrEmpty(forum.ImagePath))
+                                {
+                                    <img src="@forum.ImagePath" alt="Forum Image" class="rounded-lg max-w-full h-auto mb-4" />
+                                }
+                                
+                                <!-- Forum Replies -->
+                                @if (forum.ForumReplies.Any())
+                                {
+                                    <div class="mt-6 border-t pt-4">
+                                        <h5 class="text-sm font-semibold mb-4">Replies</h5>
+                                        <div class="space-y-4">
+                                            @{
+                                                var orderedReplies = forum.ForumReplies.OrderByDescending(r => r.DateTime).ToList();
+                                            }
+                                            @foreach (var reply in orderedReplies)
+                                            {
+                                                <div class="pl-4 border-l-2">
+                                                    <div class="flex items-center space-x-2 mb-1">
+                                                        @{
+                                                            var replyType = "H";
+                                                            var replyTitle = "Homeowner";
+                                                            var replyBg = "bg-primary/10";
+                                                            var replyText = "text-primary";
+                                                            
+                                                            if (reply.AdminId.HasValue)
+                                                            {
+                                                                replyType = "A";
+                                                                replyTitle = "Admin";
+                                                                replyBg = "bg-red-100";
+                                                                replyText = "text-red-600";
+                                                            }
+                                                            else if (reply.StaffId.HasValue)
+                                                            {
+                                                                replyType = "S";
+                                                                replyTitle = "Staff";
+                                                                replyBg = "bg-blue-100";
+                                                                replyText = "text-blue-600";
+                                                            }
+                                                        }
+                                                        <div class="h-8 w-8 rounded-full @replyBg flex items-center justify-center">
+                                                            <span class="text-xs font-medium @replyText">@replyType</span>
+                                                        </div>
+                                                        <div>
+                                                            <p class="text-sm font-medium">@replyTitle</p>
+                                                            <p class="text-xs text-gray-500">@reply.DateTime.ToShortDateString()</p>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-sm text-gray-600 ml-10">@reply.RepliedContent</p>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+
+                                <!-- Reply Button -->
+                                <div class="mt-4">
+                                    <button class="reply-btn inline-flex items-center px-3 py-1.5 border border-gray-300 shadow-sm text-sm font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                                            data-forum-id="@forum.ForumId">
+                                        <svg class="mr-2 h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+                                        </svg>
+                                        Reply
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Create Forum Modal -->
+<div id="create-forum-modal" class="fixed inset-0 z-50 hidden overflow-auto bg-gray-800 bg-opacity-50 flex justify-center items-start pt-10">
+    <div class="relative w-full max-w-lg bg-white rounded-lg shadow-xl mx-4 p-6">
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+            <h5 class="text-lg font-semibold">Create New Forum Post</h5>
+            <button id="close-modal" class="text-gray-400 hover:text-gray-600">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <form id="forum-form" class="space-y-4">
+            <div class="space-y-2">
+                <label for="forum-title" class="text-sm font-medium">Title</label>
+                <input type="text" id="forum-title" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" required>
+            </div>
+            <div class="space-y-2">
+                <label for="forum-content" class="text-sm font-medium">Content</label>
+                <textarea id="forum-content" rows="3" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+            </div>
+            <div class="space-y-2">
+                <label for="forum-image" class="text-sm font-medium">Upload Image (Optional)</label>
+                <input type="file" id="forum-image" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary">
+            </div>
+            <div class="flex justify-end space-x-2 pt-4">
+                <button type="button" id="cancel-forum" class="px-4 py-2.5 border border-gray-300 rounded-md text-sm font-medium bg-white text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="submit" id="submit-forum" class="px-4 py-2.5 border border-transparent rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-dark">Create Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Reply Modal -->
+<div id="reply-modal" class="fixed inset-0 z-50 hidden overflow-auto bg-gray-800 bg-opacity-50 flex justify-center items-start pt-10">
+    <div class="relative w-full max-w-lg bg-white rounded-lg shadow-xl mx-4 p-6">
+        <div class="flex items-center justify-between border-b pb-4 mb-4">
+            <h5 class="text-lg font-semibold">Reply to Post</h5>
+            <button id="close-reply-modal" class="text-gray-400 hover:text-gray-600">
+                <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <form id="reply-form" class="space-y-4">
+            <input type="hidden" id="forum-id">
+            <div class="space-y-2">
+                <label for="reply-content" class="text-sm font-medium">Your Reply</label>
+                <textarea id="reply-content" rows="3" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+            </div>
+            <div class="flex justify-end space-x-2 pt-4">
+                <button type="button" id="cancel-reply" class="px-4 py-2.5 border border-gray-300 rounded-md text-sm font-medium bg-white text-gray-700 hover:bg-gray-50">Cancel</button>
+                <button type="submit" id="submit-reply" class="px-4 py-2.5 border border-transparent rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-dark">Submit Reply</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const createForumBtn = document.getElementById('create-forum-btn');
+            const createForumModal = document.getElementById('create-forum-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const cancelForumBtn = document.getElementById('cancel-forum');
+            const forumForm = document.getElementById('forum-form');
+            
+            // Reply modal elements
+            const replyModal = document.getElementById('reply-modal');
+            const closeReplyBtn = document.getElementById('close-reply-modal');
+            const cancelReplyBtn = document.getElementById('cancel-reply');
+            const replyForm = document.getElementById('reply-form');
+            const forumIdInput = document.getElementById('forum-id');
+            
+            // Forum modal handlers
+            createForumBtn.addEventListener('click', () => {
+                createForumModal.classList.remove('hidden');
+            });
+            
+            const closeForumModal = () => {
+                createForumModal.classList.add('hidden');
+                forumForm.reset();
+            };
+            
+            closeModalBtn.addEventListener('click', closeForumModal);
+            cancelForumBtn.addEventListener('click', closeForumModal);
+            
+            // Reply modal handlers
+            document.querySelectorAll('.reply-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const forumId = btn.dataset.forumId;
+                    forumIdInput.value = forumId;
+                    replyModal.classList.remove('hidden');
+                });
+            });
+            
+            const closeReplyModal = () => {
+                replyModal.classList.add('hidden');
+                replyForm.reset();
+            };
+            
+            closeReplyBtn.addEventListener('click', closeReplyModal);
+            cancelReplyBtn.addEventListener('click', closeReplyModal);
+            
+            // Form submissions
+            forumForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitBtn = document.getElementById('submit-forum');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Posting...';
+                
+                const title = document.getElementById('forum-title').value;
+                const content = document.getElementById('forum-content').value;
+                const imageFile = document.getElementById('forum-image').files[0];
+                
+                const formData = new FormData();
+                formData.append('ForumTitle', title);
+                formData.append('Content', content);
+                if (imageFile) {
+                    formData.append('image', imageFile);
+                }
+                
+                try {
+                    const response = await fetch('/homeowner/community/create-forum', {
+                        method: 'POST',
+                        body: formData
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        closeForumModal();
+                        location.reload(); // Reload to show new post
+                    } else {
+                        alert(result.message || 'Error creating forum post');
+                    }
+                } catch (error) {
+                    console.error('Error creating forum post:', error);
+                    alert('An error occurred while creating your post. Please try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Create Post';
+                }
+            });
+            
+            replyForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const submitBtn = document.getElementById('submit-reply');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Submitting...';
+                
+                const forumId = document.getElementById('forum-id').value;
+                const content = document.getElementById('reply-content').value;
+                
+                try {
+                    const response = await fetch('/homeowner/community/reply', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            forumId: forumId,
+                            content: content
+                        })
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        closeReplyModal();
+                        location.reload(); // Reload to show new reply
+                    } else {
+                        alert(result.message || 'Error submitting reply');
+                    }
+                } catch (error) {
+                    console.error('Error submitting reply:', error);
+                    alert('An error occurred while submitting your reply. Please try again.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Submit Reply';
+                }
+            });
+        });
+    </script>
+}

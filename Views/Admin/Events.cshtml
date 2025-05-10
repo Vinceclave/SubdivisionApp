@@ -188,12 +188,17 @@
                     const formData = new FormData(form);
                     const eventDate = formData.get('EventDate');
                     const eventTime = formData.get('EventTime');
-                    const eventDateTime = new Date(`${eventDate}T${eventTime}`);
+                    
+                    // Create a date object in local time
+                    const localDateTime = new Date(`${eventDate}T${eventTime}`);
+                    
+                    // Convert to ISO string (which will be in UTC)
+                    const eventDateTime = localDateTime.toISOString();
 
                     const eventData = {
                         EventTitle: formData.get('EventTitle'),
                         EventDesc: formData.get('EventDesc'),
-                        EventDateTime: eventDateTime.toISOString(),
+                        EventDateTime: eventDateTime,
                         Visibility: formData.get('Visibility')
                     };
 
@@ -445,12 +450,13 @@
 
                 events.forEach(event => {
                     const date = new Date(event.eventDateTime);
-                    const formattedDate = date.toLocaleDateString('en-US', {
+                    const formattedDate = date.toLocaleString('en-US', {
                         year: 'numeric',
                         month: 'short',
                         day: 'numeric',
                         hour: '2-digit',
-                        minute: '2-digit'
+                        minute: '2-digit',
+                        hour12: true
                     });
 
                     const row = document.createElement('tr');
@@ -727,4 +733,4 @@
             }
         }
     </script>
-} 
+}

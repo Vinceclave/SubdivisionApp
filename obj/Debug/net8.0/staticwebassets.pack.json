@@ -325,6 +325,10 @@
       "PackagePath": "staticwebassets\\uploads\\home\\hero.jpg"
     },
     {
+      "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\logo-social.png",
+      "PackagePath": "staticwebassets\\uploads\\home\\logo-social.png"
+    },
+    {
       "Id": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\swimmingpool.jpeg",
       "PackagePath": "staticwebassets\\uploads\\home\\swimmingpool.jpeg"
     },

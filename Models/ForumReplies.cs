@@ -25,5 +25,11 @@ namespace Subdivision.Models
         
         [Required]
         public DateTime DateTime { get; set; } = DateTime.UtcNow;
+
+        // Navigation properties
+        public virtual Forum? Forum { get; set; }
+        public virtual Homeowner? Homeowner { get; set; }
+        public virtual Staff? Staff { get; set; }
+        public virtual Admin? Admin { get; set; }
     }
 }

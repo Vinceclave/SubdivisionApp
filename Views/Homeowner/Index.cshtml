@@ -6,38 +6,41 @@
 <div class="container mx-auto px-4 py-8">
     <div class="mb-8">
         <h1 class="text-3xl font-bold text-gray-900">Welcome, @Context.Session.GetString("Username")!</h1>
-        <p class="text-gray-600 mt-2">Stay updated with community announcements and discussions.</p>
+        <p class="text-gray-600 mt-2">Manage your home and community activities from your dashboard.</p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <!-- Announcements Section -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="flex items-center justify-between p-6 border-b">
-                <h3 class="text-lg font-semibold text-gray-900">Announcements</h3>
-            </div>
-            <div class="p-6 space-y-4" id="announcements-container">
-                <div class="text-center py-6">
-                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-                    <p class="text-gray-500 text-sm">Loading announcements...</p>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Right column: Community section -->
+        <div class="lg:col-span-3 space-y-6">
+            <!-- Announcements Section -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h3 class="text-lg font-semibold text-gray-900">Announcements</h3>
+                </div>
+                <div class="p-6 space-y-4" id="announcements-container">
+                    <div class="text-center py-6">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                        <p class="text-gray-500 text-sm">Loading announcements...</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Forum Section -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-            <div class="flex items-center justify-between p-6 border-b">
-                <h3 class="text-lg font-semibold text-gray-900">Community Forum</h3>
-                <button id="create-forum-btn" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-dark h-9 px-4">
-                    <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                    </svg>
-                    Post
-                </button>
-            </div>
-            <div class="p-6 space-y-4" id="forums-container">
-                <div class="text-center py-6">
-                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
-                    <p class="text-gray-500 text-sm">Loading forum posts...</p>
+            <!-- Forum Section -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="flex items-center justify-between p-6 border-b">
+                    <h3 class="text-lg font-semibold text-gray-900">Community Forum</h3>
+                    <button id="create-forum-btn" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-white hover:bg-primary-dark h-9 px-4">
+                        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        Post
+                    </button>
+                </div>
+                <div class="p-6 space-y-4" id="forums-container">
+                    <div class="text-center py-6">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto mb-4"></div>
+                        <p class="text-gray-500 text-sm">Loading forum posts...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,6 +261,64 @@
                         if (forum.imagePath) {
                             imageHtml = `<img src="${forum.imagePath}" alt="Forum image" class="mt-2 rounded-lg max-w-full h-auto" />`;
                         }
+
+                        // Add replies section
+                        let repliesHtml = '';
+                        if (forum.replies && forum.replies.length > 0) {
+                            repliesHtml = `
+                                <div class="mt-4 border-t pt-4">
+                                    <h5 class="text-sm font-semibold mb-4">Replies</h5>
+                                    <div class="space-y-4">
+                                    ${forum.replies.map(reply => {
+                                        let replyPosterInfo = '';
+                                        if (reply.homeownerId) {
+                                            replyPosterInfo = `
+                                                <div class="h-6 w-6 rounded-full bg-primary/10 flex items-center justify-center">
+                                                    <span class="text-xs text-primary font-medium">H</span>
+                                                </div>
+                                            `;
+                                        } else if (reply.adminId) {
+                                            replyPosterInfo = `
+                                                <div class="h-6 w-6 rounded-full bg-red-100 flex items-center justify-center">
+                                                    <span class="text-xs text-red-600 font-medium">A</span>
+                                                </div>
+                                            `;
+                                        } else if (reply.staffId) {
+                                            replyPosterInfo = `
+                                                <div class="h-6 w-6 rounded-full bg-blue-100 flex items-center justify-center">
+                                                    <span class="text-xs text-blue-600 font-medium">S</span>
+                                                </div>
+                                            `;
+                                        }
+                                        return `
+                                            <div class="pl-4 border-l-2">
+                                                <div class="flex items-center space-x-2 mb-1">
+                                                    ${replyPosterInfo}
+                                                    <div>
+                                                        <p class="text-sm font-medium">
+                                                            ${reply.homeownerId ? 'Homeowner' : (reply.adminId ? 'Admin' : 'Staff')}
+                                                        </p>
+                                                        <p class="text-xs text-gray-500">${new Date(reply.dateTime).toLocaleDateString()}</p>
+                                                    </div>
+                                                </div>
+                                                <p class="text-sm text-gray-600 pl-8">${reply.repliedContent}</p>
+                                            </div>
+                                        `;
+                                    }).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }
+
+                        // Add reply form
+                        const replyForm = `
+                            <div class="mt-4">
+                                <form class="reply-form flex gap-2" data-forum-id="${forum.forumId}">
+                                    <input type="text" class="flex-1 h-10 rounded-md border border-gray-300 px-3 py-2 text-sm" placeholder="Write a reply..." required>
+                                    <button type="submit" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary/90">Reply</button>
+                                </form>
+                            </div>
+                        `;
                         
                         forumEl.innerHTML = `
                             <div class="flex justify-between items-start mb-2">
@@ -267,8 +328,40 @@
                             <h4 class="font-medium text-gray-900 mt-2">${forum.forumTitle}</h4>
                             <p class="text-sm text-gray-600 mt-1">${forum.content}</p>
                             ${imageHtml}
+                            ${repliesHtml}
+                            ${replyForm}
                         `;
-                        
+
+                        // Add event listener for reply form
+                        const form = forumEl.querySelector('.reply-form');
+                        form.addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            const forumId = e.target.dataset.forumId;
+                            const content = e.target.querySelector('input').value;
+                            
+                            try {
+                                const response = await fetch('/homeowner/community/add-reply', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded',
+                                    },
+                                    body: `forumId=${forumId}&content=${encodeURIComponent(content)}`
+                                });
+                                
+                                if (response.ok) {
+                                    // Reload forum posts to show the new reply
+                                    await loadForumPosts();
+                                } else {
+                                    throw new Error('Failed to add reply');
+                                }
+                            } catch (error) {
+                                console.error('Error adding reply:', error);
+                                alert('Error adding reply. Please try again.');
+                            }
+                            
+                            e.target.reset();
+                        });
+
                         forumsContainer.appendChild(forumEl);
                     });
                     
