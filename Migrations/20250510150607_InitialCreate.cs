@@ -79,8 +79,7 @@ namespace Subdivision.Migrations
                         name: "FK_Admins_Users_LoginId",
                         column: x => x.LoginId,
                         principalTable: "Users",
-                        principalColumn: "LoginId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LoginId");
                 });
 
             migrationBuilder.CreateTable(
@@ -98,8 +97,7 @@ namespace Subdivision.Migrations
                         name: "FK_Homeowners_Users_LoginId",
                         column: x => x.LoginId,
                         principalTable: "Users",
-                        principalColumn: "LoginId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LoginId");
                 });
 
             migrationBuilder.CreateTable(
@@ -118,8 +116,7 @@ namespace Subdivision.Migrations
                         name: "FK_Staffs_Users_LoginId",
                         column: x => x.LoginId,
                         principalTable: "Users",
-                        principalColumn: "LoginId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "LoginId");
                 });
 
             migrationBuilder.CreateTable(
@@ -150,9 +147,9 @@ namespace Subdivision.Migrations
                 {
                     ContactId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ContactPersonName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ContactPersonName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Category = table.Column<int>(type: "int", nullable: false),
                     AdminId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -163,8 +160,7 @@ namespace Subdivision.Migrations
                         name: "FK_Contacts_Admins_AdminId",
                         column: x => x.AdminId,
                         principalTable: "Admins",
-                        principalColumn: "AdminId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "AdminId");
                 });
 
             migrationBuilder.CreateTable(
@@ -187,8 +183,7 @@ namespace Subdivision.Migrations
                         name: "FK_EventCalendars_Admins_OrganizedById",
                         column: x => x.OrganizedById,
                         principalTable: "Admins",
-                        principalColumn: "AdminId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "AdminId");
                 });
 
             migrationBuilder.CreateTable(
@@ -224,20 +219,27 @@ namespace Subdivision.Migrations
                     BillId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HomeownerId = table.Column<int>(type: "int", nullable: false),
+                    AdminId = table.Column<int>(type: "int", nullable: false),
                     BillType = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    AmountPaid = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DueDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bills", x => x.BillId);
                     table.ForeignKey(
+                        name: "FK_Bills_Admins_AdminId",
+                        column: x => x.AdminId,
+                        principalTable: "Admins",
+                        principalColumn: "AdminId");
+                    table.ForeignKey(
                         name: "FK_Bills_Homeowners_HomeownerId",
                         column: x => x.HomeownerId,
                         principalTable: "Homeowners",
-                        principalColumn: "HomeownerId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "HomeownerId");
                 });
 
             migrationBuilder.CreateTable(
@@ -415,8 +417,7 @@ namespace Subdivision.Migrations
                         name: "FK_EventVisibilities_EventCalendars_EventId",
                         column: x => x.EventId,
                         principalTable: "EventCalendars",
-                        principalColumn: "EventId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "EventId");
                     table.ForeignKey(
                         name: "FK_EventVisibilities_Users_LoginId",
                         column: x => x.LoginId,
@@ -466,9 +467,11 @@ namespace Subdivision.Migrations
                     PaymentId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BillId = table.Column<int>(type: "int", nullable: false),
+                    HomeownerId = table.Column<int>(type: "int", nullable: false),
                     AmountPaid = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     ModeOfPayment = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    DateOfPayment = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     CardId = table.Column<int>(type: "int", nullable: true),
                     OnlineBankingId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -485,6 +488,11 @@ namespace Subdivision.Migrations
                         column: x => x.CardId,
                         principalTable: "CreditDebitCard",
                         principalColumn: "CardId");
+                    table.ForeignKey(
+                        name: "FK_Payments_Homeowners_HomeownerId",
+                        column: x => x.HomeownerId,
+                        principalTable: "Homeowners",
+                        principalColumn: "HomeownerId");
                     table.ForeignKey(
                         name: "FK_Payments_OnlineBanking_OnlineBankingId",
                         column: x => x.OnlineBankingId,
@@ -587,6 +595,11 @@ namespace Subdivision.Migrations
                 column: "AdminId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Bills_AdminId",
+                table: "Bills",
+                column: "AdminId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Bills_HomeownerId",
                 table: "Bills",
                 column: "HomeownerId");
@@ -676,6 +689,11 @@ namespace Subdivision.Migrations
                 name: "IX_Payments_CardId",
                 table: "Payments",
                 column: "CardId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Payments_HomeownerId",
+                table: "Payments",
+                column: "HomeownerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payments_OnlineBankingId",

@@ -12,6 +12,10 @@ namespace Subdivision.Models
         [ForeignKey(nameof(Bill))]
         public int BillId { get; set; }
         
+        [Required, Display(Name = "Homeowner")]
+        [ForeignKey(nameof(Homeowner))]
+        public int HomeownerId { get; set; }
+        
         [Required, Display(Name = "Amount Paid")]
         [Column(TypeName = "decimal(18,2)")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]
@@ -24,7 +28,11 @@ namespace Subdivision.Models
         
         [Required, Display(Name = "Payment Date")]
         [DataType(DataType.DateTime)]
-        public DateTime DateOfPayment { get; set; } = DateTime.UtcNow;
+        public DateTime PaymentDate { get; set; } = DateTime.UtcNow;
+
+        [Required]
+        [StringLength(20)]
+        public string Status { get; set; } = string.Empty;
         
         [ForeignKey(nameof(CreditDebitCard))]
         public int? CardId { get; set; }
@@ -33,6 +41,7 @@ namespace Subdivision.Models
         public int? OnlineBankingId { get; set; }
 
         public virtual Bill Bill { get; set; } = null!;
+        public virtual Homeowner Homeowner { get; set; } = null!;
         public virtual CreditDebitCard? CreditDebitCard { get; set; }
         public virtual OnlineBanking? OnlineBanking { get; set; }
     }
