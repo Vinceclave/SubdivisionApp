@@ -289,9 +289,20 @@ namespace Subdivision.Controllers
             ViewData["Page"] = "Community";
             ViewData["UserType"] = "Homeowner";
 
-            // Fetch announcements and forums from the database
-            var announcements = _context.Announcements.OrderByDescending(a => a.DateTimePosted).ToList();
-            var forums = _context.Forums.OrderByDescending(f => f.DateTimePosted).ToList();
+            // Fetch announcements and forums with replies from the database
+            var announcements = _context.Announcements
+                .OrderByDescending(a => a.DateTimePosted)
+                .ToList();
+                
+            var forums = _context.Forums
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Admin)
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Staff)
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Homeowner)
+                .OrderByDescending(f => f.DateTimePosted)
+                .ToList();
 
             // Create a tuple to pass to the view
             var model = (forums, announcements);
@@ -342,6 +353,12 @@ namespace Subdivision.Controllers
             try
             {
                 var forums = _context.Forums
+                    .Include(f => f.ForumReplies)
+                        .ThenInclude(r => r.Admin)
+                    .Include(f => f.ForumReplies)
+                        .ThenInclude(r => r.Staff)
+                    .Include(f => f.ForumReplies)
+                        .ThenInclude(r => r.Homeowner)
                     .OrderByDescending(f => f.DateTimePosted)
                     .Select(f => new
                     {
@@ -352,29 +369,24 @@ namespace Subdivision.Controllers
                         f.ImagePath,
                         f.HomeownerId,
                         f.AdminId,
-                        f.StaffId
+                        f.StaffId,
+                        replies = f.ForumReplies.Select(r => new {
+                            r.ForumRepliesId,  // Changed from ForumReplyId to ForumRepliesId
+                            r.RepliedContent,
+                            r.DateTime,
+                            r.HomeownerId,
+                            r.AdminId,
+                            r.StaffId
+                        }).OrderBy(r => r.DateTime).ToList(),
+                        posterInfo = new { 
+                            isHomeowner = f.HomeownerId.HasValue,
+                            isAdmin = f.AdminId.HasValue,
+                            isStaff = f.StaffId.HasValue
+                        }
                     })
                     .ToList();
 
-                // Get user information separately to avoid issues with navigation properties
-                var result = forums.Select(f => {
-                    var posterInfo = new { 
-                        isHomeowner = f.HomeownerId.HasValue,
-                        isAdmin = f.AdminId.HasValue,
-                        isStaff = f.StaffId.HasValue
-                    };
-                    
-                    return new {
-                        f.ForumId,
-                        f.ForumTitle,
-                        f.Content,
-                        f.DateTimePosted,
-                        f.ImagePath,
-                        posterInfo
-                    };
-                }).ToList();
-
-                return Json(new { success = true, forums = result });
+                return Json(new { success = true, forums });
             }
             catch (Exception ex)
             {
@@ -444,6 +456,51 @@ namespace Subdivision.Controllers
             catch (Exception ex)
             {
                 return Json(new { success = false, message = "An error occurred: " + ex.Message });
+            }
+        }
+
+        [HttpPost]
+        [Route("homeowner/community/add-reply")]
+        public async Task<IActionResult> AddForumReply(int forumId, string content)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                return Json(new { success = false, message = "Not authorized" });
+            }
+
+            try
+            {
+                var homeowner = await _context.Homeowners.FirstOrDefaultAsync(h => h.LoginId == userId);
+                if (homeowner == null)
+                {
+                    return Json(new { success = false, message = "Homeowner profile not found" });
+                }
+
+                var forum = await _context.Forums.FindAsync(forumId);
+                if (forum == null)
+                {
+                    return Json(new { success = false, message = "Forum post not found" });
+                }
+
+                var reply = new ForumReplies
+                {
+                    ForumId = forumId,
+                    AdminId = null,
+                    StaffId = null,
+                    HomeownerId = homeowner.HomeownerId,
+                    RepliedContent = content,
+                    DateTime = DateTime.Now
+                };
+
+                _context.ForumReplies.Add(reply);
+                await _context.SaveChangesAsync();
+
+                return Json(new { success = true, message = "Reply added successfully" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = "Error adding reply: " + ex.Message });
             }
         }
 
@@ -1155,7 +1212,7 @@ namespace Subdivision.Controllers
                             p.PaymentId,
                             p.AmountPaid,
                             p.ModeOfPayment,
-                            p.DateOfPayment
+                            p.PaymentDate
                         })
                     })
                     .ToListAsync();
@@ -1207,9 +1264,11 @@ namespace Subdivision.Controllers
                 var payment = new Payment
                 {
                     BillId = model.BillId,
+                    HomeownerId = user.Homeowner.HomeownerId,
                     AmountPaid = model.AmountPaid,
                     ModeOfPayment = model.ModeOfPayment,
-                    DateOfPayment = DateTime.Now
+                    PaymentDate = DateTime.Now,
+                    Status = "Pending"
                 };
 
                 if (model.ModeOfPayment == "Credit/Debit Card" && model.CardDetails != null)
@@ -1254,6 +1313,18 @@ namespace Subdivision.Controllers
             {
                 return StatusCode(500, new { success = false, message = ex.Message });
             }
+        }
+
+        public IActionResult Events()
+        {
+            if (!IsLoggedIn() || !IsHomeowner())
+            {
+                return RedirectToAction("Login", "Auth");
+            }
+
+            ViewData["Page"] = "Events";
+            ViewData["UserType"] = "Homeowner";
+            return View();
         }
     }
 

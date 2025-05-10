@@ -589,12 +589,22 @@ namespace Subdivision.Controllers
             ViewData["Page"] = "Community";
             ViewData["UserType"] = "Staff";
 
-            // Fetch announcements, forums, and contacts from the database
-            var announcements = _context.Announcements.OrderByDescending(a => a.DateTimePosted).ToList();
-            var forums = _context.Forums.OrderByDescending(f => f.DateTimePosted).ToList();
-            var contacts = _context.Contacts.OrderByDescending(c => c.ContactId).ToList();
+            // Fetch announcements and forums with their replies from the database
+            var announcements = _context.Announcements
+                .OrderByDescending(a => a.DateTimePosted)
+                .ToList();
 
-            // Pass as tuple to the view (forums, announcements) to match the view's model
+            var forums = _context.Forums
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Admin)
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Staff)
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Homeowner)
+                .OrderByDescending(f => f.DateTimePosted)
+                .ToList();
+
+            // Pass as tuple to the view (forums, announcements)
             var model = (forums, announcements);
             return View(model);
         }
@@ -674,6 +684,56 @@ namespace Subdivision.Controllers
             await _context.SaveChangesAsync();
 
             TempData["CommunitySuccess"] = "Contact added successfully!";
+            return RedirectToAction("Community");
+        }
+
+        [HttpPost]
+        [Route("staff/community/add-reply")]
+        public async Task<IActionResult> AddForumReply(int forumId, string content)
+        {
+            var userId = HttpContext.Session.GetInt32("UserId");
+            if (userId == null)
+            {
+                TempData["CommunityError"] = "Not authorized";
+                return RedirectToAction("Community");
+            }
+
+            try
+            {
+                var staff = await _context.Staffs.FirstOrDefaultAsync(s => s.LoginId == userId);
+                if (staff == null)
+                {
+                    TempData["CommunityError"] = "Staff profile not found";
+                    return RedirectToAction("Community");
+                }
+
+                var forum = await _context.Forums.FindAsync(forumId);
+                if (forum == null)
+                {
+                    TempData["CommunityError"] = "Forum post not found";
+                    return RedirectToAction("Community");
+                }
+
+                var reply = new ForumReplies
+                {
+                    ForumId = forumId,
+                    AdminId = null,
+                    StaffId = staff.StaffId,
+                    HomeownerId = null,
+                    RepliedContent = content,
+                    DateTime = DateTime.Now
+                };
+
+                _context.ForumReplies.Add(reply);
+                await _context.SaveChangesAsync();
+
+                TempData["CommunitySuccess"] = "Reply added successfully";
+            }
+            catch (Exception ex)
+            {
+                TempData["CommunityError"] = "Error adding reply: " + ex.Message;
+            }
+
             return RedirectToAction("Community");
         }
 

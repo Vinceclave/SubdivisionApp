@@ -87,14 +87,23 @@ namespace Subdivision.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BillId"));
 
+                    b.Property<int>("AdminId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Amount")
                         .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("AmountPaid")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("BillType")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DueDate")
                         .HasColumnType("datetime2");
@@ -108,6 +117,8 @@ namespace Subdivision.Migrations
                         .HasColumnType("nvarchar(20)");
 
                     b.HasKey("BillId");
+
+                    b.HasIndex("AdminId");
 
                     b.HasIndex("HomeownerId");
 
@@ -161,18 +172,15 @@ namespace Subdivision.Migrations
 
                     b.Property<string>("ContactPersonName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ContactId");
 
@@ -512,8 +520,8 @@ namespace Subdivision.Migrations
                     b.Property<int?>("CardId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateOfPayment")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("HomeownerId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ModeOfPayment")
                         .IsRequired()
@@ -523,11 +531,21 @@ namespace Subdivision.Migrations
                     b.Property<int?>("OnlineBankingId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.HasKey("PaymentId");
 
                     b.HasIndex("BillId");
 
                     b.HasIndex("CardId");
+
+                    b.HasIndex("HomeownerId");
 
                     b.HasIndex("OnlineBankingId");
 
@@ -849,7 +867,7 @@ namespace Subdivision.Migrations
                     b.HasOne("Subdivision.Models.User", "User")
                         .WithOne("Admin")
                         .HasForeignKey("Subdivision.Models.Admin", "LoginId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -866,11 +884,19 @@ namespace Subdivision.Migrations
 
             modelBuilder.Entity("Subdivision.Models.Bill", b =>
                 {
+                    b.HasOne("Subdivision.Models.Admin", "Admin")
+                        .WithMany()
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("Subdivision.Models.Homeowner", "Homeowner")
                         .WithMany("Bills")
                         .HasForeignKey("HomeownerId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
+
+                    b.Navigation("Admin");
 
                     b.Navigation("Homeowner");
                 });
@@ -891,7 +917,7 @@ namespace Subdivision.Migrations
                     b.HasOne("Subdivision.Models.Admin", "Admin")
                         .WithMany("Contacts")
                         .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Admin");
@@ -902,7 +928,7 @@ namespace Subdivision.Migrations
                     b.HasOne("Subdivision.Models.Admin", "OrganizedBy")
                         .WithMany("EventsOrganized")
                         .HasForeignKey("OrganizedById")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("OrganizedBy");
@@ -913,7 +939,7 @@ namespace Subdivision.Migrations
                     b.HasOne("Subdivision.Models.EventCalendar", "Event")
                         .WithMany("EventVisibilities")
                         .HasForeignKey("EventId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Subdivision.Models.User", "User")
@@ -931,7 +957,8 @@ namespace Subdivision.Migrations
                 {
                     b.HasOne("Subdivision.Models.Admin", "Admin")
                         .WithMany("Facilities")
-                        .HasForeignKey("AdminId");
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Admin");
                 });
@@ -964,23 +991,31 @@ namespace Subdivision.Migrations
 
             modelBuilder.Entity("Subdivision.Models.ForumReplies", b =>
                 {
-                    b.HasOne("Subdivision.Models.Admin", null)
+                    b.HasOne("Subdivision.Models.Admin", "Admin")
                         .WithMany("ForumReplies")
                         .HasForeignKey("AdminId");
 
-                    b.HasOne("Subdivision.Models.Forum", null)
+                    b.HasOne("Subdivision.Models.Forum", "Forum")
                         .WithMany("ForumReplies")
                         .HasForeignKey("ForumId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Subdivision.Models.Homeowner", null)
+                    b.HasOne("Subdivision.Models.Homeowner", "Homeowner")
                         .WithMany("ForumReplies")
                         .HasForeignKey("HomeownerId");
 
-                    b.HasOne("Subdivision.Models.Staff", null)
+                    b.HasOne("Subdivision.Models.Staff", "Staff")
                         .WithMany("ForumReplies")
                         .HasForeignKey("StaffId");
+
+                    b.Navigation("Admin");
+
+                    b.Navigation("Forum");
+
+                    b.Navigation("Homeowner");
+
+                    b.Navigation("Staff");
                 });
 
             modelBuilder.Entity("Subdivision.Models.Homeowner", b =>
@@ -988,7 +1023,7 @@ namespace Subdivision.Migrations
                     b.HasOne("Subdivision.Models.User", "User")
                         .WithOne("Homeowner")
                         .HasForeignKey("Subdivision.Models.Homeowner", "LoginId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");
@@ -1007,6 +1042,12 @@ namespace Subdivision.Migrations
                         .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.NoAction);
 
+                    b.HasOne("Subdivision.Models.Homeowner", "Homeowner")
+                        .WithMany()
+                        .HasForeignKey("HomeownerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("Subdivision.Models.OnlineBanking", "OnlineBanking")
                         .WithMany("Payments")
                         .HasForeignKey("OnlineBankingId")
@@ -1015,6 +1056,8 @@ namespace Subdivision.Migrations
                     b.Navigation("Bill");
 
                     b.Navigation("CreditDebitCard");
+
+                    b.Navigation("Homeowner");
 
                     b.Navigation("OnlineBanking");
                 });
@@ -1068,7 +1111,7 @@ namespace Subdivision.Migrations
                     b.HasOne("Subdivision.Models.User", "User")
                         .WithOne("Staff")
                         .HasForeignKey("Subdivision.Models.Staff", "LoginId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("User");

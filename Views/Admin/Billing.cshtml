@@ -160,9 +160,9 @@
         document.getElementById('createBillForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const formData = {
-                homeownerId: document.getElementById('homeownerId').value,
+                homeownerId: parseInt(document.getElementById('homeownerId').value),
                 billType: document.getElementById('billType').value,
-                amount: document.getElementById('amount').value,
+                amount: parseFloat(document.getElementById('amount').value),
                 dueDate: document.getElementById('dueDate').value
             };
 
@@ -175,12 +175,12 @@
                     body: JSON.stringify(formData)
                 });
 
+                const result = await response.json();
                 if (response.ok) {
                     hideCreateBillModal();
                     window.location.reload();
                 } else {
-                    const error = await response.json();
-                    alert(error.message || 'Failed to create bill');
+                    alert(result.message || 'Failed to create bill');
                 }
             } catch (error) {
                 console.error('Error creating bill:', error);

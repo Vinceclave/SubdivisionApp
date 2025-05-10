@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3HKfLjOTGKdnhlg101YdGndBR11zEjZIuc2uzUBYDMI=",
+  "Hash": "qk+nLHEYi6iB3wu++KnwjSeXRF6ZPe2lMMnZloKUcD8=",
   "Source": "Subdivision",
   "BasePath": "_content/Subdivision",
   "Mode": "Default",
@@ -1716,6 +1716,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\home\\hero.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\logo-social.png",
+      "SourceId": "Subdivision",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\",
+      "BasePath": "_content/Subdivision",
+      "RelativePath": "uploads/home/logo-social#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "qwzufawntf",
+      "Integrity": "SqiD17NMMmkDk66u9TiLeXxn8+jieFZcT7wppbT3+rA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\home\\logo-social.png"
     },
     {
       "Identity": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\OIP.jfif",
@@ -8421,6 +8442,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-ScztxuygtoYYaQ0WQCin+L+L+iY98mLSu0jW+40+7wg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/home/logo-social.png",
+      "AssetFile": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\logo-social.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8594"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SqiD17NMMmkDk66u9TiLeXxn8+jieFZcT7wppbT3+rA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 08 May 2025 06:34:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-SqiD17NMMmkDk66u9TiLeXxn8+jieFZcT7wppbT3+rA="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/home/logo-social.qwzufawntf.png",
+      "AssetFile": "C:\\Users\\datan\\source\\repos\\Subdivision\\wwwroot\\uploads\\home\\logo-social.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8594"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"SqiD17NMMmkDk66u9TiLeXxn8+jieFZcT7wppbT3+rA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 08 May 2025 06:34:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "qwzufawntf"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/home/logo-social.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-SqiD17NMMmkDk66u9TiLeXxn8+jieFZcT7wppbT3+rA="
         }
       ]
     },

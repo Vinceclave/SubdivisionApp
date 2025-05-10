@@ -98,10 +98,20 @@ namespace Subdivision.Controllers
             // Fetch announcements and forums from the database
             var announcements = _context.Announcements
                 .OrderByDescending(a => a.DateTimePosted)
-                .ToList(); // Fetch announcements
+                .ToList();
+                
             var forums = _context.Forums
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Admin)
+                        .ThenInclude(a => a.User)
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Staff)
+                        .ThenInclude(s => s.User)
+                .Include(f => f.ForumReplies)
+                    .ThenInclude(r => r.Homeowner)
+                        .ThenInclude(h => h.User)
                 .OrderByDescending(f => f.DateTimePosted)
-                .ToList(); // Fetch forums
+                .ToList();
 
             // Create a ValueTuple to pass to the view
             var model = (forums, announcements);
@@ -732,7 +742,7 @@ namespace Subdivision.Controllers
 
         [HttpPost]
         [Route("admin/events/create")]
-        public async Task<IActionResult> CreateEvent([FromBody] EventCalendar eventData)
+        public async Task<IActionResult> CreateEvent([FromBody] EventCalendarViewModel model)
         {
             try
             {
@@ -742,42 +752,40 @@ namespace Subdivision.Controllers
                     return Unauthorized(new { message = "Not authorized" });
                 }
 
-                var newEvent = new EventCalendar
+                // Parse the event date time with proper handling
+                if (!DateTime.TryParse(model.EventDateTime, out DateTime parsedDateTime))
                 {
-                    EventTitle = eventData.EventTitle,
-                    EventDesc = eventData.EventDesc,
-                    EventDateTime = eventData.EventDateTime,
-                    Visibility = eventData.Visibility ?? "public",
+                    return BadRequest(new { message = "Invalid date time format" });
+                }
+
+                var eventCalendar = new EventCalendar
+                {
+                    EventTitle = model.EventTitle,
+                    EventDesc = model.EventDesc,
+                    EventDateTime = parsedDateTime.ToUniversalTime(), // Store as UTC
+                    Visibility = model.Visibility,
                     OrganizedById = adminId.Value,
                     DateUploaded = DateTime.UtcNow
                 };
 
-                _context.EventCalendars.Add(newEvent);
+                _context.EventCalendars.Add(eventCalendar);
                 await _context.SaveChangesAsync();
 
-                var organizer = await _context.Admins
-                    .Include(a => a.User)
-                    .FirstOrDefaultAsync(a => a.AdminId == adminId.Value);
-
-                var responseEvent = new
+                // Return the created event with localized time
+                return Json(new
                 {
-                    eventId = newEvent.EventId,
-                    eventTitle = newEvent.EventTitle,
-                    eventDesc = newEvent.EventDesc,
-                    eventDateTime = newEvent.EventDateTime,
-                    visibility = newEvent.Visibility,
-                    dateUploaded = newEvent.DateUploaded,
-                    organizedBy = organizer?.User != null 
-                        ? $"{organizer.User.FirstName} {organizer.User.LastName}"
-                        : "Admin"
-                };
-
-                return Ok(responseEvent);
+                    eventId = eventCalendar.EventId,
+                    eventTitle = eventCalendar.EventTitle,
+                    eventDesc = eventCalendar.EventDesc,
+                    eventDateTime = eventCalendar.EventDateTime,
+                    visibility = eventCalendar.Visibility,
+                    organizedBy = "Admin"
+                });
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error creating event");
-                return BadRequest(new { message = $"Failed to create event: {ex.Message}" });
+                return StatusCode(500, new { message = "An error occurred while creating the event" });
             }
         }
 
@@ -1508,89 +1516,145 @@ namespace Subdivision.Controllers
         [Route("admin/billing")]
         public async Task<IActionResult> Billing()
         {
+            ViewData["Title"] = "Billing Management";
             ViewData["UserType"] = "Admin";
             ViewData["Page"] = "Billing";
+
             var bills = await _context.Bills
                 .Include(b => b.Homeowner)
                     .ThenInclude(h => h.User)
-                .Include(b => b.Payments)
-                .OrderByDescending(b => b.DueDate)
+                .OrderByDescending(b => b.DateCreated)
                 .ToListAsync();
-            return View(bills);
+
+            return View("~/Views/Admin/Billing.cshtml", bills);
         }
 
         [HttpPost]
         [Route("admin/billing/create")]
-        public async Task<IActionResult> CreateBill([FromBody] Bill bill)
+        public async Task<IActionResult> CreateBill([FromBody] CreateBillModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                var adminId = HttpContext.Session.GetInt32("UserId");
+                if (adminId == null)
+                {
+                    return Unauthorized(new { message = "Not authorized" });
+                }
+
+                var admin = await _context.Admins.FirstOrDefaultAsync(a => a.LoginId == adminId);
+                if (admin == null)
+                {
+                    return Unauthorized(new { message = "Admin profile not found" });
+                }
+
+                // Validate required fields
+                if (model.HomeownerId == 0 || model.Amount <= 0 || string.IsNullOrEmpty(model.BillType))
+                {
+                    return BadRequest(new { message = "Please fill in all required fields" });
+                }
+
+                // Check if homeowner exists
+                var homeowner = await _context.Homeowners.FindAsync(model.HomeownerId);
+                if (homeowner == null)
+                {
+                    return BadRequest(new { message = "Invalid homeowner selected" });
+                }
+
+                // Create the new bill
+                var bill = new Bill
+                {
+                    HomeownerId = model.HomeownerId,
+                    AdminId = admin.AdminId,
+                    BillType = model.BillType,
+                    Amount = model.Amount,
+                    DueDate = model.DueDate,
+                    DateCreated = DateTime.Now,
+                    AmountPaid = 0,
+                    Status = "Pending"
+                };
+
+                _context.Bills.Add(bill);
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "Bill created successfully", billId = bill.BillId });
             }
-
-            bill.Status = "Pending";
-            _context.Bills.Add(bill);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { message = "Bill created successfully", bill });
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error creating bill");
+                return BadRequest(new { message = "Failed to create bill: " + ex.Message });
+            }
         }
 
         [HttpGet]
         [Route("admin/billing/{id}")]
         public async Task<IActionResult> GetBill(int id)
         {
-            var bill = await _context.Bills
-                .Include(b => b.Homeowner)
-                    .ThenInclude(h => h.User)
-                .Include(b => b.Payments)
-                .FirstOrDefaultAsync(b => b.BillId == id);
-
-            if (bill == null)
+            try
             {
-                return NotFound(new { message = "Bill not found" });
+                var bill = await _context.Bills
+                    .Include(b => b.Homeowner)
+                        .ThenInclude(h => h.User)
+                    .FirstOrDefaultAsync(b => b.BillId == id);
+
+                if (bill == null)
+                {
+                    return NotFound(new { message = "Bill not found" });
+                }
+
+                var billDetails = new
+                {
+                    bill.BillId,
+                    bill.BillType,
+                    bill.Amount,
+                    bill.AmountPaid,
+                    bill.DueDate,
+                    bill.Status,
+                    homeowner = new
+                    {
+                        bill.Homeowner.User.FirstName,
+                        bill.Homeowner.User.LastName
+                    }
+                };
+
+                return Ok(billDetails);
             }
-
-            // Handle case where homeowner data might be missing
-            var homeownerName = bill.Homeowner?.User != null
-                ? new { firstName = bill.Homeowner.User.FirstName, lastName = bill.Homeowner.User.LastName }
-                : new { firstName = "Unknown", lastName = "User" };
-
-            var billDetails = new
+            catch (Exception ex)
             {
-                billId = bill.BillId,
-                homeowner = homeownerName,
-                billType = bill.BillType,
-                amount = bill.Amount,
-                dueDate = bill.DueDate,
-                status = bill.Status,
-                amountPaid = bill.Payments.Sum(p => p.AmountPaid)
-            };
-
-            return Json(billDetails);
+                _logger.LogError(ex, "Error retrieving bill");
+                return BadRequest(new { message = "Failed to retrieve bill: " + ex.Message });
+            }
         }
 
         [HttpGet]
         [Route("admin/billing/{id}/payments")]
         public async Task<IActionResult> GetBillPayments(int id)
         {
-            var bill = await _context.Bills
-                .Include(b => b.Payments)
-                .FirstOrDefaultAsync(b => b.BillId == id);
-
-            if (bill == null)
+            try
             {
-                return NotFound(new { message = "Bill not found" });
+                var payments = await _context.Payments
+                    .Include(p => p.Bill)
+                    .Include(p => p.Homeowner)
+                        .ThenInclude(h => h.User)
+                    .Where(p => p.BillId == id)
+                    .OrderByDescending(p => p.PaymentDate)  // Changed from PaymentDate
+                    .Select(p => new
+                    {
+                        p.PaymentId,
+                        p.AmountPaid,
+                        p.PaymentDate,  // Changed from PaymentDate
+                        p.ModeOfPayment,
+                        p.Status,
+                        homeowner = $"{p.Homeowner.User.FirstName} {p.Homeowner.User.LastName}"
+                    })
+                    .ToListAsync();
+
+                return Ok(payments);
             }
-
-            var payments = bill.Payments.Select(p => new
+            catch (Exception ex)
             {
-                paymentId = p.PaymentId,
-                amountPaid = p.AmountPaid,
-                modeOfPayment = p.ModeOfPayment,
-                dateOfPayment = p.DateOfPayment
-            });
-
-            return Json(payments);
+                _logger.LogError(ex, "Error retrieving bill payments");
+                return BadRequest(new { message = "Failed to retrieve payments: " + ex.Message });
+            }
         }
 
         [HttpPut]
@@ -1614,22 +1678,23 @@ namespace Subdivision.Controllers
         {
             try
             {
-                var homeowners = await _context.Homeowners
-                    .Include(h => h.User)
-                    .Select(h => new
+                var homeowners = await _context.Users
+                    .Include(u => u.Homeowner)
+                    .Where(u => u.UserType == UserType.Homeowner)
+                    .Select(u => new
                     {
-                        homeownerId = h.HomeownerId,
-                        firstName = h.User.FirstName,
-                        lastName = h.User.LastName
+                        homeownerId = u.Homeowner.HomeownerId,
+                        firstName = u.FirstName,
+                        lastName = u.LastName
                     })
                     .ToListAsync();
 
-                return Json(homeowners);
+                return Ok(homeowners);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error fetching homeowners list");
-                return StatusCode(500, new { message = "Error fetching homeowners" });
+                _logger.LogError(ex, "Error retrieving homeowners");
+                return BadRequest(new { message = "Failed to retrieve homeowners: " + ex.Message });
             }
         }
 
@@ -1808,6 +1873,49 @@ namespace Subdivision.Controllers
                 _logger.LogError(ex, "Error fetching dashboard statistics");
                 return StatusCode(500, new { message = "Error fetching dashboard statistics", error = ex.Message });
             }
+        }
+
+        [HttpPost]
+        [Route("admin/community/add-reply")]
+        public async Task<IActionResult> AddForumReply(int forumId, string content)
+        {
+            var adminId = HttpContext.Session.GetInt32("AdminId");
+            if (adminId == null)
+            {
+                TempData["CommunityError"] = "Not authorized";
+                return RedirectToAction("Community");
+            }
+
+            try 
+            {
+                var forum = await _context.Forums.FindAsync(forumId);
+                if (forum == null)
+                {
+                    TempData["CommunityError"] = "Forum post not found";
+                    return RedirectToAction("Community");
+                }
+
+                var reply = new ForumReplies
+                {
+                    ForumId = forumId,
+                    AdminId = adminId.Value,
+                    StaffId = null,
+                    HomeownerId = null,
+                    RepliedContent = content,
+                    DateTime = DateTime.Now
+                };
+
+                _context.ForumReplies.Add(reply);
+                await _context.SaveChangesAsync();
+
+                TempData["CommunitySuccess"] = "Reply added successfully";
+            }
+            catch (Exception ex)
+            {
+                TempData["CommunityError"] = "Error adding reply: " + ex.Message;
+            }
+
+            return RedirectToAction("Community");
         }
     }
 }
